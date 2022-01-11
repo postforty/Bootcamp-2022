@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="https://naver.com" target="_blank">네이버_blank</a>
+    <a href="https://naver.com" target="_self"
+      >네이버_self/https는 열리는게 막힘</a
+    >
+    <!-- 최근 추세는 iframe을 잘 안쓰는 추세/JAVA, JSP, PHP에서 사용/Vue, React에서는 SPA 방식이기 때문에 사용하지 않음 -->
+    <iframe src="05.html" frameborder="0"></iframe>
+    <br />
+    <a href="03.html">03.html</a>
+    <br />
+    <a href="06.html#a">06.html의 a로 이동</a>
+    <br />
+    <a href="javascript:callFunc();">함수 호출</a>
+    <script>
+      function callFunc() {
+        alert("a 태그는 함수를 호출할 수 있다.");
+      }
+    </script>
+  </body>
+</html>
