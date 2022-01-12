@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        text-align: center;
+      }
+
+      #header {
+        border: 2px solid red;
+        line-height: 55px;
+        height: 55px;
+      }
+
+      .nav {
+        border: 2px solid blue;
+        height: 60px;
+      }
+
+      .nav > ul {
+        list-style: none;
+        padding-left: 0px;
+      }
+
+      .nav > ul > li {
+        width: 20%;
+        height: 25px;
+        float: left;
+        text-align: center;
+      }
+
+      #main {
+        border: 2px solid green;
+      }
+
+      .section {
+        border: 1px solid red;
+        height: 100px;
+      }
+
+      #footer {
+        border: 2px solid black;
+        height: 55px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 시맨틱태그로 화면 레이아웃 잡음 header, nav, main, section, article, aside, footer -->
+    <!-- div - division 과거에는 div로 레이아웃을 잡았음, 검색엔진과 스크린리더가 해석을 못함 -->
+    <div id="header">Header 영역</div>
+    <div class="nav">
+      <ul>
+        <li>Menu1</li>
+        <li>Menu2</li>
+        <li>Menu3</li>
+        <li>Menu4</li>
+      </ul>
+    </div>
+    <div id="main">
+      <div class="section">Section 영역</div>
+      <div class="section">Section 영역</div>
+      <div class="section">Section 영역</div>
+    </div>
+    <div id="footer">Footer 영역</div>
+  </body>
+</html>
