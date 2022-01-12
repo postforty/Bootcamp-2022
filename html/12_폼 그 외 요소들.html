@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- for에 id를 넣어줘야 웹접근성 고려한 작성임 -->
+    <label for="name">이름</label>
+    <input type="text" name="" id="name" />
+    <br />
+    <!-- 셀렉트박스 -->
+    <label for="city">태어난 도시: </label>
+    <select name="" id="city">
+      <option value="02">서울</option>
+      <option value="051">부산</option>
+      <option value="064">제주</option>
+    </select>
+    <br />
+    <!-- Ctrl+클릭하면 다중선택 가능 -->
+    <label for="city">최근 1년동안 방문했던 도시: </label>
+    <select name="" id="city" size="10" multiple>
+      <option value="02">서울</option>
+      <option value="051">부산</option>
+      <option value="064">제주</option>
+      <option value="064">제주</option>
+      <option value="064">제주</option>
+      <option value="064">제주</option>
+      <option value="064">제주</option>
+      <option value="064">제주</option>
+    </select>
+    <br />
+    <!-- 선택 옵션이 많은 경우에는 셀렉트 박스, 반대일 경우에는 라디오 버튼 사용하는 것이 UX적으로 좋다 -->
+    <label for="gender">성별</label>
+    <input type="radio" name="gender" id="male" />
+    <label for="male">남자</label>
+    <input type="radio" name="gender" id="female" />
+    <label for="female">여자</label>
+    <br />
+    <!-- 여러줄 입력용 텍스트 상자 -->
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <textarea name="" id="" style="width: 100%; height: 100px"></textarea>
+    <br />
+    <!-- 버트 타입 지정하지 않을 시 구 부라우저는 인식 못할 경우 있음 -->
+    <button>저장</button>
+    <button type="button">저장</button>
+    <button type="submit">저장</button>
+  </body>
+</html>
