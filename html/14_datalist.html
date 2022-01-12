@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <select name="" id="">
+      <option value="">==브라우저 선택==</option>
+      <option value="IE">Internet Explorer</option>
+      <option value="FF">Firefox</option>
+      <option value="CH">Chrome</option>
+      <option value="OP">Opera</option>
+      <option value="SA">Safari</option>
+    </select>
+    <br />
+    <!-- 데이터리스트는 셀렉트 박스와 달리 검색이 가능함,
+        텍스트 수정이 가능하기 사용자가 입력한 데이터가 실제 존재하는지 체크하는 로직이 들어가야 함,
+        value 코드 값으로 저장할 수 없음(동명이인 있을시 문제됨) -->
+    <input list="browsers" />
+    <datalist id="browsers">
+      <option value="Internet Explorer"></option>
+      <option value="Firefox"></option>
+      <option value="Chrome"></option>
+      <option value="Opera"></option>
+      <option value="Safari"></option>
+    </datalist>
+    <table>
+      <thead>
+        <tr>
+          <th>고객</th>
+          <th>주문</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input list="browsers" /></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input list="browsers" /></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input list="browsers" /></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input list="browsers" /></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input list="browsers" /></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
