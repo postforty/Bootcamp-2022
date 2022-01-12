@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* CSS 1차 목표는 코드를 짜는 수준 보다는 보고 이해하는 수준이면 됨/ 선택자를 쓰는 방법은 반드시 숙지해야 함. 프로그램 개발하면서 써야하기 때문 */
+      /* 뷰는 HTML, CSS, JS 영역이 완전히 구분되어 있음. 리액트는 CSS를 잘써야 효과가 남 */
+      /* bootstrap과 달리 tailwind는 유틸리티 방식, 디자인 속성을 잘게 쪼갬, 코드의 중복을 피할 수 있음*/
+
+      /* {}는 선언 블럭 declaration block */
+      /* 선언은 속성(property)과 그에 대한 속성값(property value) */
+      /* p는 태그 선택자(selector) */
+      .p-area {
+        background-color: red;
+      }
+
+      p {
+        /* color: red; */
+        padding: 10px;
+        /* background-color: black; */
+      }
+
+      /* 별표(*) 선택자를 전체 선택자 universal selector */
+      /* 태그명 선택자를 태그 선택자 */
+
+      /* 클래스 선택자 */
+      .div-area {
+        background-color: red;
+        /* color: white; */
+        width: 100%;
+        height: 50px;
+      }
+
+      .primary {
+        padding: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        background-color: blue;
+        border-color: blue;
+      }
+
+      .secondary {
+        padding: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        background-color: green;
+        border-color: green;
+      }
+
+      .text-white {
+        color: white;
+      }
+
+      .bg-blue {
+        background-color: blue;
+      }
+
+      .bg-green {
+        background-color: green;
+      }
+
+      .bold {
+        font-weight: bold;
+      }
+
+      .p-5 {
+        padding: 5px;
+      }
+
+      .p-area {
+        background-color: red;
+      }
+
+      /* ID선택자, ID는 유일함 */
+      /* #header {
+        color: red;
+      } */
+
+      #header > p > span {
+        color: red;
+      }
+
+      div.div-area2 {
+        color: blue;
+      }
+
+      input[name="username"] {
+        width: 100%;
+      }
+
+      .div-area {
+        background-color: red;
+      }
+
+      .div-area {
+        background-color: blue;
+      }
+
+      /* > 는 바로 하위 노드만 적용 */
+      /* > 가 없고 한칸 띄어우면 모든 하위 노드 적용 */
+      /* > 가 없고 한칸 띄우지 않고 붙어 있으면 and */
+      /* #header > .div-area {
+        background-color: blueviolet;
+      } */
+      /* 속성 선택자 */
+    </style>
+  </head>
+  <body>
+    <!-- 자바스크립트에서 document.querySelector("CSS선택자") 함수에서 CSS와 동일, 매우 중요 -->
+    <!-- CSS - Cascading Style Sheets -->
+    <!-- CSS적용 우선순위: 인라인이 가장 우선, 
+        선택자 우선 순위 id > class > tag,
+        클래스의 경우 동일한 이름이면 합치고 동일한 속성은 아래쪽 값이 위쪽 값을 덮어씀 
+    -->
+    <input type="text" name="username" id="" />
+    <br />
+    <input type="email" name="" id="" />
+    <div class="div-area2">
+      <p>안녕하세요 <span>환영합니다.</span></p>
+    </div>
+    <p class="div-area2">feefefefef</p>
+    <div class="div-area text-white">영역입니다.</div>
+    <p class="p-area">문장입니다.</p>
+    <p>문장입니다.</p>
+    <p>문장입니다.</p>
+    <p>문장입니다.</p>
+    <button class="primary">저장</button>
+    <button class="secondary">저장</button>
+    <button class="text-white bg-blue bold p-5">저장</button>
+    <button class="text-white bg-green bold p-5">저장</button>
+  </body>
+</html>
