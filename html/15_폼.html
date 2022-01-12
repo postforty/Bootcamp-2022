@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- get, post는 조회가능!
+        post방식은 주소창에서 url을 숨김(링크 복붙시 작동 안함, 보안상 조회 내용 보여서는 안되는 경우),
+        보이는 경우는 get방식(링크 재활용 가능) -->
+    <!-- <form action="/서버의 주소/아이프레임 안쓸때" method="post"> -->
+    <form method="post" novalidate>
+      <fieldset>
+        <legend>개인정보</legend>
+        <label for="username">이름</label>
+        <input type="text" name="" id="username" />
+        <br />
+        <label for="tel">연락처</label>
+        <input type="tel" name="" id="tel" />
+      </fieldset>
+      <fieldset>
+        <legend>학력정보</legend>
+        <label for="education">학력</label>
+        <select name="" id="education">
+          <option value="">고졸</option>
+          <option value="">대졸</option>
+          <option value="">대학원졸</option>
+        </select>
+      </fieldset>
+      <!-- <input type="submit" value="저장" formnovalidate="formnovalidate" /> -->
+      <input type="button" value="저장" />
+    </form>
+    <!-- iframe은 화면 깜박임 없게 해줘서 UX를 더 좋게함 -->
+    <iframe
+      id=""
+      src="/서버의 주소"
+      frameborder="0"
+      width="0"
+      height="0"
+    ></iframe>
+  </body>
+</html>
