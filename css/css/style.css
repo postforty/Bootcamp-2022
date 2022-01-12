@@ -1,0 +1,30 @@
+/* 실무에서는 인터널 스타일 거의 안씀. 이와 같은 익스터널 스탈일을 사용함 */
+
+/* 가상클래스 선택자 - 방문한 사이트 색깔 변경 */
+a:visited {
+  color: red;
+}
+
+/* 가상클래스 선택자 - 마우스 올라가 있을 때 색깍 변경 */
+a:hover {
+  color: green;
+}
+
+/* 가상클래스 선택자 - 2번째 li만 색깔 변경 */
+/* first-child, last-child도 사용가능 */
+ul > li:nth-child(2) {
+  color: red;
+}
+
+table,
+th,
+td {
+  border: 1px solid blue;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+/* 2n은 짝수 줄에 적용 */
+table > tbody > tr:nth-child(2n + 1) {
+  background-color: grey;
+}
