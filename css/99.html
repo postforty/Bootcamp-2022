@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Arial;
+        margin: 0;
+      }
+
+      .header {
+        padding: 60px;
+        text-align: center;
+        background: #f9fc63;
+        color: black;
+      }
+
+      .navbar {
+        display: flex;
+        background-color: #333;
+        position: sticky;
+        top: 0;
+        /* justify-content: center; */
+      }
+
+      .navbar a {
+        color: white;
+        padding: 14px 20px;
+        text-decoration: none;
+        text-align: center;
+      }
+
+      .navbar a:hover {
+        background-color: rgb(235, 247, 72);
+        color: black;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .side {
+        flex: 30%;
+        background-color: #f1f1f1;
+        padding: 20px;
+      }
+
+      .btn {
+        color: black;
+      }
+
+      .btn-primary {
+        color: white;
+      }
+
+      .main {
+        flex: 70%;
+        background-color: white;
+        padding: 20px;
+      }
+
+      .fakeimg {
+        background-color: #aaa;
+        width: 100%;
+        padding: 20px;
+      }
+
+      .footer {
+        padding: 20px;
+        text-align: center;
+        background: #ddd;
+      }
+
+      @media screen and (max-width: 700px) {
+        .row,
+        .navbar {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <h1>Who Am I</h1>
+    </header>
+
+    <nav class="navbar">
+      <a href="#">메뉴1</a>
+      <a href="#">메뉴2</a>
+      <a href="#">메뉴3</a>
+      <a href="#">메뉴4</a>
+      <a href="#project5">메뉴5</a>
+    </nav>
+
+    <div class="row">
+      <aside class="side">
+        <h2>About</h2>
+        <div class="fakeimg" style="height: 200px">Image</div>
+        <p>
+          저는 22년차 소프트웨어 개발자입니다. 유튜브 개발자의 품격 채널을
+          운영중입니다.
+        </p>
+        <h3>Skills</h3>
+        <p>Javascript, Vue, React, Angular, Java, SAP, RDBMS, No-SQL....</p>
+        <div class="fakeimg" style="height: 60px">Image</div>
+        <br />
+        <div class="fakeimg" style="height: 60px">Image</div>
+        <br />
+        <div class="fakeimg" style="height: 60px">Image</div>
+      </aside>
+      <main class="main">
+        <section>
+          <h2>프로젝트 1</h2>
+          <h5>2021년 2월</h5>
+          <div class="fakeimg" style="height: 200px">Image</div>
+          <p>
+            이 프로젝트는 어떤 어떤 기술을 가지고 어떤 것을 해결하기 위해
+            진행되었습니다.
+          </p>
+        </section>
+        <section>
+          <h2>프로젝트 2</h2>
+          <h5>2021년 2월</h5>
+          <div class="fakeimg" style="height: 200px">Image</div>
+          <p>
+            이 프로젝트는 어떤 어떤 기술을 가지고 어떤 것을 해결하기 위해
+            진행되었습니다.
+          </p>
+        </section>
+        <section>
+          <h2>프로젝트 3</h2>
+          <h5>2021년 2월</h5>
+          <div class="fakeimg" style="height: 200px">Image</div>
+          <p>
+            이 프로젝트는 어떤 어떤 기술을 가지고 어떤 것을 해결하기 위해
+            진행되었습니다.
+          </p>
+        </section>
+        <section>
+          <h2>프로젝트 4</h2>
+          <h5>2021년 2월</h5>
+          <div class="fakeimg" style="height: 200px">Image</div>
+          <p>
+            이 프로젝트는 어떤 어떤 기술을 가지고 어떤 것을 해결하기 위해
+            진행되었습니다.
+          </p>
+        </section>
+        <section id="project5">
+          <h2>프로젝트 5</h2>
+          <h5>2021년 2월</h5>
+          <div class="fakeimg" style="height: 200px">Image</div>
+          <p>
+            이 프로젝트는 어떤 어떤 기술을 가지고 어떤 것을 해결하기 위해
+            진행되었습니다.
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <h2>Footer</h2>
+    </footer>
+  </body>
+</html>
