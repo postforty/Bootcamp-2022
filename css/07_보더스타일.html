@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .dotted {
+        border-style: dotted;
+        /* border-width 는 light와 같은 방식으로도 값을 줄 수 있지만 실무에서는 주로 px로 줌 */
+        border-width: 3px;
+      }
+
+      .dashed {
+        border-style: dashed;
+        border-width: 3px;
+      }
+
+      .double {
+        border-style: double;
+        border-width: 3px;
+      }
+      /* 4개의 면에 적용하면 CSS는 시계방향으로 적용 됨 */
+      /* 2개의 면에 적용하면 CSS는 2개 적용 후 2개 적용을 반복함 */
+      .mix {
+        /* border-style: dotted dashed double solid;
+        border-width: 3px 5px 3px 5px;
+        border-color: red blue yellow green; */
+        border: 3px solid red;
+        border-radius: 5px;
+      }
+
+      button {
+        /* border-radius 모서리 둥글게 처리 */
+        border-radius: 100px;
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="dotted">점선</p>
+    <p class="dashed">대시</p>
+    <p class="double">이중선</p>
+    <p class="mix">4개의 면의 선색이 닫른 적용</p>
+    <button>저장</button>
+  </body>
+</html>
