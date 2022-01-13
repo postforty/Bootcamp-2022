@@ -11,8 +11,8 @@
       /* bootstrap과 달리 tailwind는 유틸리티 방식, 디자인 속성을 잘게 쪼갬, 코드의 중복을 피할 수 있음*/
 
       /* {}는 선언 블럭 declaration block */
-      /* 선언은 속성(property)과 그에 대한 속성값(property value) */
-      /* p는 태그 선택자(selector) */
+      /* 선언은 속성(property): 속성값(property value) */
+      /* p-area는 태그 선택자(selector) */
       .p-area {
         background-color: red;
       }
@@ -23,8 +23,8 @@
         /* background-color: black; */
       }
 
-      /* 별표(*) 선택자를 전체 선택자 universal selector */
-      /* 태그명 선택자를 태그 선택자 */
+      /* 별표(*)는 전체 선택자 universal selector */
+      /* 태그명은 태그 선택자 */
 
       /* 클래스 선택자 */
       .div-area {
@@ -87,6 +87,10 @@
 
       div.div-area2 {
         color: blue;
+      }
+
+      div.div-area2 > p > span {
+        color: red;
       }
 
       input[name="username"] {
