@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- CSS Box 모델 -->
+    <!-- 보더를 기준으로 바깥은 마진(보더를 둘러쌈), 안쪽은 패딩(콘텐츠를 둘러싸고 있음) -->
+    <div style="border: 1px solid red; padding: 50px 10px">
+      <p style="border: 1px solid green">CSS 박스 패딩 적용</p>
+    </div>
+    <div style="border: 1px solid red">
+      <p style="border: 1px solid green; margin: 50px 10px">
+        CSS 박스 마진 적용
+      </p>
+    </div>
+    <!-- 50px + 50px = 100px 만큼 떨어져야하는데 50px 만큼만 떨어져 있음. 크롬 브라이저 자체적으로 그렇게 처리하는 경우임
+    
+     -->
+    <div style="border: 1px solid red">
+      <p style="border: 1px solid green; margin: 50px 10px">
+        CSS 박스 마진 적용
+      </p>
+      <p style="border: 1px solid green; margin: 50px 10px">
+        CSS 박스 마진 적용
+      </p>
+    </div>
+    <!-- 아무값도 주지 않았는데 떨어져 있는 것은 브라우저 마다의 기본값에 의해 그렇다 -->
+    <button style="margin-right: 10px">저장</button>
+    <button>취소</button>
+  </body>
+</html>
