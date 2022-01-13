@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 유틸리티성으로 CSS를 짤 수있다.
+      부트스트랩(트위터에서 만듦)이 이런 방식으로 되어 있다.
+      부트스트랩을 잘 활용할 수 있어야 한다.
+      삼성, 현대와 같은 큰 기업에서 부트스트랩을 그대로 쓴다. */
+      .normal-table {
+        border: 1px solid black;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      .normal-table th,
+      .normal-table td {
+        border: 1px solid black;
+        padding: 5px 10px;
+      }
+
+      .normal-table thead tr {
+        background-color: yellow;
+      }
+      /* even 혹은 2n 짝수 odd 혹은 2n+1 홀수 */
+      /* .normal-table tbody tr:nth-child(odd) {
+        background-color: grey;
+      } */
+
+      /* even 혹은 2n 짝수 odd 혹은 2n+1 홀수 */
+      .striped tbody tr:nth-child(odd) {
+        background-color: grey;
+      }
+
+      .hover tbody tr:hover {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <table class="normal-table striped hover">
+      <thead>
+        <tr>
+          <th>이름</th>
+          <th>연락처</th>
+          <th>이메일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>유재석</td>
+          <td>010-0000-0000</td>
+          <td>ryu@gmail.com</td>
+        </tr>
+        <tr>
+          <td>김종국</td>
+          <td>010-0000-0000</td>
+          <td>kim@gmail.com</td>
+        </tr>
+        <tr>
+          <td>유재석</td>
+          <td>010-0000-0000</td>
+          <td>ryu@gmail.com</td>
+        </tr>
+        <tr>
+          <td>김종국</td>
+          <td>010-0000-0000</td>
+          <td>kim@gmail.com</td>
+        </tr>
+        <tr>
+          <td>유재석</td>
+          <td>010-0000-0000</td>
+          <td>ryu@gmail.com</td>
+        </tr>
+        <tr>
+          <td>김종국</td>
+          <td>010-0000-0000</td>
+          <td>kim@gmail.com</td>
+        </tr>
+      </tbody>
+    </table>
+    <br /><br />
+    <table class="normal-table hover">
+      <thead>
+        <tr>
+          <th>이름</th>
+          <th>연락처</th>
+          <th>이메일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>유재석</td>
+          <td>010-0000-0000</td>
+          <td>ryu@gmail.com</td>
+        </tr>
+        <tr>
+          <td>김종국</td>
+          <td>010-0000-0000</td>
+          <td>kim@gmail.com</td>
+        </tr>
+        <tr>
+          <td>유재석</td>
+          <td>010-0000-0000</td>
+          <td>ryu@gmail.com</td>
+        </tr>
+        <tr>
+          <td>김종국</td>
+          <td>010-0000-0000</td>
+          <td>kim@gmail.com</td>
+        </tr>
+        <tr>
+          <td>유재석</td>
+          <td>010-0000-0000</td>
+          <td>ryu@gmail.com</td>
+        </tr>
+        <tr>
+          <td>김종국</td>
+          <td>010-0000-0000</td>
+          <td>kim@gmail.com</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
