@@ -7,10 +7,13 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- get, post는 조회가능!
+    <!-- get, post로 조회가능! → rest api의 get, post와 어떻게 다는가?? 클라이언트 단에서 조회하는 방식이다. rest api 는 서버단에서 정의하는 방식이다.
         post방식은 주소창에서 url을 숨김(링크 복붙시 작동 안함, 보안상 조회 내용 보여서는 안되는 경우),
-        보이는 경우는 get방식(링크 재활용 가능) -->
+        보이는 경우는 get방식(링크 유효함) -->
     <!-- <form action="/서버의 주소/아이프레임 안쓸때" method="post"> -->
+    <!-- <form> 태그의 novalidate 속성은 폼 데이터(form data)를 서버로 제출할 때 해당 데이터의 유효성을 검사하지 않음을 명시합니다.
+        novalidate 속성은 불리언(boolean) 속성입니다.
+        불리언 속성은 해당 속성을 명시하지 않으면 속성값이 자동으로 false 값을 가지게 되며, 명시하면 자동으로 true 값을 가지게 됩니다. -->
     <form method="post" novalidate>
       <fieldset>
         <legend>개인정보</legend>
@@ -29,8 +32,9 @@
           <option value="">대학원졸</option>
         </select>
       </fieldset>
-      <!-- <input type="submit" value="저장" formnovalidate="formnovalidate" /> -->
-      <input type="button" value="저장" />
+      <!-- <input type=“submit”>는 서버의 폼 핸들러(form handler)로 폼 데이터(form date)를 전송하는 제출 버튼(submit button)을 정의합니다. -->
+      <input type="submit" value="저장" formnovalidate="formnovalidate" />
+      <!-- <input type="button" value="저장" /> -->
     </form>
     <!-- iframe은 화면 깜박임 없게 해줘서 UX를 더 좋게함 -->
     <iframe
