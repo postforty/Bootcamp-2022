@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <input type="text" name="" id="userName" value="AA" /> -->
+    <!-- 랜더링이 완료되지 않고 스크립트가 더 빨리 실행되는 경우가 있음.  -->
+    <script>
+      // document.getElementById("useName")
+      //   document.addEventListener("load", function () {});
+      // 이 문제에 대한 안전한 코드는 다음과 같다.
+      //   document.addEventListener("DOMContentLoaded", function () {
+      //     document.getElementById("useName");
+      //   });
+
+      // 변수(데이터를 담는 그릇)
+      // var - 선언자
+      // x = 변수명(변수이름)
+      // 예약어는 변수로 사용할 수 없다!
+      var x = "Hello Wold! Welecome!!";
+      var userName = "카멜 표기법(camelCase)";
+      var user_name = "스네이크 표기법(snake_case)";
+      var UserName = "파스칼 표기법(PascalCase)";
+      var strUserName = "헝가리언 표기법";
+      //   ECMA로 인해 카멜 표기법으로 가는 추세
+
+      var x = 5;
+      var y = 7;
+      var z = x + y;
+      //   자바스크립트에서는 console을 객체라고 부름
+      console.log(z);
+
+      x = 9;
+      y = 10;
+      z = x + y;
+      console.log(z);
+
+      var x = 3;
+
+      //   let, const
+      let x1 = 5;
+      x1 = 7; // 재할당은 가능
+      //   let x1 = 9; // 재선언은 불가능
+
+      const x2 = 12;
+      //   x2 = 14; // 재할당, 재선언 불가능(상수 정의 용도)
+      const PI = 3.14; // cost로 생성하는 변수명은 대문자를 씀(암묵적 약속)
+      const COLOR_RED = "#ff0000"; // 두단어를 연결하는 경우는 대문자 스네이크로 표기
+
+      //   var은 잘 쓰지 않는 쪽으로 흘러가고 있다, const와 let을 사용하는 습관을 들여라~
+
+      //   메모리에 undefined라는 값이 할당됨(변수가 선언됐지만 값이 할당되지 않으면 자바스크립트 엔진이 자동으로 할당하는 값)
+      let x3;
+      console.log(x3);
+    </script>
+  </body>
+</html>
