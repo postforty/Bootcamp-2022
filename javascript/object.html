@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // object는 매우 중요하다.
+      // 자바스크립트는 객체의 집합니다(모든 것이 객체).
+      let person1 = {
+        name: "홍길동",
+        age: 22,
+        tel: "010-0000-0000",
+        isAdult: true,
+        school: {},
+      }; // 오브젝트 안에 오브젝트를 넣을 수 있다.
+      let person2 = {
+        name: "홍길동",
+        age: 22,
+        tel: "010-0000-0000",
+        isAdult: true,
+      }; //실무에서 선언하는 방식
+      // let person2 = new Object(); //이렇게 선언할 수도 있지만 실무에서는 잘 안씀
+      let name1 = person1.name;
+      console.log(name1);
+
+      let name11 = person1["name"]; //person1.name와 같다.
+      // 키에 접근하는 두가지 접근 방식이 있는 이유
+      // 1. 키명에 하이픈(-)이 있는 경우 접근 가능하다.
+      //   서버로 부터 json으로 데이터를 받아올때 키에 하이픈이 들어가 있는 경우가 있다.
+      // json은 키에 쌍따옴표로 감쏴져 있기 때문에 자바스크립트에서 키 생성시 에러가 발생하지 않는다.
+      // 하지만 자바스크립트 키에 쌍따옴표를 붙이지는 않는다.
+
+      let person3 = {};
+      person3.name = "하하";
+      person3.age = 42;
+    </script>
+  </body>
+</html>

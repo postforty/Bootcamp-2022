@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("홍길동은", typeof "홍길동");
+
+      let x = "홍길동";
+      console.log(typeof x);
+      console.log(typeof 3.14);
+      console.log(typeof true);
+      console.log(typeof undefined);
+
+      // null, {}, []는 오브젝트 타입이다!
+      console.log(typeof null); //오브젝트 타입
+      console.log(typeof { name: "홍길동" }); //오브젝트 타입
+      console.log(typeof [1, 2, 3]); //오브젝트 타입
+
+      // 타입 구분을 잘 해야하는 이유는 다음과 같이 조건문 사용시 잘 드러난다.
+      if (typeof [] == "object") {
+      } else {
+      }
+    </script>
+  </body>
+</html>

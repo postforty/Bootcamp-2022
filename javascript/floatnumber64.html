@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 64비트 부동소수점으로 모든 숫자를 관리하기 때문에 생기는 문제
+      // 64개의 0과 1을 넣을 수 있는 공간 만을 마련하고 있다.
+      let x = 0.1;
+      let y = 0.2;
+      let z = x + y;
+      console.log(z); //0.30000000000000004, 실무에서는 소수점 1~4자리 정도까지만 표기하기 때문에 문제가 되지는 않는다.
+      // 빅데이터등 큰 연산을 다루는 경우, 소수점 이하를 다루어서 문제가 되는 경우 bignumber.js 라이브러리를 이용할 수 있다(https://mikemcl.github.io/bignumber.js/).
+
+      // 자바스크립트는   정수인 경우
+      let x1 = 12345678901234567;
+      console.log(x1); // 12345678901234568, x1 변수 할당값과 다름
+      console.log(Number.MAX_SAFE_INTEGER); //자바스크립트에서 사용할 수 있는 가장 큰 값(9007199254740991)
+      console.log(Number.MIN_SAFE_INTEGER); //자바스크립트에서 사용할 수 있는 가장 작은 값(-9007199254740991)
+
+      console.log(3 / 0); //Infinity
+
+      let x2 = 3;
+      let x3 = 5;
+      let x4 = 0; //실무에서 정말 찾기 힘들다. 주의!
+      let x5 = 7;
+
+      console.log(((x2 * x2) / x4) * x5); //Infinity
+    </script>
+  </body>
+</html>

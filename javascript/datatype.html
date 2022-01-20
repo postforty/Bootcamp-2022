@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 문자열(String)
+      let name1 = "John Doe"; // John Doe는 우리나라의 홍길동 같은 의미이다.
+      let name2 = "John Doe";
+
+      // He is called 'Johnny'
+      // He is called "Johnny"
+      let name3 = 'He is called "Johnny"';
+      let name4 = "He is called 'Johnny'";
+      let name5 = 'He is called "Johnny"';
+      let name6 = "He is called 'Johnny'";
+
+      let firstName = "John";
+      let lastName = "Doe";
+      let fullName = firstName + " " + lastName;
+      console.log(fullName);
+
+      // 숫자형(Number)
+      let x1 = 13;
+      let x2 = 13.23;
+
+      // 참/거짓 (Boolean : true/false)
+      let userInputAge = 20;
+      let adultAge = 19;
+      let isAdult = false;
+      console.log(userInputAge >= adultAge);
+
+      // undefined
+      // 개발자가 제어하는 것이 아니라 자바스크립트 엔진이 제어
+      let a;
+      console.log(a);
+
+      // Null
+      // undefined와 차이점은 개발자가 제어할 수 있다.
+      // 더 이상 참조할 필요가 없는 변수에 null을 할당하면 가비지컬렉터가 인지하고 메모리 블럭을 비워준다.
+      // 대량의 데이터가 할당된 변수를 이 처럼 처리하면 성능향상을 기대할 수 있다.
+      let b = null;
+
+      // Symbol
+      // 실무에서는 사용할 일이 거의 없지만 알고는 있어야 한다.
+    </script>
+  </body>
+</html>
