@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* flex-direction 과 미디어쿼리 이용하여 반응행웹 만드는 예제(반응형웹의 핵심 원리) */
+      /* 실무에서 회사 밖에서는 특정 class 부분 등을 보이지 않게 하기 위해 사용(display none)하기도 함, 모바일의 가독성을 위해 보이지 않게 하기도 함 */
+      /* 현재 디바이스에 가독성 높은 폰트 사이즈도 반응형에 맞게 조정  */
+      /* 현재 디바이스에 맞게 이미지 사이즈도 반응형에 맞게 조정 */
+      .div-general div {
+        background-color: yellow;
+        border: 1px solid black;
+      }
+
+      /* flex 참고할만한 자료 https://www.youtube.com/watch?v=eprXmC_j9A4 */
+      .div-row {
+        display: flex;
+        flex-direction: row; /* 디폴트 값 */
+      }
+
+      .div-row div {
+        background-color: blue;
+        border: 1px solid black;
+      }
+
+      .div-column {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .div-column div {
+        background-color: green;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div-general">
+      <div>A</div>
+      <div>B</div>
+      <div>C</div>
+    </div>
+    <div class="div-row">
+      <div>A</div>
+      <div>B</div>
+      <div>C</div>
+      <div>D</div>
+      <div>E</div>
+    </div>
+    <div class="div-column">
+      <div>A</div>
+      <div>B</div>
+      <div>C</div>
+      <div>D</div>
+      <div>E</div>
+    </div>
+  </body>
+</html>
