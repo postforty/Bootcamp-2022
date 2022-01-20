@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 실무에서는 head에 작성하지 않음. 무조건 body에 하단에 작성
+      // body의 html 코드를 작성한 후에 자바스크립트 코드를 작성한다.
+      // 만약 html 코드보다 스크립트 코드가 위에 있다면 코드가 다 해석되고 난 이 후에 html 처리 되기 때문에 사용자가 화면을 보기위해 오래 기다려야 하는 문제가 생길 수 있다(사용자의 체감 속도를 위해 html 랜더링 후~).
+
+      // document.write는 자바스크립트 내장 함수
+      document.write("Hellow World!<br/>");
+    </script>
+    <!-- <script>
+      document.write("자바스크립트 파일 안에 작성된 스크립트<br/>");
+    </script> -->
+
+    <!-- defer 속성을 주면 나중에 랜더링한다, 하지만 이런 습관보다는 body 하단에 작성하는 습관이 더 좋다 -->
+    <script src="js/js_location.js" defer></script>
+  </head>
+  <body>
+    <script>
+      document.write("My name is ...<br/>");
+    </script>
+    <script src="js/js_location.js"></script>
+
+    <script>
+      document.write("정상적인 코드");
+      // 오타난 부분을 Console에서 확인 할 수 있고, 잘 활용해야 한다(굉장히 중요).
+      document.wirte("비정상적인 코드");
+    </script>
+  </body>
+</html>
+
+<!-- 자바스크립트의 문법 중 서버 상에서 실행되는 경우가 있으니 반드시 라이브서버로 실행 할 것 -->
+
+<!-- ※ f12 개발자 도구 사용 이점
+1) 다른 사이트의 디자인, 코드 등을 참고 할때
+2) 디자인 테스트를 편리하게 할때 디자인 테스트 후 최종 코드를 복붙
+3) 자바스크립트 오류 확인
+4) 이미지 데이터 추적
+5) Fetch/XHR 서버에서 데이터를 어떻게 받아오는지 확인 가능 -->
