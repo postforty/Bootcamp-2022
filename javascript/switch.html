@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 어떤 경우에는 if보다 적절하지만 코드가 길어지는 것으로 인해 실무에서 사용하는 경우가 많지 않다.
+      // Date()
+      const d = new Date();
+      const day = d.getDay();
+      console.log(day); // 2(0 - 일요일, 1 - 월요일, 2 - 화요일)
+
+      let dayName = "";
+      if (day === 0) {
+        dayName = "일요일";
+      } else if (day === 1) {
+        dayName = "월요일";
+      } else if (day === 2) {
+        dayName = "화요일";
+      } else if (day === 3) {
+        dayName = "수요일";
+      } else if (day === 4) {
+        dayName = "목요일";
+      } else if (day === 5) {
+        dayName = "금요일";
+      } else if (day === 6) {
+        dayName = "토요일";
+      }
+
+      console.log("if문 : " + dayName);
+
+      // if문은 모든 경우를 다 체크한다. 스위치문은 비교하는 값으로 바로 넘어간다.
+      // 스위치문은 상수 값 비교에 사용
+      switch (day) {
+        case 0:
+          dayName = "일요일";
+          break;
+        case 1:
+          dayName = "월요일";
+          break;
+        case 2:
+          dayName = "화요일";
+          break;
+        case 3:
+          dayName = "수요일";
+          break;
+        case 4:
+          dayName = "목요일";
+          break;
+        case 5:
+          dayName = "금요일";
+          break;
+        case 6:
+          dayName = "토요일";
+          break;
+        default:
+          dayName = "none";
+          break;
+      }
+
+      console.log("switch : " + dayName);
+
+      // 실무에서는 배열을 이용한다.
+      const dayNames = [
+        "일요일",
+        "월요일",
+        "화요일",
+        "수요일",
+        "목요일",
+        "금요일",
+        "토요일",
+      ];
+
+      console.log("배열 : " + dayNames[day]);
+
+      const dayNamesMultilingual = {
+        ko: [
+          "일요일",
+          "월요일",
+          "화요일",
+          "수요일",
+          "목요일",
+          "금요일",
+          "토요일",
+        ],
+        en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      };
+
+      const userLanguage = "ko"; // en
+      console.log("오브젝트 : " + dayNamesMultilingual[userLanguage][day]);
+    </script>
+  </body>
+</html>
