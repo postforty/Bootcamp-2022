@@ -19,7 +19,7 @@
       // do-while은 반드시 수행하도록 함
       i = 11;
       do {
-        console.log("number: ", i);
+        console.log("number: ", i); // number:  11
         i++;
       } while (i <= 10);
 
@@ -27,7 +27,7 @@
       let coinUnit = 500;
       let coinCount = 0;
 
-      // 반복 횟수를 모를 경우에 주로 사용한다.
+      // 반복 횟수를 모를 경우에 for문 보다 유리
       while (inputCoin > 0) {
         inputCoin = inputCoin - coinUnit;
         coinCount++;
