@@ -41,6 +41,7 @@
       // lastIndexOf()
       console.log(str.lastIndexOf("e")); // 같은 값이 있을때 마지막 값의 인덱스를 가져옴
 
+      // slice()
       console.log(str.slice(8, 12)); // Jeju
       console.log(str.slice(str.indexOf("Jeju"), 12)); // Jeju
       console.log(str.slice(8)); // Jeju!
@@ -71,8 +72,6 @@
       ) {
       }
 
-      ㅍ;
-
       // 한글 자음 모음을 분리하는 함수는 없다.
 
       // replace()
@@ -91,7 +90,7 @@
       // concat()
       let txt1 = "Hello";
       let txt2 = "World";
-      let txt3 = txt1 + " " + txt2;
+      let txt3 = txt1 + " " + txt2; // concat 보다 이 방식을 많이 사용한다.
       let txt4 = txt1.concat(" ", txt2);
       console.log(txt4);
 
@@ -103,6 +102,53 @@
       let name = "고 승 원";
       console.log(name.replace(" ", "")); // 고승 원
       console.log(name.replace(/\s/g, "")); // 고승원(정규식이 아니면 해결할 수 있는 방법이 없어 매우 중요)
+
+      // padStart(), padEnd()
+      str = "5"; // 4자리
+      // 년도 2자리 + 학과번호 2자리 + 입학순서(이름 가나다순) 4자리 = 총 8자리를 맞춰야
+      // 22031256를 만들어야 할때 이 함수로 쉽게 구현할 수 있다.
+      console.log(str.padStart(4, "0")); //0005
+
+      // while문으로도 동일하게 구현할 수 있지만 코드가 길어진다.
+      while (str.length < 4) {
+        str = "0" + str;
+      }
+      console.log(str); //0005
+
+      console.log(str.padEnd(4, "0"));
+
+      // charAt() 캐릭터앳, 실무에서는 첫 문자는 권한을 의미했다. 관리자는 A, 매니저는 M 과 같이.
+      // 제조업의 제품의 프로덕트 타입을 보여주기도 했다.
+      // 딱 한문자만 가져오는 특성을 이용해서 사용했다.
+      str = "A0001";
+      console.log(str.charAt(0));
+      str.substring(0, 1);
+      str.substr(0, 1);
+      str.slice(0, 1);
+
+      // charCodeAt(0) 아스키코드를 가져옴. 실무에서는 사용해본적이 없다고 함.
+      console.log(str.charCodeAt(0)); // 65
+
+      // split() 실무에서 매우 많이 사용함. 파라미터의 값을 기준으로 분리하여 배열을 만들어줌
+      let tags = "#개발자의품격#웹개발#부트캠프#자바스크립트";
+      let email = "a@gmail.com,b@magil.com";
+      let emails = email.split(",");
+      console.log(emails);
+      console.log(tags.split("#"));
+      // 년월일 분리할때 매우 유용하다. 의외로 실무에서 모르는 경우가 많다.
+      date = "2022-01-26";
+      dates = date.split("-");
+      year = date[0];
+      month = date[1];
+      day = date[2];
+      console.log(dates);
+
+      // startsWith(), endsWith() 실무에서 많이 사용한다.
+      let url = "http://website.com";
+      console.log(url.startsWith("http://")); // 파라미터의 값으로 시작하는지, endsWith는 끝나는지를 부울 값으로 반환
+
+      let file = "abc.pdf";
+      console.log(file.endsWith(".pdf"));
     </script>
   </body>
 </html>

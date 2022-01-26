@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <select name="" id="city"></select>
+    <button onclick="doSearch()">조회</button>
+    <button>라인추가</button>
+    <button>라인삭제</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>음료</th>
+          <th>가격</th>
+        </tr>
+      </thead>
+      <tbody id="table1Tbody"></tbody>
+    </table>
+    <script>
+      // Array 객체. 배열 개체는 실무에서 많이 사용하는 매우 중요한 객체이다.
+      let brands = ["애플", "구글", "메타", "아마존", "네이버", "카카오"];
+
+      //join() 배열의 문자열을 하나의 문자열로 결합. 실무에서 많이 사용
+      console.log(brands.join(", "));
+
+      function doSearch() {
+        const productList = [
+          // 음료 리스트
+          {
+            name: "솔의눈",
+            price: 700,
+          },
+          {
+            name: "커피",
+            price: 700,
+          },
+          {
+            name: "파워레이드",
+            price: 1200,
+          },
+          {
+            name: "오렌지",
+            price: 1000,
+          },
+          {
+            name: "보리차",
+            price: 1200,
+          },
+          {
+            name: "밀키스",
+            price: 800,
+          },
+        ];
+
+        //   let h = ""; //실무에서는 문자열을 사용하지는 않음. 예를 보여주기 위해 지금 사용. 문자열을 결합하는 것보다 배열에 push로 넣는것이 성능에 유리하여 실무에서 주로 사용
+        //   // 결합되는 양이 적을때는 += 문자열 결합이 빠르지만, DB에서 데이터를 불러오는 경우 몇천 몇만건 넘어가면 배열 이용하는 것이 성능면에서 훨씬 빠르다.
+        //   for (const product of productList) {
+        //     h += "<tr>";
+        //     h += "<td>" + product.name + "</td>";
+        //     h += "<td>" + product.price + "</td>";
+        //     h += "</tr>";
+        //   }
+        // document.getElementById("table1Tbody").innerHTML = h;
+
+        let h = [];
+        for (const product of productList) {
+          h.push("<tr>");
+          h.push("<td>" + product.name + "</td>");
+          h.push("<td>" + product.price + "</td>");
+          h.push("</tr>");
+        }
+
+        document.getElementById("table1Tbody").innerHTML = h.join("");
+      }
+
+      // pop() 배열의 끝에 있는 값을 빼냄(반환하고 삭제)
+      console.log(brands.pop());
+
+      // shift() 배열의 첫번째 값을 빼냄(실무에서는 shift를 pop보다 훨씬 많이 씀)
+      // 대량으로 서버에서 고객에게 문자 메시지(또는 이메일)를 발송하는 기능을 구현할 때 문자를 보내는 서비스를 이용한다.
+      console.log(brands.shift());
+
+      let eventQueue = []; // 큐를 만들고 사용자의 요청이 들어올때마다 처리해야하는 값이 계속 push로 쌓이고 동시에 앞에서 부터 처리할때 쓰인다.
+      // eventQueue.shift();
+
+      // unshift() 실무에서 리스트박스를 이용해 검색하는 기능을 만들때 사용하였다.
+      // 개발자들 중 자바스크립트 내장 함수를 잘 알고 있으면 쉽게 해결할 수 있는 문제를 어렵게 해결하는 경우가 많다.
+      brands.unshift("삼성전자");
+      console.log(brands);
+
+      function loadCity(needAll) {
+        let cities = [
+          { code: "02", title: "서울" },
+          { code: "21", title: "부산" },
+          { code: "064", title: "제주" },
+        ];
+
+        let h = [];
+
+        for (const city of cities) {
+          h.push(
+            '<option value="' + city.code + '">' + city.title + "</option>"
+          );
+        }
+
+        if (needAll) {
+          h.unshift('<option value="">==전체==</option>');
+        }
+
+        document.getElementById("city").innerHTML = h.join("");
+      }
+
+      // splice() 실무에서 엑셀에서 행이나 열 삽입하듯이 처리할때 유용하다.
+      // 실무에서 splice를 사용하지 않고 if를 이용해 새로운 배열을 만드는 방식으로 해결하는 경우가있다.
+      // 좋은 개발자는 내장 함수를 잘 이해하고 응용할 수 있어야 한다.
+      // 내장 함수의 기능만 이해해서는 안되고 응용을 늘 고민해야 한다.
+      brands.splice(1, 0, "리턴벨류", "더그레잇"); // 0은 삭제하지 않고 추가하겠다. ['삼성전자', '리턴벨류', '더그레잇', '구글', '메타', '아마존', '네이버']
+      console.log(brands);
+
+      const productList = [
+        // 음료 리스트
+        {
+          name: "솔의눈",
+          price: 700,
+        },
+        {
+          name: "커피",
+          price: 700,
+        },
+        {
+          name: "파워레이드",
+          price: 1200,
+        },
+        {
+          name: "오렌지",
+          price: 1000,
+        },
+        {
+          name: "가봉",
+          price: 1000,
+        },
+        {
+          name: "보리차",
+          price: 1200,
+        },
+        {
+          name: "밀키스",
+          price: 800,
+        },
+      ];
+
+      const len = productList.length;
+      let newProductList = [];
+      for (let i = 0; i < len; i++) {
+        if (i === 3) {
+          newProductList.push({ name: "", price: 0 });
+        } else {
+          newProductList.push(productList[i]);
+        }
+      }
+
+      console.log(newProductList);
+
+      // concat()
+      let arr1 = ["A", "B"];
+      let arr2 = ["C", "D"];
+      let arr3 = ["E", "F", "G"];
+      let arr4 = arr1.concat(arr2, arr3);
+      console.log(arr4); // ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+      // 실무에서는 concat을 사용하지 않고 이 방법을 사용함
+      let arr5 = [...arr1, ...arr2, ...arr3];
+      console.log(arr5); // ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+
+      // slice 문자열 slice와 같은 개념(실무에서 많이 사용하지는 않았음)
+      console.log(arr4.slice(1, 2)); // 시작인덱스, 종료인덱스
+
+      // sort() 실무에서 많이 사용
+      console.log(brands);
+      console.log(brands.sort()); //가나다순 정렬
+
+      let points = [40, 100, 1, 5, 25, 10];
+      console.log(points.sort()); // [1, 10, 100, 25, 40, 5], sort는 숫자를 문자열로 이해하고 정렬함
+
+      // 숫자로 정렬하는 방법(내장함수 sort의 원리를 알아야 한다)
+      function numberSortAsc(a, b) {
+        // a = 40, b = 100 -> -60 음수 값이면 위치를 바꾸지 않음
+        // a = 100, b = 1 -> 양수값이라 바뀌지 않음
+        // ~ 계속 돌면서 처리. 더 이상 변경되지 않으면 종료.
+        return a - b; // 오른차순
+      }
+      console.log(points.sort(numberSortAsc));
+      function numberSortDes(a, b) {
+        // a = 40, b = 100 -> -60 음수 값이면 위치를 바꾸지 않음
+        // a = 100, b = 1 -> 양수값이라 바뀌지 않음
+        // ~ 계속 돌면서 처리. 더 이상 변경되지 않으면 종료.
+        return b - a; // 내림차순
+      }
+      console.log(points.sort(numberSortDes));
+
+      function objectSort(a, b) {
+        if (a.name > b.name) return 1;
+        else if (a.name < b.name) return -1;
+        else return 0;
+      }
+      console.log(productList.sort(objectSort));
+
+      //   function priceSort(a, b) {
+      //     if (a.price > b.price) return 1;
+      //     else if (a.price < b.price) return -1;
+      //     else return 0;
+      //   }
+      //   console.log(productList.sort(priceSort));
+
+      function twoFieldSort(a, b) {
+        if (a.price > b.price) return 1;
+        else if (a.price < b.price) return -1;
+        else {
+          if (a.name > b.name) return 1;
+          else if (a.name < b.name) return -1;
+          else return 0;
+        }
+      }
+      console.log(productList.sort(twoFieldSort)); // 가격 우선 정렬하고 가격이 같을때 이름 기준으로 오름차순 정렬
+
+      // filter() 실무에서 조회시 필터를 매우 많이 사용한다.
+      newProductList = [];
+      const inputCoin = 1000;
+      for (const product of productList) {
+        if (product.price <= inputCoin) {
+          newProductList.push(product);
+        }
+      }
+      console.log(newProductList); // if문 사용하여 filter 함수를 사용하지 않은 경우, 1000원 이하만 필터링
+
+      function doFilter(product) {
+        // if (product.price <= inputCoin) {
+        //   return true;
+        // } else {
+        //   return false;
+        // }
+
+        return product.price <= inputCoin ? true : false;
+      }
+      // newProductList = productList.filter(doFilter);
+      newProductList = productList.filter(function (product) {
+        return product.price <= inputCoin ? true : false;
+      });
+      console.log(newProductList);
+
+      console.log(productList.filter((p) => p.price <= inputCoin)); //화살표 함수
+
+      // map() 원하는 오브젝트를 새롭게 만들 때 유용. 서버에서 데이터를 받아올때 map을 이용해 원하는 데이터를 가공해 가져올 수 있다. 쿼리로 하는 경우도 있지만 이 방법을 사용하는 것이 효율적일 수 있다. 데이터 패킷 부담을 줄이는 등.
+      let userList = [
+        {
+          firstName: "재석",
+          lastName: "유",
+          email: "yu@gmail.com",
+        },
+        {
+          firstName: "종국",
+          lastName: "김",
+          email: "kim@gmail.com",
+        },
+        {
+          firstName: "흥국",
+          lastName: "김",
+          email: "kim@gmail.com",
+        },
+        {
+          firstName: "세찬",
+          lastName: "양",
+          email: "yang@gmail.com",
+        },
+        {
+          firstName: "석진",
+          lastName: "지",
+          email: "ji@gmail.com",
+        },
+      ];
+
+      function newUserMap(user) {
+        return {
+          //   firstName: user.firstName,
+          //   lastName: user.lastName,
+          email: user.email,
+          fullName: user.lastName + user.firstName,
+        };
+      }
+
+      let userList2 = userList.map(newUserMap);
+      console.log(userList2);
+
+      //userList[0].firstName + " " + userList[0].lastName
+
+      // reduce() 배열의 합계를 쉽게 구할 수 있다. 숫자, 문자, 배열에서 다 사용 가능하지만 합계 구할때만 거의 사용했음.
+      points = [80, 90, 95, 78, 88, 100, 92];
+      let sum = points.reduce(function (
+        accumulator, // 누적값
+        currentValue, // 현재 배열 요소
+        currentIndex, //현재 배열 인덱스 번호
+        arr // 전체 배열
+      ) {
+        return accumulator + currentValue;
+        // return currentIndex; //6
+        // return arr; //[80, 90, 95, 78, 88, 100, 92]
+      }, 0); //누적값의 처음값 0
+      console.log(sum); //623
+
+      let alphabets = ["A", "B", "C"];
+
+      let sum1 = productList.reduce(function (
+        accumulator, // 최초 0, 누적값
+        currentValue, // 현재 배열 요소, 일반적으로 누적값과 현재 배열 요소만 사용함
+        currentIndex, //현재 배열 인덱스 번호
+        arr // 전체 배열
+      ) {
+        return accumulator + currentValue.price;
+      }, 0); //5600
+      console.log(sum1);
+
+      let sum2 = productList.reduce(function (total, product) {
+        if (product.price > 1000) {
+          return total + product.price;
+        } else {
+          return total;
+        }
+        // return total + product.price;
+      }, 0);
+
+      let alphabetString = alphabets.reduce(function (alpha, c) {
+        return alpha + c;
+      }, "");
+
+      console.log(alphabetString);
+
+      console.log("음료 전체 합계", sum2);
+
+      let kims = userList.reduce(function (users, user) {
+        if (user.lastName === "김") {
+          users.push(user);
+          //   return users.push(user);
+        }
+
+        return users;
+      }, []);
+
+      console.log(kims);
+    </script>
+  </body>
+</html>

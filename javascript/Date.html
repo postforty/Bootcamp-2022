@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Date 객체 - 날짜
+
+      let now = new Date();
+      console.log(now); // 시스템 시간을 보여줌. 실무에서 날짜를 조작해서는 안되는 경우에는 서버에서 날짜를 가져오도록 함. 중요한 문제임.
+
+      console.log(now.getFullYear());
+      console.log(now.getMonth());
+      console.log(now.getDate());
+      console.log(now.getDay());
+      console.log(now.getHours());
+      console.log(now.getMinutes());
+      console.log(now.getSeconds());
+      console.log(now.getMilliseconds());
+      console.log(now.getTime());
+
+      //실무에서 set은 잘 쓸일이 없었음.
+      now.setFullYear(2021);
+      console.log(now);
+
+      let date = new Date("2022-01-25");
+      console.log(date);
+      let date2 = new Date(1643202538743); //밀리세컨즈도 넣을 수 있음
+      console.log(date2);
+
+      //60*60*24*1000
+      //1970년 1월 1일 기준으로
+
+      //날짜 조회 기능의 from ~ to에서 to는 기본적으로 오늘 날짜로 기본값 세팅. from의 경우는 담당자의 요구에 따라 세팅함. 일주일, 한달전 등
+      //오늘 날짜 기준으로 이전 날짜 구하기 코드, 실무에서 이 코드를 복사해서 쓰면됨.
+      //많이 사용하는 코드임
+      function getIntervalDate(day) {
+        let now = new Date();
+        let dayMilliseconds = 60 * 60 * 24 * 1000;
+
+        let intervalDate = now.getTime() + dayMilliseconds * day;
+        return new Date(intervalDate);
+      }
+      console.log(getIntervalDate(-30)); //30일 전, 윤년도 고려하여 계산됨
+
+      //YYYY-MM-DD 포맷으로 보여줘야하는 경우
+      let year = now.getFullYear();
+      let month = now.getMonth() + 1; //달은 1월 더해줘야 함
+      let day = now.getDate();
+      console.log(year + "-" + month.toString().padStart(2, 0) + "-" + day); //padStart 이용해 1월 앞에 0을 붙임
+    </script>
+  </body>
+</html>
