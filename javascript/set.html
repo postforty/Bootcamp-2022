@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Set, Map 객체
+      let foods = [
+        "햄버거",
+        "김치찌개",
+        "된장찌개",
+        "김치찌개",
+        "햄버거",
+        "제육볶음",
+      ];
+
+      // 오브젝트의 키가 중복 값을 가질 수 없는 특징을 이용한 중복값 제거 방법
+      // 성능면에서 좋지 못한 코드(if문 사용하는 것다 나을지라도)
+      let oFoods = {};
+      //   for (const food of foods) {
+      //     oFoods[food] = "";
+      //   }
+      foods.forEach(function (food) {
+        oFoods[food] = "";
+      });
+
+      let uniqueFoods = [];
+
+      for (const foodName in oFoods) {
+        // for-in은 오브젝트의 키만 가져온다.
+        uniqueFoods.push(foodName);
+      }
+      console.log(oFoods);
+
+      // set 객체 이용한 중복값 제거 방법
+      // set은 배열처럼 데이터의 집합.
+      // 순서가 없다.
+      // value 값이 무조건 유일한 값만 유지.
+      let foodSet = new Set();
+      foodSet.add("햄버거");
+      foodSet.add("김치찌개");
+      foodSet.add("된장찌개");
+      foodSet.add("김치찌개");
+      foodSet.add("햄버거");
+      foodSet.add("제육볶음");
+
+      console.log(foodSet.has("김치찌개")); // 해당 값이 있는지 확인
+      console.log(foodSet.delete("김치찌개")); // 해당 값을 삭제
+      console.log(foodSet.clear); // 전체 삭제
+
+      foodSet.forEach(function (food) {
+        // 이터러블한 경우 forEach를 주로 사용한다.
+        console.log(food);
+      });
+    </script>
+  </body>
+</html>

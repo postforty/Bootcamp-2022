@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="doDelete();">삭제</button>
+    <button onclick="stop();">중지</button>
+    <table>
+      <thead>
+        <tr>
+          <th>이름</th>
+          <th>상세보기</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>홍길동</td>
+          <td><button onclick="openUserDetail('00001');">상세보기</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <script>
+      // 메시지를 콘트롤하기 위한 객체
+      //   window.alert("이것은 경고창입니다.");
+      //   alert("이것은 경고창입니다."); //window(전역객체 이기 때문에) 생략하고 쓸수도 있다.
+      function doDelete() {
+        // const r = confirm("정말 삭제하시겠습니까?");
+        // console.log(r);
+
+        // prompt 요즘을 잘 사용하지 않았다.
+        let pass = window.prompt("비밀번호를 입력하세요."); // 비밀번호를 입력하면 삭제
+
+        if (pass === "1234") {
+          if (confirm("정말 삭제하시겠습니까?")) {
+            // 삭제
+            console.log("삭제가 실행됩니다.");
+          }
+        } else {
+          alert("비밀번호가 맞지 않습니다.");
+        }
+      }
+
+      function openUserDetail(userId) {
+        window.open("https://naver.com"); // 여기에서는 새로운 창을 열어서 띄운다. 하지만 최근에는 SPA로 모달창에 띄움.
+      }
+
+      // setTimeout(), clearTimeout(), 5초 후에 광고창 종료시키는 방법, 휴대폰 인증 가능시간 등에 사용 가능할 것 같음.
+      // 실무에서는 아래쪽 코드가 실행될때 까지도 해당 코드의 실행이 완료되지 않을때 렌더링이 완료되지 않을 때(데이터가 무거워서) 아래쪽 코드에서 위의 엘리멘트가 렌더링 완료되기도 전에 실행되어 에러가 발생할 수 있다.
+      // 1회성 실행
+      let myExec = setTimeout(function () {
+        console.log("3초 후에 출력됩니다.");
+      }, 3000); //밀리세컨드라서 3*1000 = 3초
+
+      function stop() {
+        clearTimeout(myExec);
+        clearTimeout(myExec2);
+      }
+
+      // setInterval, clearInterval 정해진 시간마다 반복적으로 실행
+      // 광고 슬라이드 화면 반복적으로 돌릴때 사용할수 있을 것 같음.
+      // 데이터를 일정시간 마다(실시간으로) 갱신할 때
+      // html5에서 websocket이 나오면서 사용하지 않게됨. 리퀘스트가 있어야만 리스판스되었는데, 웹에서도 소켓 통신이 가능해지게됨. 요청이 없더라도 서버에서 보내줄 수 있게됨.
+      // 클라이언트 1만명이 주가가 바꼈는지 갱신할때 마다 매번 1만번 서버에 API 요청하고, 1만번 리스판스하게됨.
+      // 웹소켓에서는 서버는 한번의 API호출, 데이터가 바뀌는 순간 1만명에게 보내줌.
+      // node.js 배울때 웹소켓 배울 예정
+      // 웹소켓을 실무에서는 실시간 채팅앱뿐 아니라, 주문, 주문현황, 대시보드 등에서 사용
+      let myExec2 = setInterval(function () {
+        console.log("3초 마다 실행");
+      }, 3000);
+    </script>
+  </body>
+</html>

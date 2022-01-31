@@ -252,7 +252,11 @@
       });
       console.log(newProductList);
 
-      console.log(productList.filter((p) => p.price <= inputCoin)); //화살표 함수
+      newProductList = productList.filter((product) =>
+        product.price <= inputCoin ? true : false
+      );
+
+      // console.log(productList.filter((p) => p.price <= inputCoin)); //화살표 함수
 
       // map() 원하는 오브젝트를 새롭게 만들 때 유용. 서버에서 데이터를 받아올때 map을 이용해 원하는 데이터를 가공해 가져올 수 있다. 쿼리로 하는 경우도 있지만 이 방법을 사용하는 것이 효율적일 수 있다. 데이터 패킷 부담을 줄이는 등.
       let userList = [

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="rspPlayer('가위');">가위</button>
+    <button onclick="rspPlayer('바위');">바위</button>
+    <button onclick="rspPlayer('보');">보</button>
+    <script>
+      // random 내장 객체 이용 가위, 바위, 보 게임
+      function getRandomInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+
+      function rspPlayer(userRsp) {
+        const rsp = ["가위", "바위", "보"];
+        // const randomNumber = getRandomInteger(0, 2);
+        const playerRsp = rsp[getRandomInteger(0, 2)];
+        console.log(playerRsp);
+        const userWinValue = {
+          가위: "보",
+          바위: "가위",
+          보: "바위",
+        };
+
+        console.log("user", userRsp);
+        console.log("player", playerRsp);
+
+        const result =
+          userRsp === playerRsp
+            ? 0
+            : userWinValue[userRsp] === playerRsp
+            ? 1
+            : -1;
+        console.log(result);
+      }
+    </script>
+  </body>
+</html>
