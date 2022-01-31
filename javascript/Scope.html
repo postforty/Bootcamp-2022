@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Scope 선언된 변수에 대한 접근성
+      // 자식에서 부모의 변수는 접근할 수 있다. 따라서 함수 안에서 함수 밖의 변수에 접근 가능
+      let carName = "볼보";
+      function myFunction() {
+        let carName = "기아차";
+        console.log(carName); // 같은 스콥에서 우선순위가 높은 기아차 출력(변수명 같을 경우)
+      }
+      myFunction();
+
+      console.log(carName); // 스콥이 다르기 때문에 함수 안의 변수는 함수 안에서만 접근할 수 있음, 함수 밖은 접근 가능하여 볼보 출력
+    </script>
+  </body>
+</html>

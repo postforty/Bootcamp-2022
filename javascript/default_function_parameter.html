@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // default function parameter
+
+      //   function log(msg) {
+      //     console.log(msg);
+      //   }
+
+      //   log("콘솔에 출력합니다.");
+      //   log(); // 인자 없는 경우 undefined
+
+      function convertDateFormat(format = "YYYY-MM-DD") {
+        // 인자가 안들어오면(undefinde) 디폴트 파라미터 적용
+        let today = new Date();
+        let year = today.getFullYear();
+        let month = (today.getMonth() + 1).toString().padStart(2, 0);
+        let day = today.getDate().toString().padStart(2, 0);
+
+        let formatDate = format
+          .replace("YYYY", year)
+          .replace("MM", month)
+          .replace("DD", day);
+
+        console.log(formatDate);
+      }
+
+      convertDateFormat();
+      convertDateFormat("YYYY-MM-DD");
+      convertDateFormat("MM-DD-YYYY");
+      convertDateFormat("DD-MM-YYYY");
+    </script>
+  </body>
+</html>
