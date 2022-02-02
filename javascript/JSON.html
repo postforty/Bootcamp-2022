@@ -8,7 +8,7 @@
   </head>
   <body>
     <script>
-      // JSON 객체 - JSON은 웹 개발시 가장 많이 사용하는 포맷
+      // JSON 객체 - JSON 포맷을 자바스크립트에서 효율적으로 사용하기 위한 객체, JSON은 웹 개발시 가장 많이 사용하는 포맷
       // 오브젝트와 거의 똑 같이 생겨서~
       // 키는 문자열이어야 함.
       let person1 = {
@@ -23,7 +23,16 @@
       console.log(arr);
       console.log(JSON.stringify(arr)); // "[3, 4, 5, 6, 7]"와 같은 문자열
 
-      console.log(JSON.parse("[3, 4, 5, 6, 7]"));
+      console.log(JSON.parse("[3, 4, 5, 6, 7]")); // 자바스크립트에서 사용할수 있게 문자열을 배열로 변환(서버에서는 JSON으로 문자열 형태로 날라온다)
+
+      //   {
+      //     "name": "홍길동",
+      //     "age": 22,
+      //     "tel": "010-0000-0000",
+      //     "isAdult": true,
+      //     "siGunGu": "",
+      //     "grade": [],
+      //   }
     </script>
   </body>
 </html>

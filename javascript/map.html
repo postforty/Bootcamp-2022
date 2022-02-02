@@ -18,9 +18,17 @@
 
       // 반복문 등에서 동적으로 이용하는 경우 Map 매우 유리
       let userMap = new Map();
-      userMap.set("name", "홍길동");
+      userMap.set("name", "홍길동"); // 키를 어떠한 데이터 유형(공백 있는 키, 함수, 문자, 숫자 등등)이라도 다 잡을 수 있다.
       userMap.set("email", "abc@gmail.com");
       userMap.set("phone", "010-0000-0000");
+
+      userMap.has("name"); // 오브젝트가 할 수 없는 이런 기능 들을 사용할 수 있다.
+      userMap.delete("name");
+      userMap.forEach(function (item){
+          console.log(item);
+      })
+    //   userMap.clear();
+    //   userMap.size
 
       console.log(userMap.get("name"));
     </script>
