@@ -250,11 +250,13 @@
       newProductList = productList.filter(function (product) {
         return product.price <= inputCoin ? true : false;
       });
-      console.log(newProductList);
-
+      
+      // 위 코드를 화살표 함수로 구현
       newProductList = productList.filter((product) =>
-        product.price <= inputCoin ? true : false
+      product.price <= inputCoin ? true : false
       );
+      
+      console.log(newProductList);
 
       // console.log(productList.filter((p) => p.price <= inputCoin)); //화살표 함수
 
