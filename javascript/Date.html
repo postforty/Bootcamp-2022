@@ -9,35 +9,34 @@
   <body>
     <script>
       // Date 객체 - 날짜
+      let now = new Date(); // 시스템 시간을 보여준다. 시스템 시간은 개인 PC에서 조작 가능하다. 이는 심각한 문제가 될 수 있다. 따라서 실무에서는 서버에서 날짜 데이터를 가져온다.
+      console.log(now); // Thu Feb 04 2021 07:42:31 GMT+0900 (한국 표준시)
 
-      let now = new Date();
-      console.log(now); // 시스템 시간을 보여줌. 실무에서 날짜를 조작해서는 안되는 경우에는 서버에서 날짜를 가져오도록 함. 중요한 문제임.
+      console.log(now.getFullYear()); // 2022
+      console.log(now.getMonth()); // 1
+      console.log(now.getDate()); // 4
+      console.log(now.getDay()); // 5
+      console.log(now.getHours()); // 7
+      console.log(now.getMinutes()); // 42
+      console.log(now.getSeconds()); // 31
+      console.log(now.getMilliseconds()); // 581
+      console.log(now.getTime()); // 1643928151581
 
-      console.log(now.getFullYear());
-      console.log(now.getMonth());
-      console.log(now.getDate());
-      console.log(now.getDay());
-      console.log(now.getHours());
-      console.log(now.getMinutes());
-      console.log(now.getSeconds());
-      console.log(now.getMilliseconds());
-      console.log(now.getTime());
-
-      //실무에서 set은 잘 쓸일이 없었음.
+      // 실무에서 set은 쓸일이 잘 없었다.
       now.setFullYear(2021);
-      console.log(now);
+      console.log(now); // Thu Feb 04 2021 07:42:31 GMT+0900 (한국 표준시)
 
       let date = new Date("2022-01-25");
-      console.log(date);
-      let date2 = new Date(1643202538743); //밀리세컨즈도 넣을 수 있음
-      console.log(date2);
+      console.log(date); // Tue Jan 25 2022 09:00:00 GMT+0900 (한국 표준시)
+      let date2 = new Date(1643068800000); // 밀리세컨드를 인자로 넣을 수 있다.
+      console.log(date2); // Tue Jan 25 2022 09:00:00 GMT+0900 (한국 표준시)
 
       //60*60*24*1000
       //1970년 1월 1일 기준으로
 
-      //날짜 조회 기능의 from ~ to에서 to는 기본적으로 오늘 날짜로 기본값 세팅. from의 경우는 담당자의 요구에 따라 세팅함. 일주일, 한달전 등
-      //오늘 날짜 기준으로 이전 날짜 구하기 코드, 실무에서 이 코드를 복사해서 쓰면됨.
-      //많이 사용하는 코드임
+      // 실무에서 날짜 조회 기능의 from ~ to에서 to는 기본적으로 오늘 날짜로 기본값 세팅한다. from의 경우는 담당자의 요구에 따라 일주일, 한달전 등으로 세팅한다.
+      // 오늘 날짜 기준으로 이전 날짜를 구하는 코드이다. 실무에서 이 코드를 복사해서 쓰면된다. 많이 사용되는 코드이다.
+      // 윤년도 고려하여 계산된다.
       function getIntervalDate(day) {
         let now = new Date();
         let dayMilliseconds = 60 * 60 * 24 * 1000;
@@ -45,13 +44,22 @@
         let intervalDate = now.getTime() + dayMilliseconds * day;
         return new Date(intervalDate);
       }
-      console.log(getIntervalDate(-30)); //30일 전, 윤년도 고려하여 계산됨
+      // now인 "Thu Feb 04 2021 08:07:36 GMT+0900 (한국 표준시)"을 기준 30일전
+      console.log(getIntervalDate(-30)); // Wed Jan 05 2022 08:07:36 GMT+0900 (한국 표준시)
 
-      //YYYY-MM-DD 포맷으로 보여줘야하는 경우
+      //YYYY-MM-DD 포맷
+      console.log(now); // Fri Feb 04 2022 08:30:16 GMT+0900 (한국 표준시)
       let year = now.getFullYear();
-      let month = now.getMonth() + 1; //달은 1월 더해줘야 함
+      let month = now.getMonth() + 1; // 월은 0부터 시작하기 때문에 1을 더해야 한다.
       let day = now.getDate();
-      console.log(year + "-" + month.toString().padStart(2, 0) + "-" + day); //padStart 이용해 1월 앞에 0을 붙임
+      // padStart 이용해 한자리 수인 월 앞에 0을 붙여 두자리 수로 만들었다.
+      console.log(
+        year +
+          "-" +
+          month.toString().padStart(2, 0) +
+          "-" +
+          day.toString().padStart(2, 0)
+      ); // 2022-02-04 // 2022-02-04
     </script>
   </body>
 </html>
