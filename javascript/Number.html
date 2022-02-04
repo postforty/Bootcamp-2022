@@ -6,40 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <!-- Number 객체 -->
   <body>
     <label for="">수량</label>
+    <!-- 숫자만 입력 가능 -->
     <input type="number" name="" id="" />
     3500
     <script>
       let num = 323;
-      num.toString(); // 문자열로 반환
-      //   toExponential(); // 지수형으로 반환, 실무에서는 잘 사용하지 않음
+      // toString 문자열 반환
+      console.log(num.toString()); // 323x
+      console.log(typeof num.toString()); // string
 
+      // toExponential 지수형 반환한다. 실무에서는 잘 사용하지 않는다.
       let x = 10.656;
-      console.log(x.toExponential(2));
-      console.log(x.toExponential(4));
+      console.log(x.toExponential(2)); // 1.07e+1
+      console.log(x.toExponential(4)); // 1.0656e+1
 
-      //   toFixed() 소수점 자리수만 의미, 소수점 반올림. 실무에서 많이 사용. 외국 프로젝트에서 소수점 금액을 요구사항에 맞게 맞출때 사용하였음.
+      // toFixed 파라미터는 소수점 자리수를 의미하고 소수점을 반올림한다. 실무에서 많이 사용하며, 외국 프로젝트에서 소수점 금액을 요구사항에 맞게 맞출때 사용하였다.
       console.log(x.toFixed(0)); // 11
       console.log(x.toFixed(1)); // 10.7
       console.log(x.toFixed(2)); // 10.66
       console.log(x.toFixed(4)); // 10.6560
 
-      // toPrecision() 소수점 포함 모든 자리수 의미
+      // toPrecision 소수점을 포함한 모든 자리수 의미하고 반올림한다.
       console.log(x.toPrecision(2)); //11
       console.log(x.toPrecision(3)); //10.7
 
-      // parseInt() 문자를 정수로 바꿔줌. 실무에서는 html에서 사용자가 입력한 숫자는 문자일 가능성도 고려하여 무조건 이 처리를 해준다.
-      console.log(parseInt("3")); // 정수를 반환
-      console.log(parseInt("12.33")); // 소수점 버리고 정수 반환
-      console.log(parseInt("10 20 30")); // 처음에 나오는 숫자만 반환
-      // parseFloat()
-      console.log(parseFloat("12.33")); // 실수를 반환
+      // parseInt 문자열을 정수로 바꾼다. 실무에서는 사용자가 입력한 숫자가 문자일 가능성을 가정하여 무조건 이 처리를 해준다.
+      console.log(parseInt("3")); // 3
+      console.log(typeof parseInt("3")); // number
+      console.log(parseInt("12.33")); // 12
+      console.log(parseInt("10 20 30")); // 10(숫자로 연결되어 있지 않으면 처음에 나오는 숫자만 반환한다.)
 
-      console.log(Number.MAX_VALUE);
-      console.log(Number.MIN_VALUE);
-      console.log(Number.MIN_SAFE_INTEGER);
-      console.log(Number.MAX_SAFE_INTEGER);
+      // parseFloat()
+      console.log(parseFloat("12.33")); // 12.33
+
+      // Number 객체의 프로퍼티
+      console.log(Number.MAX_VALUE); // 1.7976931348623157e+308(자바스크립트에서 다룰 수 있는 최대 수)
+      console.log(Number.MIN_VALUE); // 5e-324(자바스크립트에서 다룰 수 있는 최소 수)
+      console.log(Number.MIN_SAFE_INTEGER); // -9007199254740991(자바스크립트에서 다룰 수 있는 최대 수)
+      console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991(자바스크립트에서 다룰 수 있는 최소 수)
     </script>
   </body>
 </html>

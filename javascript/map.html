@@ -15,22 +15,29 @@
       oUser.name = "홍길동";
       oUser.email = "abc@gmail.com";
       oUser.phone = "010-0000-0000";
+      console.log(typeof oUser); // object
 
-      // 반복문 등에서 동적으로 이용하는 경우 Map 매우 유리
+      // 반복문 등에서 동적으로 이용하는 경우 오브젝트 보다 Map이 유리하다.
       let userMap = new Map();
-      userMap.set("name", "홍길동"); // 키를 어떠한 데이터 유형(공백 있는 키, 함수, 문자, 숫자 등등)이라도 다 잡을 수 있다.
+      userMap.set("name", "홍길동"); // (오브젝트와 달리 키에 공백 있는 값, 함수, 문자, 숫자 등 어떠한 데이터 유형도 넣을 수 있다.)
       userMap.set("email", "abc@gmail.com");
       userMap.set("phone", "010-0000-0000");
+      console.log(userMap); // {'name' => '홍길동', 'email' => 'abc@gmail.com', 'phone' => '010-0000-0000'}
 
-      userMap.has("name"); // 오브젝트가 할 수 없는 이런 기능 들을 사용할 수 있다.
+      // 오브젝트가 할 수 없는 다음 기능 들을 사용할 수 있다.
+      console.log(userMap.get("name")); // 홍길동
+      console.log(userMap.has("name")); // true
+
       userMap.delete("name");
-      userMap.forEach(function (item){
-          console.log(item);
-      })
-    //   userMap.clear();
-    //   userMap.size
+      console.log(userMap.get("name")); // undefined
 
-      console.log(userMap.get("name"));
+      console.log(userMap); // {'email' => 'abc@gmail.com', 'phone' => '010-0000-0000'}
+      userMap.forEach(function (item) {
+        console.log(item); // abc@gmail.com, 010-0000-0000
+      });
+
+      userMap.clear(); // (전체 삭제)
+      console.log(userMap.size); // 0
     </script>
   </body>
 </html>
