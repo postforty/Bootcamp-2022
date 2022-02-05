@@ -7,25 +7,30 @@
     <title>Document</title>
   </head>
   <body>
-    <button onclick="myFunction2(this)">클릭</button> // html 요소에서 this는
-    html 요소 자기자신
+    <!-- this에 DOM 요소가 바인딩 된 경우 -->
+    <!-- 호출하는 함수에 this 파라미터로 전달하면, this는 클릭 이벤트가 발생한 <button> 태그 그 자체가 된다. -->
+    <button onclick="callFunction(this)">클릭</button>
 
-    <select name="" id="" onchange="myuFunction2(this)">
-      // html 요소에서 this는 그 html 돔요소 자첼
+    <!-- 호출하는 함수에 this 파라미터로 전달하면, this는 onchange 이벤트가 발생한 <select> 태그 그 자체가 된다. -->
+    <select name="" id="" onchange="callFunction(this)">
+      <!-- html 요소에서 this는 그 html 돔요소 자체 -->
       <option value="1">A</option>
       <option value="2">B</option>
       <option value="3">C</option>
     </select>
     <script>
-      //   console.log(this); // 여기에서 this는 window 객체
+      // this 키워드가 Window 객체인 경우, Window 객체 관련 모든 내장 함수 사용 가능하다.
+      console.log(this); // Window(this는 Window 객체)
 
       function myFunction() {
-        console.log(this); // 함수 안에서도 window 객체
+        console.log(this); // this 함수 내 Window 객체
       }
-      function myFunction2(obj) {
-        console.log(obj); // 함수 안에서도 window 객체
+      myFunction(); // Window
+
+      // HTML DOM 요소에서 호출할 함수
+      function callFunction(obj) {
+        console.log(obj);
       }
-      myFunction();
 
       // 오브젝트 안에서의 함수의 this는 오브젝트 자체를 가리킴
       let person = {
@@ -35,6 +40,7 @@
           return this.firstName + " " + this.lastName;
         },
       };
+      console.log(person.getFullName()); // Jhon Doe
     </script>
   </body>
 </html>
