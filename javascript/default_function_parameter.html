@@ -10,15 +10,15 @@
     <script>
       // default function parameter
 
-      //   function log(msg) {
-      //     console.log(msg);
-      //   }
+      function log(msg) {
+        console.log(msg);
+      }
 
-      //   log("콘솔에 출력합니다.");
-      //   log(); // 인자 없는 경우 undefined
+      log("콘솔에 출력합니다."); // 콘솔에 출력합니다.
+      log(); // undefined
 
+      // 인자가 안들어오면(undefinde) 디폴트 파라미터 적용
       function convertDateFormat(format = "YYYY-MM-DD") {
-        // 인자가 안들어오면(undefinde) 디폴트 파라미터 적용
         let today = new Date();
         let year = today.getFullYear();
         let month = (today.getMonth() + 1).toString().padStart(2, 0);
@@ -32,10 +32,10 @@
         console.log(formatDate);
       }
 
-      convertDateFormat();
-      convertDateFormat("YYYY-MM-DD");
-      convertDateFormat("MM-DD-YYYY");
-      convertDateFormat("DD-MM-YYYY");
+      convertDateFormat(); // 2022-02-05(디폴트 파라미터인 YYYY-MM-DD 적용됨)
+      convertDateFormat("YYYY-MM-DD"); // 2022-02-05
+      convertDateFormat("MM-DD-YYYY"); // 02-05-2022
+      convertDateFormat("DD-MM-YYYY"); // 05-02-2022
     </script>
   </body>
 </html>

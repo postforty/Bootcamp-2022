@@ -8,6 +8,7 @@
   </head>
   <body>
     <script>
+      // Rest Parameter 미적용
       function sum(n1, n2) {
         return n1 + n2;
       }
@@ -17,18 +18,18 @@
       function sum3(n1, n2, n3, n4) {
         return n1 + n2;
       }
-      console.log(sum(5, 7));
+      console.log(sum(5, 7)); // 12
 
-      //   restl_parameter는 파라미터의 제한이 없음. 실무에서 많이 씀
+      // Rest Parameter 적용. 실무에서 많이 사용한다.
       function add(...nums) {
-        // 인자를 입력받아 배열을 만듦
         let total = 0;
+        console.log(nums); // [5, 6, 7, 8, 9]
         for (const n of nums) {
           total += n;
         }
         return total;
       }
-      console.log(add(5, 6, 7, 8, 9));
+      console.log(add(5, 6, 7, 8, 9)); // 35
     </script>
   </body>
 </html>

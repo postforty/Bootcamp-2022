@@ -8,31 +8,34 @@
   </head>
   <body>
     <script>
-      // arrow function
-      // 화살표 함수
-
       // 함수 선언식
       function hello(name) {
         return "Hello " + name;
       }
+      console.log(hello("hello")); // Hello hello
 
       // 함수 표현식
       const hello2 = function (name) {
         return "Hello " + name;
       };
+      console.log(hello2("hello2")); // Hello hello2
 
-      // 화살표 함수
-      // function 생략가능
+      // Arrow Function(화살표 함수)
+      // function 생략 가능
       const hello3 = (name) => {
         return "Hello " + name;
       };
+      console.log(hello3("hello3")); // Hello hello3
 
-      // 파라미터부 () 생략 가능
+      // Arrow Function(화살표 함수) - () 생략 가능
       const hello4 = (name) => {
-        "Hello " + name;
-      }; // {} 생략가능
+        return "Hello " + name;
+      };
+      console.log(hello4("hello4")); // Hello hello4
 
-      const hello5 = (name) => "Hello " + name; // 실무에서는 이렇게 사용한다. 익숙해 져야 한다.
+      // Arrow Function(화살표 함수) - {} 생략가능
+      const hello5 = (name) => "Hello " + name; // 실무에서는 이 표현을 사용한다. 익숙해 져야 한다.
+      console.log(hello5("hello5")); // Hello hello5
     </script>
   </body>
 </html>
