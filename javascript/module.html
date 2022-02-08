@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <script src="js/common.js"></script> // common.js의 모든 함수를 가져와 무거워지게됨 -->
+  </head>
+  <body>
+    <script type="module">
+      // 규모가 큰 웹애플리케이션을 만들기 시작했다.
+      // 기능이 많아지면서 함수도 많아져 무거워지기 시작.
+      // 필요할때 가져다쓰는 모듈을 만들게 되었다.
+      import { log } from "./js/log.js"; // .은 html이 실행되는 경로. 모듈로 작성할때는 꼭 넣어야 한다.
+
+      log("모듈에 작성된 함수 이용");
+
+      // node.js vue에서 많이 사용. 자바스크립트에서 잘 사용하지는 않는 것 같다.
+    </script>
+  </body>
+</html>

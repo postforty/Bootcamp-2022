@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getPerson() {
+        return {
+          firstName: "John",
+          lastName: "Doe",
+          age: 37,
+          email: "john@gmail.com",
+          city: "",
+          country: "",
+          company: "",
+        };
+      }
+      let person = getPerson();
+
+      //   let firstName=getPerson()["firstName"];
+      //   let lastName=getPerson()["lastName"];
+
+      // 위와 같은 변수가 생성된다. 실무에서 많이 사용한다. 서버단에서 넘어오는 데이터에서 원하는 값만 사용한다. 그때 사용하는 방식이다.
+      let { firstName, lastName } = getPerson();
+
+      console.log(firstName);
+      console.log(lastName);
+    </script>
+    }
+  </body>
+</html>

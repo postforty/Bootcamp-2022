@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // class 클래스명{
+      //     constructor(){
+
+      //     }
+      // }
+
+      // 모델명, 생산년도, 타입, 자동차 가격 / 클래스는 표준화된 틀을 제공해 준다.
+      class Car {
+        constructor(modelName, modelYear, type, price) {
+          this.modelName = modelName;
+          this.modelYear = modelYear;
+          this.type = type;
+          this.price = price;
+        }
+
+        getModelName() {
+          return this.modelName;
+        }
+
+        getPrice() {
+          return this.price;
+        }
+
+        setPrice(price) {
+          this.price = price;
+        }
+      }
+
+      class ElectricCar extends Car {
+        constructor(modelName, modelYear, type, price, chargeTime, distance) {
+          super(modelName, modelYear, type, price);
+          this.chargeTime = chargeTime;
+          this.distance = distance;
+        }
+      }
+
+      //   let ionic = new Car("아이오닉", 2021, "E", 4000);
+      //   console.log(ionic.getModelName()); // 아이오닉
+      //   console.log(ionic.getPrice()); // 아이오닉
+      //   ionic.setPrice(5000); // 4000
+      //   console.log(ionic.getPrice()); // 5000
+
+      //   let genesis = new Car("제네시스", 2022, "ㅎ", 7000);
+      //   console.log(genesis.getModelName()); // 제네시스
+    </script>
+  </body>
+</html>

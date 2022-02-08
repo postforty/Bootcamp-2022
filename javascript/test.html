@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let name = "고 승 원";
+      console.log(name.replace(" ", "")); // 고승 원
+      console.log(name.replace(/\s/g, "")); // 고승원(정규식이 아니면 해결할 수 있는 방법이 없어 매우 중요)
+
+      // 자바스크립트 버전업 될시 브라우저의 내장함수와 똑 같은 함수가 추가되면, 서로 기능적 의미가 다르다면 기존의 애플리케이션이 오류가 날수 있다. 신규함수를 prototype으로 추가하는 것은 위험하다. 이를 방지하기 위해 개발자들은 함수명 앞에 $를 붙인다. 일종의 암묵적 약속이다. $가 없으면 기본 내장함수로 착각할 수도 있다.
+    </script>
+  </body>
+</html>

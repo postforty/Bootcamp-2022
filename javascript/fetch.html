@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // XMLHttpRequest와 같은 기능을 더 쉽게 구현할 수 있다.
+      // fetch가 데이터를 가져오면, 서버에서 데이터를 완벽하게 받으면 then 함수 내 코드가 실행된다. 시차 문제 해결한다.
+      fetch("http://localhost:3000/posts")
+        // .then(function (response) {
+        //   return response.json(); //json 으로 변환
+        // })
+        // .then(function (json) {
+        //   console.log(json);
+        // });
+        .then(response => response.json()) //json 으로 변환
+        .then(json => console.log(json));
+
+      fetch("http://localhost:3000/posts", {
+          method: "POST",
+          body: JSON.stringify({title: "xmllhttprequest", author: "John Doe"}),
+          headers: {
+              .then(response => response.json())
+              .then(json => console.log(json));
+          }
+      })
+    </script>
+  </body>
+</html>

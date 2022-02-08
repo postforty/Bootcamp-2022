@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="getData()">조회</button>
+    <button onclick="postData()">생성</button>
+    <button onclick="putData()">수정</button>
+    <button onclick="deleteData()">삭제</button>
+    <script>
+      // Asynchronous JavaScript and XML, 자바스크립트는 AJAX이전과 이후로 나뉜다. 동적웹페이지를 만들기 위해 사용한다. 비동기 통신이 가능해졌다. 웹페이지의 특정 일부분만 랜더링 가능하다. 웹이 급속도록 발전하게 되었다.
+      // 비동기 통신, 동기 통신
+      // XMLHttpRequest 객체를 지금은 쓸일이 없다. jQuery, fetch함수, axios라이브러리(지금 주로 사용)을 사용하기 때문. 이들은 내부적으로 XMLHttpRequest를 사용한다.
+
+      // https://github.com/typicode/json-server
+      // 서버를 만들어야 실습이 가능하다.
+      // npm install -g json-server 설치해야. -g는 반드시 붙여야 한다.
+
+      // <HTTP method>
+      // GET - 리소스 요청
+      // POST - 리소스 생성
+      // PUT - 리소스 수정
+      // PATCH - 리소스 일부 수정(거의 안씀)
+      // DELETE - 리소스 삭제
+
+      // 호출 받는 쪽에서 구현한다.
+      function getData() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:3000/posts"); // 준비만된 상태. 서버url을 넣어주면 된다.
+        xhr.setRequestHeader("content-type", "application/json"); // 서버와는 주로 json 통신하기 때문에 이렇게 쓴다고 보면된다.
+        xhr.send(); // send 함수로 비로소 접근하게된다.
+
+        // 서버로 요청하면 그 결과가 응답이 왔을때 onload에 있는 코드가 실행된다.
+        xhr.onload = () => {
+          console.log(xhr);
+          // 상태코드 200, 에러가 나지 않았다.
+          if (xhr.status === 200) {
+            const res = JSON.parse(xhr.response); // 배열로 받아온다.
+            console.log(res);
+            // return res;
+          } else {
+            console.log(xhr.status, xhr.statusText);
+          }
+        };
+      }
+
+      // http://localhost:3000/posts
+      // http://localhost:3000/comments
+      // http://localhost:3000/profile
+      // 리소스를 조회할때 각각의 함수를 구현해야했다.
+      // promise를 통해 중복을 없애고 한군데에서만 정의하고 나머지에서는 url만 가져와서 조회할 수 있다.
+
+      // const promise = new Promise((resolve, reject) => {
+      // 코드가 정의
+      // 성공
+      // resolve(결과)
+      // reject(에러)
+      // });
+
+      // const data = getData();
+      // console.log(data); // undefined(시차가 발생)
+      // console.log("getData 다음에 실행");
+
+      function getData2() {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open("GET", "http://localhost:3000/posts"); // 준비만된 상태. 서버url을 넣어주면 된다.
+          xhr.setRequestHeader("content-type", "application/json"); // 서버와는 주로 json 통신하기 때문에 이렇게 쓴다고 보면된다.
+          xhr.send(); // send 함수로 비로소 접근하게된다.
+
+          // 서버로 요청하면 그 결과가 응답이 왔을때 onload에 있는 코드가 실행된다.
+          xhr.onload = () => {
+            console.log(xhr);
+            // 상태코드 200, 에러가 나지 않았다.
+            if (xhr.status === 200) {
+              const res = JSON.parse(xhr.response); // 배열로 받아온다.
+              // console.log(res);
+              resolve(res);
+            } else {
+              console.log(xhr.status, xhr.statusText);
+              reject(xhr.status);
+            }
+          };
+        });
+      }
+
+      // promise개념? 호출하는 쪽에서 정의하여 사용할 수 있다.
+      getData2().then((res) => console.log(res));
+      console.log();
+
+      function postData() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:3000/posts");
+        xhr.setRequestHeader("content-type", "application/json;charset=UTF-8"); // charset=UTF-8 글자 깨지는 것 방지
+        const data = { title: "xmlhttprequest", author: "John Doe" }; // json은 유일한 키값이 항상 존재해하기 때문에 id가 반드시 있어야 한다. id번호는 자동으로 생성된다.
+        xhr.send(JSON.stringify(data)); // 오브젝트를 문자열로 변환한다.
+
+        xhr.onload = () => {
+          if (xhr.status === 201) {
+            // 생성 성공 코드 201
+            const res = JSON.parse(xhr.response); // 배열로 받아온다.
+            console.log(res);
+          } else {
+            console.log(xhr.status, xhr.statusText);
+          }
+        };
+      }
+
+      function putData() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("PUT", "http://localhost:3000/posts/2"); // HTTP 매서드 뿐아니라 url로도 구분이 가능하게 하기도 한다. 서버단에서 하기 나름이다.
+        xhr.setRequestHeader("content-type", "application/json;charset=UTF-8"); // charset=UTF-8 글자 깨지는 것 방지
+        const data = { title: "javascript", author: "jeremy" }; // json은 유일한 키값이 항상 존재해하기 때문에 id가 반드시 있어야 한다. id번호는 자동으로 생성된다.
+        xhr.send(JSON.stringify(data)); // 오브젝트를 문자열로 변환한다.
+
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            // 조회, 수정, 삭제는 200번
+            const res = JSON.parse(xhr.response); // 배열로 받아온다.
+            console.log(res);
+          } else {
+            console.log(xhr.status, xhr.statusText);
+          }
+        };
+      }
+
+      function deleteData() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("DELETE", "http://localhost:3000/posts/2"); // id 2번 삭제
+        xhr.setRequestHeader("content-type", "application/json;charset=UTF-8"); // charset=UTF-8 글자 깨지는 것 방지
+        xhr.send(); // 오브젝트를 문자열로 변환한다.
+
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            // 조회, 수정, 삭제는 200번
+            const res = JSON.parse(xhr.response); // 배열로 받아온다.
+            console.log(res);
+          } else {
+            console.log(xhr.status, xhr.statusText);
+          }
+        };
+      }
+
+      // json-server를 이용해 서버를 실재 구현하지 않아도 토이프로젝트 진행가능.'
+      // json-server를 이용해 테스트 함으로써 서버개발자와 프론트엔트 개발자의 시간의 불일치로 인한 리소스 낭비 예방.
+      // 진짜 서버인것 처럼 활용가능하다. 굉장히 중요하다. postman 툴도 가능하다.
+    </script>
+  </body>
+</html>
