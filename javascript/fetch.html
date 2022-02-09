@@ -8,26 +8,61 @@
   </head>
   <body>
     <script>
-      // XMLHttpRequest와 같은 기능을 더 쉽게 구현할 수 있다.
-      // fetch가 데이터를 가져오면, 서버에서 데이터를 완벽하게 받으면 then 함수 내 코드가 실행된다. 시차 문제 해결한다.
-      fetch("http://localhost:3000/posts")
-        // .then(function (response) {
-        //   return response.json(); //json 으로 변환
-        // })
-        // .then(function (json) {
-        //   console.log(json);
-        // });
-        .then(response => response.json()) //json 으로 변환
-        .then(json => console.log(json));
+      // fetch를 이용하면 XMLHttpRequest와 동일한 기능을 더 쉽게 구현할 수 있다.
 
-      fetch("http://localhost:3000/posts", {
+      // 조회
+      function getData() {
+        fetch("http://localhost:3000/posts")
+          // .then(function (response) {
+          //   return response.json(); // json 으로 변환
+          // })
+          // .then(function (json) {
+          //   console.log(json);
+          // });
+          // 위 코드를 화살표 함수로 구현
+          .then((response) => response.json()) // json 으로 변환
+          .then((json) => console.log(json));
+      }
+
+      // 생성
+      function postData() {
+        fetch("http://localhost:3000/posts", {
           method: "POST",
-          body: JSON.stringify({title: "xmllhttprequest", author: "John Doe"}),
+          body: JSON.stringify({
+            title: "xmllhttprequest",
+            author: "John Doe",
+          }),
           headers: {
-              .then(response => response.json())
-              .then(json => console.log(json));
-          }
-      })
+            "content-type": "application/json;charset=UTF-8",
+          },
+        })
+          .then((response) => response.json())
+          .then((json) => console.log(json));
+      }
+
+      // 수정
+      function putData() {
+        // id 3번 수정
+        fetch("http://localhost:3000/posts/3", {
+          method: "PUT",
+          body: JSON.stringify({ title: "xmlhttprequest", author: "John Doe" }),
+          headers: {
+            "content-type": "application/json;charset=UTF-8",
+          },
+        })
+          .then((response) => response.json())
+          .then((json) => console.log(json));
+      }
+
+      // 삭제
+      function deleteData() {
+        // id 3번 삭제
+        fetch("http://localhost:3000/posts/3", {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((json) => console.log(json));
+      }
     </script>
   </body>
 </html>

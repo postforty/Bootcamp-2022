@@ -12,72 +12,83 @@
     <button onclick="putData()">수정</button>
     <button onclick="deleteData()">삭제</button>
     <script>
-      // Asynchronous JavaScript and XML, 자바스크립트는 AJAX이전과 이후로 나뉜다. 동적웹페이지를 만들기 위해 사용한다. 비동기 통신이 가능해졌다. 웹페이지의 특정 일부분만 랜더링 가능하다. 웹이 급속도록 발전하게 되었다.
-      // 비동기 통신, 동기 통신
-      // XMLHttpRequest 객체를 지금은 쓸일이 없다. jQuery, fetch함수, axios라이브러리(지금 주로 사용)을 사용하기 때문. 이들은 내부적으로 XMLHttpRequest를 사용한다.
+      // 자바스크립트는 AJAX(Asynchronous JavaScript and XML) 이전과 이후로 나뉜다. AJAX로 인해 비동기 통신이 가능해 졌다. AJAX는 동적인 웹페이지를 만들기 위해 사용한다.
+      // 웹페이지의 특정 일부분만 랜더링 가능해졌고, 웹이 급속도록 발전하게 되었다.
 
-      // https://github.com/typicode/json-server
-      // 서버를 만들어야 실습이 가능하다.
-      // npm install -g json-server 설치해야. -g는 반드시 붙여야 한다.
+      // XMLHttpRequest 객체를 지금은 직접적으로 사용할 일은 잘 없다. jQuery, fetch, axios(지금 주로 사용)을 사용하기 때문이다. 이들은 내부적으로 XMLHttpRequest를 사용하고 있다.
 
-      // <HTTP method>
+      // HTTP method(HTTP 요청방식)
       // GET - 리소스 요청
       // POST - 리소스 생성
       // PUT - 리소스 수정
       // PATCH - 리소스 일부 수정(거의 안씀)
       // DELETE - 리소스 삭제
 
-      // 호출 받는 쪽에서 구현한다.
+      // JSON Server Resources
+      // http://localhost:3000/posts
+      // http://localhost:3000/comments
+      // http://localhost:3000/profile
+
       function getData() {
         const xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://localhost:3000/posts"); // 준비만된 상태. 서버url을 넣어주면 된다.
-        xhr.setRequestHeader("content-type", "application/json"); // 서버와는 주로 json 통신하기 때문에 이렇게 쓴다고 보면된다.
-        xhr.send(); // send 함수로 비로소 접근하게된다.
+        xhr.open("GET", "http://localhost:3000/posts"); // 요청방식과 서버URL을 넣어준다. 준비 상태이다.
+        xhr.setRequestHeader("content-type", "application/json"); // 요청에 맞는 헤더 값을 설정해야 한다. 서버와는 일반적으로 json 통신하기 때문에 거의 이렇게 쓴다고 보면된다.
+        xhr.send(); // 서버에 요청을 보낸다.
 
         // 서버로 요청하면 그 결과가 응답이 왔을때 onload에 있는 코드가 실행된다.
         xhr.onload = () => {
           console.log(xhr);
-          // 상태코드 200, 에러가 나지 않았다.
+          // 상태 코드 200, 성공
           if (xhr.status === 200) {
-            const res = JSON.parse(xhr.response); // 배열로 받아온다.
-            console.log(res);
-            // return res;
+            const res = JSON.parse(xhr.response); // object로 받아 온다.
+            // console.log(res);
+            return res;
           } else {
             console.log(xhr.status, xhr.statusText);
           }
         };
       }
 
-      // http://localhost:3000/posts
-      // http://localhost:3000/comments
-      // http://localhost:3000/profile
-      // 리소스를 조회할때 각각의 함수를 구현해야했다.
-      // promise를 통해 중복을 없애고 한군데에서만 정의하고 나머지에서는 url만 가져와서 조회할 수 있다.
+      function getCommentData(url) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.setRequestHeader("content-type", "application/json");
+        xhr.send();
+
+        xhr.onload = () => {
+          //   console.log(xhr);
+          if (xhr.status === 200) {
+            const res = JSON.parse(xhr.response);
+            // console.log(res);
+            //
+            return res;
+          } else {
+            console.log(xhr.status, xhr.statusText);
+          }
+        };
+      }
+
+      // Promise는 비동기 처리(특정 코드의 실행이 완료될 때까지 기다리지 않고 다음 코드를 실행)에 사용되는 객체이다. 를 통해 중복을 없애고 한군데에서만 정의하고 나머지에서는 url만 가져와서 조회할 수 있다.
 
       // const promise = new Promise((resolve, reject) => {
-      // 코드가 정의
-      // 성공
-      // resolve(결과)
-      // reject(에러)
+      //   if ("처리성공") {
+      //     resolve("결과 데이터");
+      //   } else {
+      //     reject("에러");
+      //   }
       // });
 
-      // const data = getData();
-      // console.log(data); // undefined(시차가 발생)
-      // console.log("getData 다음에 실행");
-
-      function getData2() {
+      function getData2(url) {
         return new Promise((resolve, reject) => {
           const xhr = new XMLHttpRequest();
-          xhr.open("GET", "http://localhost:3000/posts"); // 준비만된 상태. 서버url을 넣어주면 된다.
-          xhr.setRequestHeader("content-type", "application/json"); // 서버와는 주로 json 통신하기 때문에 이렇게 쓴다고 보면된다.
-          xhr.send(); // send 함수로 비로소 접근하게된다.
+          xhr.open("GET", url);
+          xhr.setRequestHeader("content-type", "application/json");
+          xhr.send();
 
-          // 서버로 요청하면 그 결과가 응답이 왔을때 onload에 있는 코드가 실행된다.
           xhr.onload = () => {
-            console.log(xhr);
-            // 상태코드 200, 에러가 나지 않았다.
+            // console.log(xhr);
             if (xhr.status === 200) {
-              const res = JSON.parse(xhr.response); // 배열로 받아온다.
+              const res = JSON.parse(xhr.response);
               // console.log(res);
               resolve(res);
             } else {
@@ -88,9 +99,37 @@
         });
       }
 
-      // promise개념? 호출하는 쪽에서 정의하여 사용할 수 있다.
-      getData2().then((res) => console.log(res));
-      console.log();
+      // [동기]
+      // 클라이언트가 요청 ->
+      // 서버가 응답
+      // 클라이언트가 요청 ->
+      // 서버가 응답
+      // 다음 코드
+
+      // const data = getData();
+      // console.log(data); // undefined(시차가 발생)
+      // console.log("getData 다음에 실행");
+
+      // [비동기]
+      // 클라이언트가 요청1 -> 서버응답에 대한 코드 처리
+      // 클라이언트가 요청2 -> 서버응답에 대한 코드 처리
+      // 클라이언트가 요청3 -> 서버응답에 대한 코드 처리
+      // 다음코드
+      // 다음코드
+
+      // promise를 적용하면 호출하는 쪽에서 정의하여 사용할 수 있다. 앞의 getData 함수는 호출 받는 쪽에서 정의했다.
+      // 서버로부터 응답받은 데이터를 이용해 구현해야 하는 코드(서버로 부터 응답받기 전에 실행되어 버리면 문제가 되는 코드)를 then 함수 내에 작성한다.
+      getData2("http://localhost:3000/posts").then((res) => console.log(res));
+      getData2("http://localhost:3000/comments").then((res) =>
+        console.log(res)
+      );
+      //   console.log(data);
+      console.log("getData 다음에 실행");
+
+      //   getData1().then(getData2().then(getData3()))
+      // const data1 = getData1();
+      // const data2 = getData2(data1);
+      // const data3 = getData3(data3);
 
       function postData() {
         const xhr = new XMLHttpRequest();
@@ -145,7 +184,7 @@
         };
       }
 
-      // json-server를 이용해 서버를 실재 구현하지 않아도 토이프로젝트 진행가능.'
+      // json-server를 이용해 서버를 실제 구현하지 않아도 토이프로젝트 진행가능.'
       // json-server를 이용해 테스트 함으로써 서버개발자와 프론트엔트 개발자의 시간의 불일치로 인한 리소스 낭비 예방.
       // 진짜 서버인것 처럼 활용가능하다. 굉장히 중요하다. postman 툴도 가능하다.
     </script>
