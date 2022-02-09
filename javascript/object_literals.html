@@ -7,8 +7,27 @@
     <title>Document</title>
   </head>
   <body>
-    let person = { firstName: "Seungwon", lastName: "Go" } let type = "student";
-    let score = { [type]:"John", score:95 }; person.email =""; person[type] =
-    "";
+    <script>
+      let person = {
+        firstName: "John",
+        lastName: "Doe",
+      };
+
+      // Object의 키로 변수에 할당된 문자열 값을 사용할 수 있다.
+      let type = "student";
+      let score = {
+        [type]: "John",
+        score: 95,
+      };
+
+      console.log(score["student"]); // John
+      console.log(score[type]); // John
+
+      // Object의 키를 동적으로 생성할 수 있어 코딩시 자유도가 높아진다.
+      person.email = "";
+      person[type] = "";
+
+      console.log(person); // {firstName: 'John', lastName: 'Doe', email: '', student: ''}
+    </script>
   </body>
 </html>

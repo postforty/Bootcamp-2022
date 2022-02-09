@@ -38,7 +38,7 @@
 
       class ElectricCar extends Car {
         constructor(modelName, modelYear, type, price, chargeTime, distance) {
-          super(modelName, modelYear, type, price);
+          super(modelName, modelYear, type, price); // 상속 받을 경우에는 무조건 super를 호출해야한다. 없을때 에러 발생
           this.chargeTime = chargeTime;
           this.distance = distance;
         }

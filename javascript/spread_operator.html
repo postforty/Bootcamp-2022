@@ -8,11 +8,15 @@
   </head>
   <body>
     <script>
-      // 배열 요소를 분해해서 결합한다. 실무에서 자주 쓴다.
+      // 배열 요소를 분해해서 결합한다. 실무에서 자주 쓰는 문법이다.
       let num1 = [4, 5, 6];
       let num2 = [1, 2, 3];
       let num3 = num2.concat(num1);
+      console.log(num3); // [1, 2, 3, 4, 5, 6]
+
       let num4 = [...num2, ...num1];
+      console.log(num4); // [1, 2, 3, 4, 5, 6]
+
       let num5 = [1, 2, 3, 4, 5, 6];
     </script>
   </body>

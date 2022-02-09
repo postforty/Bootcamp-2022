@@ -1,0 +1,54 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "xmllhttprequest",
+      "author": "John Doe",
+      "id": 4
+    },
+    {
+      "title": "xmllhttprequest",
+      "author": "John Doe",
+      "id": 5
+    },
+    {
+      "title": "xmllhttprequest",
+      "author": "John Doe",
+      "id": 6
+    },
+    {
+      "title": "xmllhttprequest",
+      "author": "John Doe",
+      "id": 8
+    },
+    {
+      "title": "xmllhttprequest",
+      "author": "John Doe",
+      "id": 9
+    },
+    {
+      "title": "xmllhttprequest",
+      "author": "John Doe",
+      "id": 10
+    },
+    {
+      "title": "xmllhttprequest",
+      "author": "John Doe",
+      "id": 11
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
