@@ -9,12 +9,14 @@
   <body>
     <script>
       // class 클래스명{
-      //     constructor(){
+      //  constructor(매개변수){
+      //    초기화 코드
+      //    }
+      //  }
 
-      //     }
-      // }
-
-      // 모델명, 생산년도, 타입, 자동차 가격 / 클래스는 표준화된 틀을 제공해 준다.
+      // 클래스는 표준화된 틀을 제공해 준다.
+      // Car 클래스 생성
+      // constructor 함수의 매개변수: 모델명, 생산년도, 타입, 자동차 가격
       class Car {
         constructor(modelName, modelYear, type, price) {
           this.modelName = modelName;
@@ -36,22 +38,35 @@
         }
       }
 
+      // Car 클래스를 상속한 ElectricCar 클래스 생성
+      // constructor 함수의 매개변수: 모델명, 생산년도, 타입, 자동차 가격, 충전 시간, 주행가능 거리
       class ElectricCar extends Car {
         constructor(modelName, modelYear, type, price, chargeTime, distance) {
           super(modelName, modelYear, type, price); // 상속 받을 경우에는 무조건 super를 호출해야한다. 없을때 에러 발생
           this.chargeTime = chargeTime;
           this.distance = distance;
         }
+        getChargeTime() {
+          return this.chargeTime;
+        }
+
+        getDistance() {
+          return this.distance;
+        }
       }
 
-      //   let ionic = new Car("아이오닉", 2021, "E", 4000);
-      //   console.log(ionic.getModelName()); // 아이오닉
-      //   console.log(ionic.getPrice()); // 아이오닉
-      //   ionic.setPrice(5000); // 4000
-      //   console.log(ionic.getPrice()); // 5000
+      let genesis = new Car("제네시스", 2022, "G", 7000);
+      console.log(genesis.getModelName()); // 제네시스
 
-      //   let genesis = new Car("제네시스", 2022, "ㅎ", 7000);
-      //   console.log(genesis.getModelName()); // 제네시스
+      let ionic = new Car("아이오닉", 2021, "E", 4000);
+      console.log(ionic.getModelName()); // 아이오닉
+      console.log(ionic.getPrice()); // 4000
+      ionic.setPrice(5000);
+      console.log(ionic.getPrice()); // 5000
+
+      let ionic2 = new ElectricCar("아이오닉2", 2021, "E", 4000, 120, 450);
+      console.log(ionic2.getModelName()); // 아이오닉2
+      console.log(ionic2.getDistance()); // 450
     </script>
   </body>
 </html>

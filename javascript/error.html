@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 에러 핸들링
+      //   자바스크립트는 에러가 나면 에러난 부분에서 멈춘다.
+      //   num; // 고의로 에러를 만들었다.
+      //   console.log("실행");
+
+      // try catch는 에러가 나도 멈추지 않고 그 다음 코드가 실행되게 한다.
+      //   try {
+      //     // 에러가 발생할 만한 코드를 try에 작성
+      //     console.log("아직 에러가 없어요");
+      //     num; // 에러
+      //     console.log("에러 다음 코드");
+      //   } catch (error) {}
+      //   console.log("try/catch 구문 밖의 코드");
+
+      //   // [실행결과]
+      //   // 아직 에러가 없어요
+      //   // try/catch 구문 밖의 코드
+
+      //   try {
+      //     // 에러가 발생할 만한 코드를 try에 작성
+      //     console.log("아직 에러가 없어요");
+      //     num; // 에러
+      //     console.log("에러 다음 코드");
+      //   } catch (error) {
+      //     console.log(error); // ReferenceError: num is not defined(정보성으로 메시지를 보여주고 있다.)
+      //   }
+      //   console.log("try/catch 구문 밖의 코드");
+
+      //   // [실행결과]
+      //   // 아직 에러가 없어요
+      //   // ReferenceError: num is not defined
+      //   // try/catch 구문 밖의 코드
+
+      //   //   기상청 날씨 정보를 포함하고 서버에 문제가 생겨 기상청 날씨 정ㅂ
+      //   //   내가 콘트롤할 수 없는 부분은 try catch 문으로 작성해야 한다.
+      //   //   예를 들어 기상청 날씨 정보를 페이지 우측 상단에 보여준다면,
+      //   //   기상청 서버가 다운될때 정보를 못 받아 올 수 있다.
+      //   //   이러한 장애로 인해 우리 시스템이 이 에러로 멈출 수 있다.
+
+      //   try {
+      //     console.log("아직 에러가 없어요");
+      //     getWheather(); // ReferenceError(참조할 함수, 변수가 없을 때)
+      //     console.log("에러 다음 코드");
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      //   console.log("try/catch 구문 밖의 코드");
+
+      //   try {
+      //     console.leg("아직 에러가 없어요"); // TypeError
+      //     console.log("에러 다음 코드");
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      //   console.log("try/catch 구문 밖의 코드");
+
+      //   try {
+      //     console.leg("아직 에러가 없어요"); // TypeError
+      //     console.log("에러 다음 코드");
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      //   console.log("try/catch 구문 밖의 코드");
+
+      // //   try {
+      // //     console.leg("아직 에러가 없어요"; // SyntaxError(개발중 발생, 실행하면서 발생하는 것은 아님)
+      // //   } catch (error) {
+      // //     console.log(error);
+      // //   }
+      // //   console.log("try/catch 구문 밖의 코드");
+
+      //   try {
+      //     let n = 3;
+      //     n.substring(0, 3); // TypeError
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      //   console.log("try/catch 구문 밖의 코드");
+
+      try {
+        setTimeout(() => {
+          getWheather();
+        }, 1000);
+      } catch (error) {}
+
+      setTimeout(() => {
+        try {
+          getWheather();
+        } catch (error) {}
+      }, 1000);
+
+      try {
+        getWheather();
+      } catch (error) {
+        console.log(error.name);
+        console.log(error.message);
+        //   실무에서는 에러별로 구분해서 작성할 일은 잘 없었다.
+        if (error instanceof ReferenceError) {
+        } else if (error instanceof TypeError) {
+        }
+        // node.js에서 물리적 파일 읽고 쓰기할 때 파일이 열려있는 파일을 닫아야 한다. finally에서 닫아 주어야 다른 사람이 접근할 수있다. 그 때는 반드시 finally를 써야한다. 가독성을 위해서도 쓴다.
+      } finally {
+        console.log("에러가 나든 안나든 실행"); // try catch 밖에서 사용하는 것과 어떤 차이가 있을까?
+      }
+
+      // 에러가 아니지만 강제로 에러를 발생시킬 수 있다.
+      // 실무에서 잘 사용해본 일이 없었던 것 같다.
+      let x = "";
+
+      try {
+        if (x === "") {
+          throw "empty"; // catch로 던져 버린다.
+        }
+
+        if (x !== "") {
+          //   x 비어있지 않은 경우 실행해야 될 코드가 있다.
+        }
+      } catch (error) {}
+
+      //   백단에서는 많이 사용하는데 프론트엔드 개발에서는 쓸일이 잘 없다.
+    </script>
+  </body>
+</html>

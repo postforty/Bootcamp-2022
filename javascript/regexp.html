@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 정규식을 잘 쓰는 것이 매우 중요하다. 문자열 안에서 내가 원하는 특정한 패턴을 찾아내는 기술이 정규식이다.
+      let str = "Hello World, World, World!";
+      //   let str2 = str.replace(/World/gi, World, "World!");
+      //   console.log(str2);
+      const regext = /World/;
+      const regexp2 = new RegExp("World");
+      console.log(regext.test(str)); // true(test 함수는 찾고자 하는 문자가 있는지 찾는 함수)
+      console.log(str.search(regext)); // 6(indexOf와 같지만 복잡한 문자열에서 사용할 수 있다.)
+      console.log(str.indexOf("World")); // 6(단순한 문자열만 가능)
+
+      // 정규식은 할때마다 찾아 봐야 한다.
+      //   https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Regular_Expressions
+      str = "123abc456def";
+      //   const regexp3 = /[0-9]/g; // /[0-9]/g 패턴에 걸리는 문자 찾음. 숫자만 찾음
+      //   const regexp3 = /[0-9]{2}/g; // {}는 연속된 숫자 2자리만 찾는다.
+      const regexp3 = /[0-9]{2}d/g; // ['56d'] 연속된 숫자 2자리와 d인 경우를 찾는다.
+      let result = str.match(regexp3); // match는 배열로 만들어 준다.
+      console.log(result);
+
+      // 정규식으로 사용하지 않으면 수많은 코드를 써서 해결할 수 있는 문제를 간단히 해결할 수 있다.
+      // 전화번호 체크
+      //   const regexp4 = /\d{3}-\d{4}-\d{4}/; // [0-9]와 \d 같다.
+      //   let tel = "010-1111-2222";
+      //   let tel = "abc010-1111-2222"; // true(문제가 된다.)
+      let tel = "abc010-1111-2222"; //
+      let tel2 = "01011112222"; // 가독성 좋지 않다. 문자 메시지 보내는 외부 서비스들이 하이픈 있어도 상관없어서 굳이 이렇게 쓸 필요는 없을 것 같다.
+      // db에는 한가지 패턴으로 데이터가 들어오도록 해야 효율적이다. 어떤 방식이든 한 방식이 맞다.
+      const regexp4 = /^\d{3}-\d{4}-\d{4}$/; // ^시작은 반드시 숫자, $ 종료는 숫자 4자리
+      console.log(regexp4.test(tel)); // false
+      //   왠만한 정규식 패턴은 구글 검색으로 찾을 수 있다. 하지만 정규식을 충분히 공부하는 것이 바람직하다.
+
+      //   이메일 주소가 정상적인지 확인
+      // 최근에는 이메일 인증하기 때문에 정확하게 입력하지만
+      // 코엑스 콘퍼런스의 현장등록은 종이에 적는다. 제대로된 개인정보를 안적는 경우가 많다. 이상하게 적기도 한다.
+      // 정보를 수집하는 입장에서는 사용자 정보가 정확해야 한다.
+      // 따라서 정규식을 체크해야 한다.
+      let email = "jem@aaa.c";
+
+      // [a-z]+ 소문자가 하나이상
+      //   \d* 숫자가 0개 이상
+      //([a-z]+\d*)+ (소문자 하나이상 숫자 0개 이상) 하나 이상
+      // \.? 점이 1개 이거나 없다(이메일 명으로 .을 하나 이하 허용하는 경우가 있다). .을 기능이 아니라 문자로 만들기 위해 \ 붙임
+      // [a-z]+ 소문자 하나이상
+      // @ @반드시 있어야. @는 기능이 없어 \ 붙이지 않아도 된다.
+      // [a-z]+ 소문자 하나이상
+      //   (\.[a-z]{2,3})+ 하나 이상
+      // $ 앞의 패턴으로 종료
+      const regex5 = /^([a-z]+\d*)+(\.?[a-z]+)+@[a-z]+(\.[a-z]{2,3})+$/; // 이메일의 시작은 알파벳 a~z, + 는 한개 이상, *는 0개 이상,
+      console.log(regex5.test(email)); // false
+    </script>
+  </body>
+</html>

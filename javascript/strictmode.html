@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // EC5 - 엄격한 모드
+      //   "use strict"; // 문자열 같지만 엄격한 모드를 설정한 것이다.
+      x = "3"; // Uncaught ReferenceError: x is not defined
+
+      function myFunction() {
+        "use strict"; // 함수 내에서 사용하면 그 함수만 엄격한 모드를 쓸 수 있다.
+        y = 2;
+      }
+      myFunction();
+    </script>
+  </body>
+</html>
