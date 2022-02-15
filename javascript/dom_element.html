@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="userId">사용자ID</label>
+    <input type="text" name="" id="userId" value="" class="form-input" />
+    <br />
+    <label for="userPass">비밀번호</label>
+    <input type="text" name="" id="userPass" value="" />
+    <br />
+    <button onclick="login();">로그인</button>
+    <br />
+    <input type="checkbox" name="chk_pl" id="chk_html" value="HTML" />
+    <label for="chk_html">HTML</label>
+    <input type="checkbox" name="chk_pl" id="chk_css" value="CSS" />
+    <label for="chk_css">CSS</label>
+    <input type="checkbox" name="chk_pl" id="chk_js" value="JS" />
+    <label for="chk_js">JS</label>
+    <br />
+    <button onclick="doSave2();">저장</button>
+    <script>
+      // Vue 없이도 dom을 콘트롤 할 수 있어야 한다.
+
+      // element에 접근
+      // element 속성
+      // element 이벤트
+      // element 스타일
+      // DOM Document Object Model
+      // DOM Tree가 만들어 진다.
+      // html
+      // head body
+      // body
+      // label input br label input br button
+      // html element는 DOM트리에 등록된다.
+
+      // element의 id를 이용하는 방법
+      // console.log(document.getElementById("userPass")); // ID는 고유해서 하나만 가져온다. Element
+      console.log(document.querySelector("#userId"));
+
+      // element의 태그명을 이용하는 방법
+      let labelElements = document.getElementsByTagName("label"); // 요소가 하나라도 배열로 리턴된다. Elements
+      console.log(labelElements);
+
+      console.log(document.querySelectorAll("label"));
+
+      // element의 클래스명을 이용하는 방법
+      console.log(document.getElementsByClassName("form-input"));
+      console.log(document.querySelectorAll(".form-input"));
+
+      // element의 속성 중 name을 이용하는 방법
+      console.log(document.getElementsByName("chk-pl"));
+
+      // 이상을 알면 어떤 HTML 요소도 가져올 수 있다.
+
+      function doSave() {
+        let chks = document.getElementsByName("chk_pl");
+        let checkValue = [];
+        for (const chk of chks) {
+          //   console.log(chk);
+          if (chk.checked) {
+            checkValue.push(chk.value);
+          }
+        }
+
+        console.log(checkValue);
+      }
+
+      // 이상의 4개 보다 querySelector, querySelectorAll 둘을 주로 사용한다.
+      // CSS 선택자를 이용하면 더욱 간결한 코드를 짤 수 있다.
+      function doSave2() {
+        let checkedEles = document.querySelectorAll("[name=chk_pl]:checked");
+        console.log(checkedEles); // 이후 for 문 사용하여 배열에 담으면 된다. 코드가 훨씬 간결해졌다.
+      }
+
+      // jQuery 는 함수로 제공했다. 최근에는 jQuery를 쓸일이 없다.
+
+      function login() {
+        let userIdElement = document.getElementById("userId"); // element를 얻어 올께 Id를 이용해서
+        let userId = userIdElement.value;
+        console.log(userIdElement);
+        console.log(userId);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" name="" id="userId" value="" />
+    <br />
+    <select name="" id="city">
+      <option value="02">서울</option>
+      <option value="051">부산</option>
+      <option value="064">제주</option>
+    </select>
+    <button onclick="getInfo();">가져오기</button>
+    <button onclick="setInfo();">설정하기</button>
+    <button onclick="setInfo();" id="btnSave" disabled>저장하기</button>
+    <!--입력값이 있을 경우에만 버튼 활성화 하도록 하기 위함-->
+    <script>
+      // DOM 접근하고 나면, 그 다음 할일은?
+      // 결국은 속성 정보를 제어하는거 - 정보를 가져오거나, 정보를 설정하는거
+
+      function checkRequried() {
+        if (document.querySelector("#userId").value.length > 0) {
+          document.querySelector("#btnSave").disabled = false;
+        } else {
+        }
+      }
+
+      // 고급 개발자는 서버로 부터 데이터가 완전히 오기전까지 버튼을 비활성화 시키는 설정을 해준다. 사용자가 활성화된 버튼을 눌러 오류가 발생할 수 있기 때문이다.
+
+      function getInfo() {
+        let userId = document.querySelector("#userId").value;
+        // let userId = document.querySelector("#userId").getAttribute("value"); // name은 가져오는 데 value는 가져오지 못한다. value는 사용자의 입력값 동적이기 때문 리얼타임은 못 가져 온다. 실무에서는 안쓴다.
+        console.log(userId);
+      }
+
+      function setInfo() {
+        document.querySelector("#userId").value = "Jeremy";
+        // document.querySelector("#userId").setAttribute("value", "Jeremy"); // value 가져올 수 있다.
+      }
+    </script>
+  </body>
+</html>
