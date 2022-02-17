@@ -1,15 +1,65 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        <script>
-            // 실시간으로 정보가 바뀌는 경우에는 외부 API를 가져오지만, 국가 정보등 바뀌지 않는 경우에는 우리 DB에 넣어서 사용한다. 외부 API서버에 장애가 발생할 수도 있기 때문이다.
-            
-        </script>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <select name="" id="city" onchange="selectCity2();">
+      <option value="">==선택==</option>
+      <option value="02">서울</option>
+      <option value="051">부산</option>
+      <option value="064">제주도</option>
+    </select>
+    <select name="" id="si" disabled></select>
+
+    <script>
+      const cities = [
+        { city: "064", cityName: "제주도", si: "1", siName: "제주시" },
+        { city: "064", cityName: "제주도", si: "2", siName: "서귀포시" },
+        { city: "02", cityName: "서울", si: "1", siName: "관악구" },
+        { city: "02", cityName: "서울", si: "2", siName: "강서구" },
+        { city: "051", cityName: "부산", si: "2", siName: "해운대" },
+      ];
+
+      function selectCity2() {
+        const city = document.querySelector("#city").value;
+        if (city !== "") {
+          // 서버로 데이터 요청 city를 서버로 전송
+          let selCitys = cities.filter((c) => c.city === city);
+          console.log(selCitys);
+        }
+      }
+
+      function selectCity() {
+        const city = document.querySelector("#city").value;
+        if (city === "064") {
+          let options = [];
+          let cities = [
+            { code: 1, name: "제주시" },
+            { code: 2, name: "서귀포시" },
+          ]; // DB정보
+
+          for (const c of cities) {
+            // options.push("<option value='" + c.code + "'>" + c.name + "</option>");
+            options.push(`<option value="${c.code}">${c.name}</option>`);
+          }
+
+          console.log(options);
+
+          //   cities.forEach((c) => {
+          //     options.push(`<option value="${c.code}">${c.name}</option>`);
+          //   });
+
+          document.querySelector("#si").innerHTML = options.join("");
+          document.querySelector("#si").disabled = false;
+        } else {
+          document.querySelector("#si").innerHTML = "";
+          document.querySelector("#si").disabled = true;
+        }
+      }
+    </script>
+  </body>
 </html>
