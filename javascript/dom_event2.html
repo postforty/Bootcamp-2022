@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 스크롤을 스무스하게 */
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body onscroll="checkScroll();">
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <p>Paragraph</p>
+    <button
+      style="
+        position: fixed;
+        bottom: 10px;
+        right: 50px;
+        width: 70px;
+        height: 70px;
+        border-radius: 35px;
+        display: none;
+      "
+      id="btnScroll"
+    ></button>
+    <script>
+      let showScrollBtn = false;
+      function checkScroll(e) {
+        // console.log(window.scrollY);
+
+        // 성능상 좋은 코드가 아니다.
+        // if (window.scrollY > 1000) {
+        //   document.querySelector("#btnScroll").style.display = "block";
+        // } else {
+        //   document.querySelector("#btnScroll").style.display = "none";
+        // }
+
+        if (window.scrollY > 1000 && !showScrollBtn) {
+          console.log(window.scrollY);
+          showScrollBtn = true;
+          document.querySelector("#btnScroll").style.display = "block";
+        } else if (window.scrollY <= 1000 && showScrollBtn) {
+          console.log(window.scrollY);
+          showScrollBtn = false;
+          document.querySelector("#btnScroll").style.display = "none";
+        }
+      }
+
+      window.addEventListener("load", () => {
+        document.querySelector("#btnScroll").addEventListener("click", () => {
+          console.log(event);
+          document.documentElement.scrollTop = 0;
+        });
+      });
+    </script>
+  </body>
+</html>

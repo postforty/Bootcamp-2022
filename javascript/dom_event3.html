@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      style="height: 200px; overflow-y: auto; border: 2px solid black"
+      id="divContainer"
+      onscroll="checkScroll();"
+    >
+      <p>Item</p>
+      <p>Item</p>
+      <p>Item</p>
+      <p>Item</p>
+      <p>Item</p>
+      <p>Item</p>
+      <p>Item</p>
+      <p>Item</p>
+      <p>Item</p>
+      <p>Item</p>
+    </div>
+    <script>
+      function checkScroll() {
+        console.log(event.target.scrollHeight);
+        console.log(event.target.clientHeight + event.target.scrollTop);
+
+        if (
+          event.target.clientHeight + event.target.scrollTop >=
+          event.target.scrollHeight - 5
+        ) {
+          document
+            .querySelector("#divContainer")
+            .insertAdjacentHTML("beforeend", "<p>추가된 아이템</p>");
+        }
+      }
+    </script>
+  </body>
+</html>
