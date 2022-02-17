@@ -121,12 +121,15 @@
       <button onclick="goToList();">목록</button>
       <button onclick="doReset();">초기화</button>
     </div>
+    <!-- Daum 우편번호 서비스 -->
+    <!-- https://postcode.map.daum.net/guide -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
       // https://json-generator.com/
       // json 샘플을 만들어 실습한다.
       // 오늘 배운 내용을 완전히 이해해야 프론트엔드 Vue.js 배울때 비교가 된다.
-      // 실무에서는 axios를 주로 사용한다. 삭제후 전체 새로고침 현상은 알아보고 목요일 알려주겠다.
+      // 실무에서는 axios를 주로 사용한다.
+      // 삭제후 전체 새로고침 현상은 알아보고 목요일 알려주겠다.
       // 오늘 배운 내용은 매우 중요하다. 안보고 처음부터 짤 수 있어야 한다.
       async function doCreate() {
         const name = document.querySelector("#name").value.trim();
