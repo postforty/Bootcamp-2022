@@ -9,7 +9,7 @@
   <!-- <body onload="myFunction();"> 페이팅이 모두 완료되면 myFunction() 함수를 실행하라! -->
   <body>
     <!-- 실무에서는 "조회2" 방법을 사용한다. 디자인 변경될시 고려하여 스크립트 코드를 분리하기 위함이다. -->
-    <button onclick="doSearch();">조회</button>
+    <button id="btn1">조회</button>
     <button id="btn2">조회2</button>
     <script>
       function doSearch() {
@@ -18,10 +18,10 @@
 
       function setEvent() {
         document.querySelector("#btn1").addEventListener("click", doSearch);
-        // document.querySelector("#btn2").addEventListener("click", doSearch);
+        document.querySelector("#btn2").addEventListener("click", doSearch);
       }
 
-      // onload
+      //onload
       window.addEventListener("load", () => {
         setEvent();
       });

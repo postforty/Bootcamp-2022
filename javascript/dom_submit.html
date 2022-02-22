@@ -7,12 +7,60 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="">
-      Email: <input type="email" name="" id="" required />
+    <form onsubmit="login();">
+      Email:
+      <input
+        type="email"
+        name=""
+        id=""
+        oninvalid="this.setCustomValidity('Enter User Name Here')"
+        oninput="this.setCustomValidity('')"
+        required
+      />
       <br />
       PW: <input type="password" name="" id="" required />
       <br />
+      Tel:
+      <input type="tel" name="" id="" pattern="^010-\d{3,4}-\d{4}$" required />
       <button type="submit">로그인</button>
     </form>
+    <!-- <div>
+      Email: <input type="email" name="" id="email" required />
+      <br />
+      PW: <input type="password" name="" id="pw" required />
+      <br />
+      <button onclick="login();">로그인</button>
+    </div> -->
+    <script>
+      function validityMessage(msg) {
+        return alert(msg);
+      }
+
+      function login() {
+        event.preventDefault();
+        console.log("login 함수 실행");
+        // fetch, ajax 서버로 전송
+      }
+      //   function login() {
+      //     const email = document.querySelector("#email").value;
+      //     const pw = document.querySelector("#pw").value;
+
+      //     if (email === "") {
+      //       return alert("이메일을 입력하세요.");
+      //     }
+
+      //     if (pw === "") {
+      //       return alert("비밀번호를 입력하세요.");
+      //     }
+
+      //     const regexpEmail = /^([a-z]+\d*)+(\.?[a-z]*)+@[a-z]+(\.[a-z]{2,3})+$/;
+      //     if (!regexpEmail.test(email)) {
+      //       return alert("올바른 형식의 Email을 입력하세요.");
+      //     }
+
+      //     // fetch, ajax 서버로 전송
+      //     // 로그인 여부 판단하고 로그인이 성공했으면, 로그인 이후 페이지로 이동
+      //   }
+    </script>
   </body>
 </html>

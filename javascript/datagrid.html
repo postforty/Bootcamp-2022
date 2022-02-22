@@ -34,6 +34,24 @@
       .hover tbody tr:hover {
         background-color: yellow;
       }
+
+      .pagination {
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .pagination a.active {
+        background-color: deeppink;
+        color: white;
+      }
     </style>
   </head>
   <body>
@@ -79,6 +97,7 @@
       </thead>
       <tbody id="tbBody"></tbody>
     </table>
+    <div class="pagination"></div>
     <script>
       let customerData = [];
       async function doSearch() {
@@ -106,21 +125,8 @@
         const resJson = await res.json();
         customerData = resJson;
         console.log(resJson);
-        renderTable(resJson);
-      }
-
-      let totalPage = 0;
-      const pagecnt = 5;
-      let pageRange = [];
-      let currentPage = 1;
-      let showList = [];
-
-      function paging() {
-        totalPage = Math.ceil(customerData.length / pagecnt);
-
-        if (totalPage > 5) {
-          pageRange = [1, 2, 3, 4, 5];
-        }
+        renderTable(resJson.slice(0, pagecnt));
+        paging();
       }
 
       function renderTable(data) {
@@ -231,6 +237,94 @@
           }
           renderTable(filterData);
         }
+      }
+
+      let totalPage = 0;
+      const pagecnt = 3;
+      let pageRange = [];
+      let currentPage = 1;
+      let showList = [];
+
+      function paging() {
+        totalPage = Math.ceil(customerData.length / pagecnt);
+
+        if (totalPage > 5) {
+          pageRange = [1, 2, 3, 4, 5];
+        } else {
+          pageRange = [];
+          for (var i = 1; i <= totalPage; i++) {
+            pageRange.push(i);
+          }
+        }
+
+        renderPagination();
+      }
+
+      function renderPagination() {
+        const h = [];
+        if (pageRange[0] > 1) {
+          h.push(`<a href="javascript:prePage();">&laquo;</a>`);
+        }
+
+        for (const no of pageRange) {
+          h.push(
+            `<a href="javascript:changePage(${no});" class="${
+              no === currentPage ? "active" : ""
+            }">${no}</a>`
+          );
+        }
+
+        // console.log(pageRange.slice(-1)[0]);
+
+        if (pageRange[pageRange.length - 1] < totalPage) {
+          h.push(`<a href="javascript:nextPage();">&raquo;</a>`);
+        }
+
+        document.querySelector(".pagination").innerHTML = h.join("");
+      }
+
+      function nextPage() {
+        const pageNo = pageRange[pageRange.length - 1];
+        const startIdx = pageNo + 1;
+        let endIdx = pageNo + 5;
+        if (endIdx > totalPage) {
+          endIdx = totalPage;
+        }
+
+        pageRange = [];
+        for (let i = startIdx; i <= endIdx; i++) {
+          pageRange.push(i);
+        }
+
+        changePage(pageNo + 1);
+      }
+
+      function prePage() {
+        const pageNo = pageRange[0]; //6
+        pageRange = [
+          pageNo - 5,
+          pageNo - 4,
+          pageNo - 3,
+          pageNo - 2,
+          pageNo - 1,
+        ];
+        changePage(pageNo - 1);
+      }
+
+      function changePage(pageNo) {
+        currentPage = pageNo;
+        const startIdx = (pageNo - 1) * pagecnt; // 3 6
+        let endIdx = pageNo * pagecnt; // 6 9
+        if (endIdx > customerData.length) {
+          endIdx = customerData.length;
+        }
+
+        renderTable(customerData.slice(startIdx, endIdx));
+        // if (onlyRenderPaging) {
+        renderPagination();
+        // } else {
+        //   paging();
+        // }
       }
 
       window.addEventListener("load", () => {

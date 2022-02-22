@@ -7,16 +7,21 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- 이벤트 버블링 -->
     <div onclick="myFunction2();">
-      <button onclick="myFunction1();">클릭</button>
+      <img
+        style="width: 200px; height: auto"
+        src="https://www.lenovo.com/medias/Legion-5Pro-16-AMD-88GMY501578-725x515.png?context=bWFzdGVyfHJvb3R8NjM3ODR8aW1hZ2UvcG5nfGg0Ny9oMWEvMTE3ODg3NTg3MTIzNTAucG5nfDI5NTYwMTZmNDFlZjEyYmY2YmJlYzJmODZhMTFkN2ZmOGI5NGYzOGI1ODRkYmMzZjg5NjM1YzM2MzllYzhkZWI"
+      />
+      레노버 노트북
+      <button onclick="myFunction1();">주문</button>
       <!-- <button>클릭</button> -->
     </div>
     <script>
       function myFunction1() {
         console.log("출력1");
-        event.stopPropagation(); // 이벤트가 중복적으로 걸리는 이벤트 버블링 현상을 막는다.
+        event.stopPropagation();
       }
+
       function myFunction2() {
         console.log("출력2");
       }
