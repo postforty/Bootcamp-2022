@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 이벤트 버블링 -->
+    <div onclick="myFunction2();">
+      <button onclick="myFunction1();">클릭</button>
+      <!-- <button>클릭</button> -->
+    </div>
+    <script>
+      function myFunction1() {
+        console.log("출력1");
+        event.stopPropagation(); // 이벤트가 중복적으로 걸리는 이벤트 버블링 현상을 막는다.
+      }
+      function myFunction2() {
+        console.log("출력2");
+      }
+    </script>
+  </body>
+</html>

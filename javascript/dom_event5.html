@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- keydown, keypress, keyup -->
+
+    <input
+      type="text"
+      name=""
+      id=""
+      onkeypress="myFunction();"
+      onkeyup="myFunction();"
+      onkeydown="myFunction();"
+    />
+    <br />
+    <input
+      type="tel"
+      name=""
+      id="tel1"
+      style="width: 50px"
+      onkeyup="moveInput(3, 'tel2')"
+    />-
+    <input
+      type="tel"
+      name=""
+      id="tel2"
+      style="width: 50px"
+      onkeyup="moveInput(4, 'tel3')"
+    />-
+    <input type="tel" name="" id="tel3" style="width: 50px" />
+    <script>
+      function myFunction() {
+        console.log(event.type);
+        // console.log(event.target);
+        console.log(event.target.value);
+      }
+
+      function moveInput(len, nextElementId) {
+        if (event.target.value.length === len) {
+          document.querySelector("#" + nextElementId).focus();
+        }
+      }
+    </script>
+  </body>
+</html>
