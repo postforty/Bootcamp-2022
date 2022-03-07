@@ -6,7 +6,7 @@
       <option value="064">제주</option>
     </select> -->
     <select name="" id="" v-model="selectedCity">
-      <!-- filter 함수 이용 -->
+      <!-- change 이벤트 대신 filter 함수 이용 -->
       <option
         :value="city.cityCode"
         :key="city.cityCode"
