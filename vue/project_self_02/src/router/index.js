@@ -138,6 +138,59 @@ const routes = [
       import(
         /* webpackChunkName: "about", */ '../views/2_event/EventChangeView.vue'
       )
+  },
+  {
+    path: '/event/key',
+    name: 'EventKeyView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about", */ '../views/2_event/EventKeyView.vue'
+      )
+  },
+  {
+    path: '/extra/if',
+    name: 'RenderingIfView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about", */ '../views/3_extra/RenderingIfView.vue'
+      )
+  },
+  {
+    path: '/extra/show',
+    name: 'RenderingShowView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about", */ '../views/3_extra/RenderingShowView.vue'
+      )
+  },
+  {
+    path: '/extra/computed',
+    name: 'ComputedView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about", */ '../views/3_extra/ComputedView.vue'
+      )
+  },
+  {
+    path: '/extra/watch',
+    name: 'WatchView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about", */ '../views/3_extra/WatchView.vue')
   }
 ]
 
