@@ -21,11 +21,6 @@ export default {
       drinkList: []
     }
   },
-  //   },
-  //   setup() {},
-  //   created() {},
-  //   mounted() {},
-  //   unmounted() {},
   methods: {
     doSearch() {
       // SimpleGrid.vue에 tbody 정보를 전달

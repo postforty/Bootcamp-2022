@@ -1,13 +1,25 @@
 <template>
   <div class="container">
-    <button class="btn btn-danger" @click="doSearch">조회</button>
-    <simple-grid :headers="headers" :items="drinkList" />
+    <button class="btn btn-danger" ref="btnSearch" @click="doSearch">
+      조회
+    </button>
+    <button class="btn btn-danger" @click="doDelete">삭제</button>
+    <button class="btn btn-danger" @click="doExcel">엑셀다운로드</button>
+    <simple-grid
+      :headers="headers"
+      :items="drinkList"
+      selectType="checkbox"
+      checkedKey="drinkId"
+      changeEventName="change-item2"
+      @change-item2="changeCheckedValue"
+      ref="smGrid"
+    />
   </div>
 </template>
 <script>
 import SimpleGrid from '@/components/fragments/SimpleGrid.vue'
 export default {
-  components: { 'simple-grid': SimpleGrid },
+  components: { SimpleGrid },
   data() {
     return {
       headers: [
@@ -15,10 +27,14 @@ export default {
         { title: '제품명', key: 'drinkName' },
         { title: '가격', key: 'price' }
       ],
-      drinkList: []
+      drinkList: [],
+      checkedItems: [],
+      isShowExcelDownBtn: true
     }
   },
-  setup() {},
+  setup() {
+    // composition api
+  },
   created() {},
   mounted() {},
   unmounted() {},
@@ -68,6 +84,18 @@ export default {
           qty: 1
         }
       ]
+    },
+    changeCheckedValue(data) {
+      this.checkedItems = data
+      // console.log('부모 컴포넌트', data)
+    },
+    doDelete() {
+      console.log(this.checkedItems)
+      this.$refs.smGrid.sampleData = 'B'
+      this.$refs.smGrid.doPrint()
+    },
+    doExcel() {
+      this.$refs.smGrid.doExcel()
     }
   }
 }
