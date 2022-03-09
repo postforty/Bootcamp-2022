@@ -1,8 +1,13 @@
 <template>
   <div>
     <button class="btn btn-danger" @click="doSearch">조회</button>
-    <!-- simple-grid를 입력하면 import SimpleGrid from '@/components/fragments/SimpleGrid.vue'와 components에 SimpleGrid를 자동으로 만들어 준다. -->
-    <simple-grid :headers="headers" :items="drinkList" />
+    <!-- selectType는 radio를 문자열 그대로 넘길 것이기 때문에 데이터바인딩이 불필요하다. -->
+    <simple-grid
+      :headers="headers"
+      :items="drinkList"
+      selectType="checkbox"
+      ckeckedKey="drinkId"
+    />
   </div>
 </template>
 <script>
