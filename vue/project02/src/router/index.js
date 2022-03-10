@@ -215,6 +215,17 @@ const routes = [
         /* webpackChunkName: "databinding" */ '../views/3_extra/WatchView.vue'
       )
   },
+  {
+    path: '/extra/life',
+    name: 'LifecyleHookView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "databinding" */ '../views/3_extra/LifecyleHookView.vue'
+      )
+  },
   // {
   //   path: '/reuse/page',
   //   name: 'PageView',
@@ -246,6 +257,39 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "databinding" */ '../views/4_reuse/SlotView.vue'
+      )
+  },
+  {
+    path: '/reuse/parent',
+    name: 'ParentView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "databinding" */ '../views/4_reuse/ParentView.vue'
+      )
+  },
+  {
+    path: '/advanced/provide',
+    name: 'ProvideView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "databinding" */ '../views/5_advanced/ProvideView.vue'
+      )
+  },
+  {
+    path: '/advanced/directive',
+    name: 'CustomDirectiveView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "databinding" */ '../views/5_advanced/CustomDirectiveView.vue'
       )
   }
   // {
