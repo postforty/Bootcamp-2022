@@ -12,7 +12,7 @@
         <!-- radio 컬럼의 바디를 만든다. -->
         <td v-if="selectType === 'radio'">
           <!-- radio 버튼을 checkedItem으로 그룹핑한다. -->
-          <!-- change 이벤트로 checked 확인, doSelect 실행 -->
+          <!-- change 이벤트로 checked 확인, doSelect 함수 호출 -->
           <input
             type="radio"
             name=""
@@ -24,7 +24,7 @@
         <!-- checkbox 컬럼의 바디를 만든다. -->
         <td v-if="selectType === 'checkbox'">
           <!-- checkbox 버튼을 checkedItems으로 그룹핑한다.  -->
-          <!-- change 이벤트로 checked 확인, doSelect 실행 -->
+          <!-- change 이벤트로 checked 확인, doSelect 함수 호출 -->
           <!-- value로 유일한 Key값인 drinkId를 데이터바인딩, 어떤 row가 선택되었는지 알 수 있다. -->
           <input
             type="checkbox"
@@ -66,6 +66,11 @@ export default {
     ckeckedKey: {
       type: String,
       default: ''
+    },
+    // 커스텀 이벤트의 기본값이 change-item인 changeEventName 프로퍼티를 만든다.
+    changeEventName: {
+      type: String,
+      default: 'change-item'
     }
   },
   data() {
@@ -73,7 +78,9 @@ export default {
       // radio 버튼 데이터바인딩
       checkedItem: '',
       // checkbox 버튼 데이터바인딩
-      checkedItems: []
+      checkedItems: [],
+      // 부모 componet에서 접근하고자 하는 data인 sampleData
+      sampleData: 'A'
     }
   },
   methods: {
@@ -82,8 +89,18 @@ export default {
       if (this.selectType === 'radio') {
         console.log(this.checkedItem)
       } else if (this.selectType === 'checkbox') {
-        console.log(this.checkedItems)
+        // console.log(this.checkedItems)
+
+        // $emit은 부모 component의 이벤트를 실행 시켜주는 글로벌 함수
+        // 파라미터 첫 번째에는 이벤트명, 두 번째에는 데이터 입력
+        // 첫 번째 파라미터의 명을 props의 changeEventName으로 변경한다.
+        this.$emit(this.changeEventName, this.checkedItems)
       }
+    },
+    // 부모 component에서 호출하고자 하는 doPrint 함수를 선언
+    doPrint() {
+      console.log('doPrint 함수 호출')
+      console.log(this.sampleData)
     }
   }
 }

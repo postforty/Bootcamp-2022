@@ -1,12 +1,20 @@
 <template>
   <div>
     <button class="btn btn-danger" @click="doSearch">조회</button>
+    <!-- 삭제 버튼 생성 -->
+    <button class="btn btn-danger" @click="doDelete">삭제</button>
     <!-- selectType는 radio를 문자열 그대로 넘길 것이기 때문에 데이터바인딩이 불필요하다. -->
+    <!-- simple-grid 내에 커스텀 이벤트(@change-item)를 만들 수 있다. -->
+    <!-- 자식 component에서 커스텀 이벤트의 이름을 변경하는 하드코딩을 방지하기 위해 changeEventName을 추가한다. -->
+    <!-- ref는 유일한 값을 가진다. 여기에서는 부모 component에서 자식 component의 doPrint 함수를 호출하기 위해서 사용한다. -->
     <simple-grid
       :headers="headers"
       :items="drinkList"
       selectType="checkbox"
       ckeckedKey="drinkId"
+      changeEventName="change-item2"
+      @change-item2="changeCheckedValue"
+      ref="smGrid"
     />
   </div>
 </template>
@@ -23,7 +31,9 @@ export default {
         { title: '제품명', key: 'drinkName' },
         { title: '가격', key: 'price' }
       ],
-      drinkList: []
+      drinkList: [],
+      // 자식 component의 data(선택된 값)를 담는 배열
+      checkedItems: []
     }
   },
   methods: {
@@ -73,6 +83,20 @@ export default {
           qty: 1
         }
       ]
+    },
+    // 파라미터에 자식 component의 data를 넣는다.
+    changeCheckedValue(data) {
+      // 자식 component의 data를 checkedItems 배열에 넣는다.
+      this.checkedItems = data
+
+      // console.log('부모 component : ', data)
+    },
+    // 삭제 함수 선언
+    doDelete() {
+      console.log(this.checkedItems)
+      // $refs는 전체 ref를 의미한다.
+      this.$refs.smGrid.sampleData = 'B'
+      this.$refs.smGrid.doPrint()
     }
   }
 }

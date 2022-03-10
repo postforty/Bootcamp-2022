@@ -193,6 +193,17 @@ const routes = [
       import(/* webpackChunkName: "about", */ '../views/3_extra/WatchView.vue')
   },
   {
+    path: '/extra/life',
+    name: 'LifecycleHookView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about", */ '../views/3_extra/LifecycleHookView.vue'
+      )
+  },
+  {
     path: '/reuse/page',
     name: 'PageView',
     // route level code-splitting
@@ -209,6 +220,15 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about", */ '../views/4_reuse/ListView.vue')
+  },
+  {
+    path: '/reuse/slot',
+    name: 'SlotView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about", */ '../views/4_reuse/SlotView.vue')
   }
 ]
 
