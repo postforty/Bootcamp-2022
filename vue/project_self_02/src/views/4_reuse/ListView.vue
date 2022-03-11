@@ -36,6 +36,16 @@ export default {
       checkedItems: []
     }
   },
+  setup() {
+    // composition api
+  },
+  created() {},
+  mounted() {
+    this.doSearch()
+  },
+  unmounted() {
+    this.drinkList = null
+  },
   methods: {
     doSearch() {
       // SimpleGrid.vue에 tbody 정보를 전달
