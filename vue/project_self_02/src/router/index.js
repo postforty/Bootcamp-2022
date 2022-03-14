@@ -229,6 +229,15 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about", */ '../views/4_reuse/SlotView.vue')
+  },
+  {
+    path: '/reuse/parent',
+    name: 'ParentView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about", */ '../views/4_reuse/ParentView.vue')
   }
 ]
 
