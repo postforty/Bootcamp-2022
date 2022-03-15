@@ -6,6 +6,7 @@
     <p>{{ arr }}</p>
     <p>{{ obj }}</p>
     <p>{{ str2 }}</p>
+    <button @click="callParent">부모로 데이터 전달</button>
   </div>
 </template>
 <script>
@@ -45,11 +46,15 @@ export default {
   },
   setup() {},
   created() {},
-  mounted() {
-    console.log(this.str)
-    this.sampleData = 'AAA'
-  },
+  mounted() {},
   unmounted() {},
-  methods: {}
+  methods: {
+    doPrint() {
+      console.log('print')
+    },
+    callParent() {
+      this.$emit('change-data', this.str2)
+    }
+  }
 }
 </script>

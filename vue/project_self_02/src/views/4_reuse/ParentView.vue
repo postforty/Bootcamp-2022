@@ -11,6 +11,8 @@
       :isOk="isOk"
       :arr="list"
       :obj="person"
+      ref="child1"
+      @change-data="getData"
     />
   </div>
 </template>
@@ -29,13 +31,15 @@ export default {
       person: { name: 'Jeremy' }
     }
   },
-  // setup() {},
-  // created() {},
-  // mounted() {},
-  // unmounted() {},
   methods: {
     changeValue() {
       this.num1 = 235
+      this.$refs.child1.str2 = 'Seoul'
+      this.$refs.child1.doPrint()
+    },
+    getData(data) {
+      console.log('getData 실행')
+      console.log(data)
     }
   }
 }
