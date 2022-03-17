@@ -1,13 +1,36 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import store from '../store'
+import HomeView from '../views/HomeView.vue'
+import LoginView from '../views/LoginView.vue'
+// import AboutView from '../views/AboutView.vue'
+// import HelloView from '../views/HelloView.vue'
 
 const routes = [
   {
     path: '/',
+    name: 'login',
+    component: LoginView
+  },
+  {
+    path: '/home',
     name: 'home',
     component: HomeView
   },
+  {
+    path: '/login',
+    name: 'login2',
+    component: LoginView
+  },
+  // {
+  //   path: '/about',
+  //   name: 'about',
+  //   component: AboutView
+  // },
+  // {
+  //   path: '/hello',
+  //   name: 'hello',
+  //   component: HelloView
+  // }
   {
     path: '/about',
     name: 'about',
@@ -19,279 +42,226 @@ const routes = [
         /* webpackChunkName: "about", webpackPrefetch:true */ '../views/AboutView.vue'
       )
   },
+  // {
+  //   path: '/hello',
+  //   name: 'hello',
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () =>
+  //     import(/* webpackChunkName: "hello" */ '../views/HelloView.vue')
+  // },
+  // {
+  //   path: '/databinding/string',
+  //   name: 'DataBindingStringView',
+  //   component: () =>
+  //     import(
+  //       /* webpackChunkName: "databinding" */ '../views/1_databinding/DataBindingStringView.vue'
+  //     )
+  // },
   {
-    path: '/html',
+    path: '/databinding/html',
     name: 'DataBindingHtmlView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/1_databinding/DataBindingHtmlView.vue'
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DataBindingHtmlView.vue'
       )
   },
   {
-    path: '/input',
+    path: '/databinding/input',
     name: 'DataBindingInputView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/1_databinding/DataBindingInputView.vue'
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DataBindingInputView.vue'
       )
   },
   {
-    path: '/select',
+    path: '/databinding/select',
     name: 'DataBindingSelectView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/1_databinding/DataBindingSelectView.vue'
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DataBindingSelectView.vue'
       )
   },
   {
-    path: '/checkbox',
+    path: '/databinding/checkbox',
     name: 'DataBindingCheckboxView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/1_databinding/DataBindingCheckboxView.vue'
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DataBindingCheckboxView.vue'
       )
   },
   {
-    path: '/radio',
+    path: '/databinding/radio',
     name: 'DataBindingRadioView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/1_databinding/DataBindingRadioView.vue'
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DataBindingRadioView.vue'
       )
   },
   {
-    path: '/attribute',
+    path: '/databinding/attribute',
     name: 'DataBindingAttributeView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/1_databinding/DataBindingAttributeView.vue'
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DataBindingAttributeView.vue'
       )
   },
   {
-    path: '/style',
+    path: '/databinding/style',
     name: 'DataBindingStyleView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/1_databinding/DataBindingStyleView.vue'
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DataBindingStyleView.vue'
       )
   },
   {
-    path: '/class',
+    path: '/databinding/class',
     name: 'DataBindingClassView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/1_databinding/DataBindingClassView.vue'
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DataBindingClassView.vue'
       )
   },
   {
-    path: '/list',
+    path: '/databinding/list',
     name: 'DataBindingListView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/1_databinding/DataBindingListView.vue'
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DataBindingListView.vue'
       )
   },
   {
     path: '/event/click',
     name: 'EventClickView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/2_event/EventClickView.vue'
+        /* webpackChunkName: "event" */ '../views/2_event/EventClickView.vue'
       )
   },
   {
     path: '/event/change',
     name: 'EventChangeView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/2_event/EventChangeView.vue'
+        /* webpackChunkName: "event" */ '../views/2_event/EventChangeView.vue'
       )
   },
   {
     path: '/event/key',
     name: 'EventKeyView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/2_event/EventKeyView.vue'
+        /* webpackChunkName: "event" */ '../views/2_event/EventKeyView.vue'
       )
   },
   {
     path: '/extra/if',
     name: 'RenderingIfView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/3_extra/RenderingIfView.vue'
+        /* webpackChunkName: "extra" */ '../views/3_extra/RenderingIfView.vue'
       )
   },
   {
     path: '/extra/show',
     name: 'RenderingShowView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/3_extra/RenderingShowView.vue'
+        /* webpackChunkName: "extra" */ '../views/3_extra/RenderingShowView.vue'
       )
   },
   {
     path: '/extra/computed',
     name: 'ComputedView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/3_extra/ComputedView.vue'
+        /* webpackChunkName: "extra" */ '../views/3_extra/ComputedView.vue'
       )
   },
   {
     path: '/extra/watch',
     name: 'WatchView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about", */ '../views/3_extra/WatchView.vue')
+      import(/* webpackChunkName: "extra" */ '../views/3_extra/WatchView.vue')
   },
   {
-    path: '/extra/life',
+    path: '/extra/lifecycle',
     name: 'LifecycleHookView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/3_extra/LifecycleHookView.vue'
+        /* webpackChunkName: "extra" */ '../views/3_extra/LifecycleHookView.vue'
       )
   },
   {
     path: '/reuse/page',
     name: 'PageView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about", */ '../views/4_reuse/PageView.vue')
+      import(/* webpackChunkName: "reuse" */ '../views/4_reuse/PageView.vue')
   },
   {
     path: '/reuse/list',
     name: 'ListView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about", */ '../views/4_reuse/ListView.vue')
+      import(/* webpackChunkName: "reuse" */ '../views/4_reuse/ListView.vue')
   },
   {
     path: '/reuse/slot',
     name: 'SlotView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about", */ '../views/4_reuse/SlotView.vue')
+      import(/* webpackChunkName: "reuse" */ '../views/4_reuse/SlotView.vue')
   },
   {
     path: '/reuse/parent',
     name: 'ParentView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about", */ '../views/4_reuse/ParentView.vue')
+      import(/* webpackChunkName: "reuse" */ '../views/4_reuse/ParentView.vue')
   },
   {
     path: '/advanced/provide',
     name: 'ProvideView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/5_advanced/ProvideView.vue'
+        /* webpackChunkName: "advanced" */ '../views/5_advanced/ProvideView.vue'
       )
   },
   {
     path: '/advanced/directive',
     name: 'CustomDirectiveView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/5_advanced/CustomDirectiveView.vue'
+        /* webpackChunkName: "advanced" */ '../views/5_advanced/CustomDirectiveView.vue'
       )
   },
   {
     path: '/advanced/mixin',
     name: 'MixinView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/5_advanced/MixinView.vue'
+        /* webpackChunkName: "advanced" */ '../views/5_advanced/MixinView.vue'
       )
   },
   {
     path: '/advanced/plugin',
     name: 'PluginView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about", */ '../views/5_advanced/PluginView.vue'
+        /* webpackChunkName: "advanced" */ '../views/5_advanced/PluginView.vue'
+      )
+  },
+  {
+    path: '/template/listtodetail',
+    name: 'ListToDetailView',
+    component: () =>
+      import(
+        /* webpackChunkName: "vuex" */ '../views/7_template/ListToDetailView.vue'
       )
   },
   {
     path: '/vuex/todo',
     name: 'TodoView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about", */ '../views/6_vuex/TodoView.vue')
+      import(/* webpackChunkName: "vuex" */ '../views/6_vuex/TodoView.vue')
   }
 ]
 
@@ -301,18 +271,14 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  // console.log('to', to)
-  // console.log('from', from)
-
   if (to.path === '/') {
-    next()
-  } else if (to.path === '/vuex/todo') {
     next()
   } else {
     if (store.getters['user/isLogin']) {
       next()
     } else {
-      next('/vuex/todo')
+      store.commit('/user/logout')
+      next('/')
     }
   }
 })
