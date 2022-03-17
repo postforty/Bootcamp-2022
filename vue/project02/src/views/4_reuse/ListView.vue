@@ -27,17 +27,17 @@ export default {
         { title: '제품명', key: 'drinkName' },
         { title: '가격', key: 'price' }
       ],
-      drinkList: [],
-      checkedItems: [],
-      isShowExcelDownBtn: true
+      drinkList: []
+      // checkedItems: [],
+      // isShowExcelDownBtn: true
     }
   },
-  setup() {
-    // composition api
-  },
-  created() {},
-  mounted() {},
-  unmounted() {},
+  // setup() {
+  //   // composition api
+  // },
+  // created() {},
+  // mounted() {},
+  // unmounted() {},
   methods: {
     doSearch() {
       this.drinkList = [
@@ -95,7 +95,8 @@ export default {
       this.$refs.smGrid.doPrint()
     },
     doExcel() {
-      this.$refs.smGrid.doExcel()
+      // this.$refs.smGrid.doExcel()
+      this.$ExcelFromTable(this.headers, this.drinkList, 'drinklist')
     }
   }
 }
