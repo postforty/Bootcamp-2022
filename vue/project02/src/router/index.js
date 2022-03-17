@@ -302,6 +302,17 @@ const routes = [
       import(
         /* webpackChunkName: "databinding" */ '../views/5_advanced/MixinView.vue'
       )
+  },
+  {
+    path: '/advanced/plugin',
+    name: 'PluginView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "databinding" */ '../views/5_advanced/PluginView.vue'
+      )
   }
   // {
   //   path: '/hello',

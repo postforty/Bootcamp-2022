@@ -2,9 +2,9 @@
   <div></div>
 </template>
 <script>
-// import Axios from '@/mixins/axios.js'
+import Formatter from '@/mixins/Fromatter.js'
 export default {
-  // mixins: [Axios],
+  mixins: [Formatter],
   components: {},
   data() {
     return {
@@ -14,14 +14,15 @@ export default {
   setup() {},
   created() {},
   mounted() {
-    this.getCustomers()
+    // this.getCustomers()
+    console.log(this.$convertDateFormat('20220315', 'YYYY-MM-DD'))
   },
   unmounted() {},
   methods: {
-    async getCustomers() {
-      const customers = await this.$get('http://localhost:3000/customers')
-      console.log(customers)
-    }
+    //   async getCustomers() {
+    //     const customers = await this.$get('http://localhost:3000/customers')
+    //     console.log(customers)
+    //   }
   }
 }
 </script>
