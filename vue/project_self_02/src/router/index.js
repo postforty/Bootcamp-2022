@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import store from '../store'
 
 const routes = [
   {
@@ -282,12 +283,38 @@ const routes = [
       import(
         /* webpackChunkName: "about", */ '../views/5_advanced/PluginView.vue'
       )
+  },
+  {
+    path: '/vuex/todo',
+    name: 'TodoView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about", */ '../views/6_vuex/TodoView.vue')
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  // console.log('to', to)
+  // console.log('from', from)
+
+  if (to.path === '/') {
+    next()
+  } else if (to.path === '/vuex/todo') {
+    next()
+  } else {
+    if (store.getters['user/isLogin']) {
+      next()
+    } else {
+      next('/vuex/todo')
+    }
+  }
 })
 
 export default router

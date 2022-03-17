@@ -12,11 +12,61 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.js'
 
 const i18nStrings = { en, ko }
-// createApp(App).use(store).use(router).mount('#app') // 기존
+// {
+//   en: {
+//     hi: 'Hello'
+//   },
+//   ko: {
+//     hi: '안녕하세요'
+//   }
+// }
+
 const app = createApp(App)
 app.use(store)
 app.use(router)
 app.mixin(mixin)
 app.use(i18nPlugin, i18nStrings)
-app.component('page-title', PageTitle) // 추가
+app.component('page-title', PageTitle)
+
+app.directive('focus', {
+  mounted(el) {
+    el.focus()
+  }
+})
+
+app.directive('number', {
+  mounted(el) {
+    el.addEventListener('input', () => {
+      event.target.value = event.target.value.replace(/[^0-9]/g, '')
+    })
+  }
+})
+
+app.directive('lowercase', {
+  mounted(el) {
+    el.addEventListener('input', () => {
+      event.target.value = event.target.value.replace(/[^a-z]/g, '')
+    })
+  }
+})
+
+app.directive('uppercase', {
+  mounted(el) {
+    el.addEventListener('input', () => {
+      event.target.value = event.target.value.replace(/[^A-Z]/g, '')
+    })
+  }
+})
+
+app.directive('korean', {
+  mounted(el) {
+    el.addEventListener('input', () => {
+      event.target.value = event.target.value.replace(
+        /[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣]|\|/g,
+        ''
+      )
+    })
+  }
+})
+
 app.mount('#app')
