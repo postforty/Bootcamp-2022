@@ -1,12 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import LoginView from '../views/LoginView.vue'
+import store from '../store'
 // import HelloView from '../views/HelloView.vue'
 
 const routes = [
   {
     path: '/',
+    name: 'login',
+    component: LoginView
+  },
+  {
+    path: '/home',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/login',
+    name: 'login2',
+    component: LoginView
   },
   {
     path: '/about',
@@ -335,6 +347,19 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.path === '/') {
+    next()
+  } else {
+    if (store.getters['user/isLogin']) {
+      next()
+    } else {
+      store.commit('/user/logout')
+      next('/')
+    }
+  }
 })
 
 export default router

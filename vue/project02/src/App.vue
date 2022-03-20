@@ -1,12 +1,18 @@
 <template>
-  <nav>
+  <!-- <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/hello">Hello</router-link>
-  </nav>
+  </nav> -->
+  <HeaderLayout v-if="$route.path != '/'" />
   <router-view />
 </template>
-
+<script>
+import HeaderLayout from '@/components/layouts/HeaderLayout.vue'
+export default {
+  components: { HeaderLayout }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
