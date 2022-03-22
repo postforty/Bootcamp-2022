@@ -347,6 +347,33 @@ const routes = [
       import(
         /* webpackChunkName: "template" */ '../views/7_template/ListToDetailView.vue'
       )
+  },
+  {
+    path: '/template/detail',
+    name: 'DetailView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "template" */ '../views/7_template/DetailView.vue'
+      )
+  },
+  {
+    path: '/template/create',
+    name: 'CreateView',
+    component: () =>
+      import(
+        /* webpackChunkName: "template" */ '../views/7_template/CreateView.vue'
+      )
+  },
+  {
+    path: '/template/change',
+    name: 'ChangeView',
+    component: () =>
+      import(
+        /* webpackChunkName: "template" */ '../views/7_template/ChangeView.vue'
+      )
   }
   // {
   //   path: '/hello',

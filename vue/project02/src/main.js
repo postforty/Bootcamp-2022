@@ -6,16 +6,22 @@ import mixin from './mixins' // mixins 폴더 내에 있는 모든 js파일을 �
 import i18nPlugin from './plugins/i18n'
 import en from './i18n/en'
 import ko from './i18n/ko'
+import VueSweetalert2 from 'vue-sweetalert2'
+import VueLoading from 'vue-loading-overlay'
 import PageTitle from './components/fragments/PageTitle.vue'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.js'
+import 'sweetalert2/dist/sweetalert2.css'
+import 'vue-loading-overlay/dist/vue-loading.css'
 
 const i18nStrings = { en, ko }
 
 const app = createApp(App)
 app.use(store)
 app.use(router)
+app.use(VueSweetalert2)
+app.use(VueLoading)
 app.mixin(mixin)
 app.use(i18nPlugin, i18nStrings)
 app.component('page-title', PageTitle)
