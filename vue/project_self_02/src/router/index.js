@@ -258,6 +258,30 @@ const routes = [
       )
   },
   {
+    path: '/template/detail',
+    name: 'DetailView',
+    component: () =>
+      import(
+        /* webpackChunkName: "vuex" */ '../views/7_template/DetailView.vue'
+      )
+  },
+  {
+    path: '/template/create',
+    name: 'CreateView',
+    component: () =>
+      import(
+        /* webpackChunkName: "vuex" */ '../views/7_template/CreateView.vue'
+      )
+  },
+  {
+    path: '/template/change',
+    name: 'ChangeView',
+    component: () =>
+      import(
+        /* webpackChunkName: "vuex" */ '../views/7_template/ChangeView.vue'
+      )
+  },
+  {
     path: '/vuex/todo',
     name: 'TodoView',
     component: () =>

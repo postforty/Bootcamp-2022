@@ -114,8 +114,7 @@ export default {
 
       const regexp = /(\d+)(\d{3})/ // 숫자가 한자리 이상, 숫자가 3자리
 
-      // v = 3524500
-
+      // "v = 3524500"라면
       while (regexp.test(v)) {
         // v에는 정수값만 들어가 있다. test()를 이용 체크해 v가 정규식과 맞으면 true
         // 첫 번째 while문 돌때
@@ -128,6 +127,8 @@ export default {
         v = v.replace(regexp, '$1' + groupingSeparator + '$2') // $1은 (\d+)과 매칭, $2는 (\d{3})과 매칭
       }
 
+      // 최종 리턴 값
+      // 양/음수 + $인지 + 정수값 + 소수점 이하 값 + %인지
       return sign + currencySymbol + String(v) + String(d) + lastSymbol
     }
   }

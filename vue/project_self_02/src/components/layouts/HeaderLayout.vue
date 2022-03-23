@@ -28,8 +28,8 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                :class="{ active: $route.path == '/listtodetail' }"
-                @click="goToMenu('/listtodetail')"
+                :class="{ active: $route.path == '/template/listtodetail' }"
+                @click="goToMenu('/template/listtodetail')"
                 >ListToDetail</a
               >
             </li>
