@@ -360,6 +360,39 @@ const routes = [
       )
   },
   {
+    path: '/template/multipleedit',
+    name: 'MultipleEditView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "template" */ '../views/7_template/MultipleEditView.vue'
+      )
+  },
+  {
+    path: '/template/masterdetail',
+    name: 'MasterDetailView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "template" */ '../views/7_template/MasterDetailView.vue'
+      )
+  },
+  {
+    path: '/template/shuttle',
+    name: 'ShuttleView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "template" */ '../views/7_template/ShuttleView.vue'
+      )
+  },
+  {
     path: '/template/create',
     name: 'CreateView',
     component: () =>
@@ -373,6 +406,14 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "template" */ '../views/7_template/ChangeView.vue'
+      )
+  },
+  {
+    path: '/template/singleedit',
+    name: 'SingleEditView',
+    component: () =>
+      import(
+        /* webpackChunkName: "template" */ '../views/7_template/SingleEditView.vue'
       )
   }
   // {

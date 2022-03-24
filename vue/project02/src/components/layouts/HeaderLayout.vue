@@ -2,7 +2,7 @@
   <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Sewol</a>
+        <a class="navbar-brand" href="#">개발자의품격</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -33,6 +33,39 @@
                 >ListToDetail</a
               >
             </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                :class="{ active: $route.path == '/template/singleedit' }"
+                @click="goToMenu('/template/singleedit')"
+                >SingleEdit</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                :class="{ active: $route.path == '/template/multipleedit' }"
+                @click="goToMenu('/template/multipleedit')"
+                >MultipleEdit</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                :class="{ active: $route.path == '/template/masterdetail' }"
+                @click="goToMenu('/template/masterdetail')"
+                >MultipleEdit</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                :class="{ active: $route.path == '/template/shuttle' }"
+                @click="goToMenu('/template/shuttle')"
+                >Shuttle</a
+              >
+            </li>
           </ul>
           <div class="d-flex">
             <span v-if="userInfo.name" class="text-white">{{
@@ -59,35 +92,14 @@ export default {
       this.$router.push({ path: path })
     },
     logout() {
-      this.$store.commit('user/logout', {})
+      this.$store.commit('user/logout')
+
       this.$router.push({ path: '/' })
     }
   }
 }
 </script>
-
 <style>
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-} */
-
-/* nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-} */
-
 header {
   margin-bottom: 70px;
 }
