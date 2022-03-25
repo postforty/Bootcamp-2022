@@ -116,6 +116,56 @@ const routes = [
       )
   },
   {
+    path: '/event/key',
+    name: 'EventKeyView',
+    component: () =>
+      import(
+        /* webpackChunkName: "event" */ '../views/2_event/EventKeyView.vue'
+      )
+  },
+  {
+    path: '/extra/show',
+    name: 'RenderingShowView',
+    component: () =>
+      import(
+        /* webpackChunkName: "extra" */ '../views/3_extra/RenderingShowView.vue'
+      )
+  },
+  {
+    path: '/extra/computed',
+    name: 'ComputedView',
+    component: () =>
+      import(
+        /* webpackChunkName: "extra" */ '../views/3_extra/ComputedView.vue'
+      )
+  },
+  {
+    path: '/extra/watch',
+    name: 'WatchView',
+    component: () =>
+      import(/* webpackChunkName: "extra" */ '../views/3_extra/WatchView.vue')
+  },
+  {
+    path: '/extra/if',
+    name: 'RenderingIfView',
+    component: () =>
+      import(
+        /* webpackChunkName: "extra" */ '../views/3_extra/RenderingIfView.vue'
+      )
+  },
+  {
+    path: '/reuse/page',
+    name: 'PageView',
+    component: () =>
+      import(/* webpackChunkName: "reuse" */ '../views/4_reuse/PageView.vue')
+  },
+  {
+    path: '/reuse/list',
+    name: 'ListView',
+    component: () =>
+      import(/* webpackChunkName: "reuse" */ '../views/4_reuse/ListView.vue')
+  },
+  {
     path: '/databinding/html',
     name: 'DataBindingHtmlView',
     component: () =>
