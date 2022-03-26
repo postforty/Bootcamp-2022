@@ -2,6 +2,9 @@
   <div class="container">
     <button class="btn btn-danger" @click="doSearch">조회</button>
     <button class="btn btn-danger" @click="doDelete">삭제</button>
+    <button class="btn btn-danger" @click="$refs.smGrid.doExcel()">
+      엑셀다운로드
+    </button>
     <simple-grid
       :items="drinkList"
       :headers="headers"
@@ -9,6 +12,7 @@
       checkedKey="drinkId"
       changeEventName="change-item2"
       @change-item2="changeCheckedValue"
+      ref="smGrid"
     />
   </div>
 </template>
@@ -84,6 +88,8 @@ export default {
     },
     doDelete() {
       console.log(this.checkedItems)
+      this.$refs.smGrid.sampleData = 'B'
+      this.$refs.smGrid.doPrint()
     }
   }
 }

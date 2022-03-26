@@ -160,6 +160,12 @@ const routes = [
       import(/* webpackChunkName: "reuse" */ '../views/4_reuse/PageView.vue')
   },
   {
+    path: '/reuse/slot',
+    name: 'SlotView',
+    component: () =>
+      import(/* webpackChunkName: "reuse" */ '../views/4_reuse/SlotView.vue')
+  },
+  {
     path: '/reuse/list',
     name: 'ListView',
     component: () =>
