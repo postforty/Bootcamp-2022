@@ -154,6 +154,14 @@ const routes = [
       )
   },
   {
+    path: '/extra/lifecycle',
+    name: 'LifecycleHookView',
+    component: () =>
+      import(
+        /* webpackChunkName: "extra" */ '../views/3_extra/LifecycleHookView.vue'
+      )
+  },
+  {
     path: '/reuse/page',
     name: 'PageView',
     component: () =>
@@ -170,6 +178,20 @@ const routes = [
     name: 'ListView',
     component: () =>
       import(/* webpackChunkName: "reuse" */ '../views/4_reuse/ListView.vue')
+  },
+  {
+    path: '/reuse/parent',
+    name: 'ParentView',
+    component: () =>
+      import(/* webpackChunkName: "reuse" */ '../views/4_reuse/ParentView.vue')
+  },
+  {
+    path: '/advanced/provide',
+    name: 'ProvideView',
+    component: () =>
+      import(
+        /* webpackChunkName: "advanced" */ '../views/5_advanced/ProvideView.vue'
+      )
   },
   {
     path: '/databinding/html',
