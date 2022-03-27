@@ -194,6 +194,14 @@ const routes = [
       )
   },
   {
+    path: '/advanced/directive',
+    name: 'CustomDirectiveView',
+    component: () =>
+      import(
+        /* webpackChunkName: "advanced" */ '../views/5_advanced/CustomDirectiveView.vue'
+      )
+  },
+  {
     path: '/databinding/html',
     name: 'DataBindingHtmlView',
     component: () =>
