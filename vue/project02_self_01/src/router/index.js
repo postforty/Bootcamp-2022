@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+// import store from '../store'
 import HomeView from '../views/HomeView.vue'
 
 const routes = [
@@ -237,5 +238,24 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+// 페이지 클릭 후 이동 직전에 작동
+// router.beforeEach((to, from, next) => {
+//   console.log('to', to)
+//   console.log('from', from)
+
+//   // 로그인된 경우에만 메뉴를 이동시키는 네비게이션 콘트롤 기능을 수행한다.
+//   if (to.path === '/') {
+//     next()
+//   } else if (to.path === '/vuex/todo') {
+//     next()
+//   } else {
+//     if (store.getters['user/isLogin']) {
+//       next()
+//     } else {
+//       next('/vuex/todo')
+//     }
+//   }
+// })
 
 export default router
