@@ -210,6 +210,12 @@ const routes = [
       )
   },
   {
+    path: '/vuex/todo',
+    name: 'TodoView',
+    component: () =>
+      import(/* webpackChunkName: "vuex" */ '../views/6_vuex/TodoView.vue')
+  },
+  {
     path: '/advanced/plugin',
     name: 'PluginView',
     component: () =>
