@@ -99,6 +99,7 @@ export default {
   created() {
     if (this.$route.params.fromDetail) {
       this.fromDetail = this.$route.params.fromDetail
+      //   this.searchName = this.$route.params.searchName
     }
   },
   mounted() {
@@ -114,7 +115,10 @@ export default {
       )
     },
     goToDetail(id) {
-      this.$router.push({ path: '/template/detail', query: { id: id } })
+      this.$router.push({
+        path: '/template/detail',
+        query: { id: id, searchName: this.searchName }
+      })
       //   this.$router.push({ name: 'DetailView', params: { id: id } })
     }
   }
