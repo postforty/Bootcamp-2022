@@ -6,9 +6,9 @@
         <input
           type="search"
           class="form-control"
-          v-model="searchName"
-          placeholder="Name"
+          v-model.trim="searchName"
           @keyup.enter="getCustomers"
+          placeholder="Name"
         />
       </div>
       <div class="col-12">
@@ -99,7 +99,7 @@ export default {
   created() {
     if (this.$route.params.fromDetail) {
       this.fromDetail = this.$route.params.fromDetail
-      //   this.searchName = this.$route.params.searchName
+      this.searchName = this.$route.params.searchName
     }
   },
   mounted() {
@@ -119,7 +119,7 @@ export default {
         path: '/template/detail',
         query: { id: id, searchName: this.searchName }
       })
-      //   this.$router.push({ name: 'DetailView', params: { id: id } })
+      // this.$router.push({ name: 'DetailView', params: { id: id } })
     }
   }
 }
