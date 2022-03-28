@@ -1,12 +1,23 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import store from '../store'
+import store from '../store'
 import HomeView from '../views/HomeView.vue'
+import LoginView from '../views/LoginView.vue'
 
 const routes = [
   {
     path: '/',
+    name: 'login',
+    component: LoginView
+  },
+  {
+    path: '/home',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/login',
+    name: 'login2',
+    component: LoginView
   },
   {
     path: '/about',
@@ -225,6 +236,22 @@ const routes = [
       )
   },
   {
+    path: '/template/listtodetail',
+    name: 'ListToDetailView',
+    component: () =>
+      import(
+        /* webpackChunkName: "advanced" */ '../views/7_template/ListToDetailView.vue'
+      )
+  },
+  {
+    path: '/template/detail',
+    name: 'DetailView',
+    component: () =>
+      import(
+        /* webpackChunkName: "advanced" */ '../views/7_template/DetailView.vue'
+      )
+  },
+  {
     path: '/databinding/html',
     name: 'DataBindingHtmlView',
     component: () =>
@@ -240,22 +267,23 @@ const router = createRouter({
 })
 
 // 페이지 클릭 후 이동 직전에 작동
-// router.beforeEach((to, from, next) => {
-//   console.log('to', to)
-//   console.log('from', from)
+router.beforeEach((to, from, next) => {
+  // console.log('to', to)
+  // console.log('from', from)
 
-//   // 로그인된 경우에만 메뉴를 이동시키는 네비게이션 콘트롤 기능을 수행한다.
-//   if (to.path === '/') {
-//     next()
-//   } else if (to.path === '/vuex/todo') {
-//     next()
-//   } else {
-//     if (store.getters['user/isLogin']) {
-//       next()
-//     } else {
-//       next('/vuex/todo')
-//     }
-//   }
-// })
+  // 로그인된 경우에만 메뉴를 이동시키는 네비게이션 콘트롤 기능을 수행한다.
+  if (to.path === '/') {
+    next()
+    // } else if (to.path === '/vuex/todo') {
+    //   next()
+  } else {
+    if (store.getters['user/isLogin']) {
+      next()
+    } else {
+      store.commit('user/logout')
+      next('/')
+    }
+  }
+})
 
 export default router
