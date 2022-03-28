@@ -202,6 +202,22 @@ const routes = [
       )
   },
   {
+    path: '/advanced/mixin',
+    name: 'MixinView',
+    component: () =>
+      import(
+        /* webpackChunkName: "advanced" */ '../views/5_advanced/MixinView.vue'
+      )
+  },
+  {
+    path: '/advanced/plugin',
+    name: 'PluginView',
+    component: () =>
+      import(
+        /* webpackChunkName: "advanced" */ '../views/5_advanced/PluginView.vue'
+      )
+  },
+  {
     path: '/databinding/html',
     name: 'DataBindingHtmlView',
     component: () =>

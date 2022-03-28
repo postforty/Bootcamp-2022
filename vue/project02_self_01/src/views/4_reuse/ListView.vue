@@ -2,9 +2,8 @@
   <div class="container">
     <button class="btn btn-danger" @click="doSearch">조회</button>
     <button class="btn btn-danger" @click="doDelete">삭제</button>
-    <button class="btn btn-danger" @click="$refs.smGrid.doExcel()">
-      엑셀다운로드
-    </button>
+    <!-- <button class="btn btn-danger" @click="$refs.smGrid.doExcel()"> -->
+    <button class="btn btn-danger" @click="doExcel()">엑셀다운로드</button>
     <simple-grid
       :items="drinkList"
       :headers="headers"
@@ -90,6 +89,9 @@ export default {
       console.log(this.checkedItems)
       this.$refs.smGrid.sampleData = 'B'
       this.$refs.smGrid.doPrint()
+    },
+    doExcel() {
+      this.$ExcelFromTable(this.headers, this.drinkList, 'drinklist')
     }
   }
 }
