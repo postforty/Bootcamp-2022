@@ -13,6 +13,7 @@
       </div>
       <div class="col-12">
         <button class="btn btn-primary me-1" @click="getCustomers">조회</button>
+        <button class="btn btn-success me-1" @click="goToCreate">생성</button>
         <button class="btn btn-primary me-1" @click="doExcel">
           엑셀다운로드
         </button>
@@ -140,9 +141,13 @@ export default {
   unmounted() {},
   methods: {
     async getCustomers() {
+      const loader = this.$loading.show({ canCancel: false })
+
       this.customers = await this.$get(
         `http://localhost:3000/customers?name_like=${this.searchName}`
       )
+
+      loader.hide()
     },
     goToDetail(id) {
       this.$router.push({
@@ -153,6 +158,9 @@ export default {
     },
     doExcel() {
       this.$ExcelFromTable(this.headers, this.customers, 'customers', {})
+    },
+    goToCreate() {
+      this.$router.push({ path: '/template/create' })
     }
   }
 }

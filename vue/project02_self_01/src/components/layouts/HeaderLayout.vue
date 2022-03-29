@@ -33,6 +33,38 @@
                 >ListToDetail</a
               >
             </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                :class="{ active: $route.path == '/template/singleedit' }"
+                @Click="goToMenu('/template/singleedit')"
+                >SingleEdit</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                :class="{ active: $route.path == '/template/multipleedit' }"
+                @Click="goToMenu('/template/multipleedit')"
+                >MultipleEdit</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                :class="{ active: $route.path == '/template/masterdetail' }"
+                @Click="goToMenu('/template/masterdetail')"
+                >MasterDetail</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                :class="{ active: $route.path == '/template/shuttle' }"
+                @Click="goToMenu('/template/shuttle')"
+                >Shuttle</a
+              >
+            </li>
           </ul>
           <div class="d-flex">
             <span v-if="userInfo.name" class="text-white">{{

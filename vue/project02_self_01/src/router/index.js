@@ -240,7 +240,15 @@ const routes = [
     name: 'ListToDetailView',
     component: () =>
       import(
-        /* webpackChunkName: "advanced" */ '../views/7_template/ListToDetailView.vue'
+        /* webpackChunkName: "template" */ '../views/7_template/ListToDetailView.vue'
+      )
+  },
+  {
+    path: '/template/change',
+    name: 'ChangeView',
+    component: () =>
+      import(
+        /* webpackChunkName: "template" */ '../views/7_template/ChangeView.vue'
       )
   },
   {
@@ -248,7 +256,47 @@ const routes = [
     name: 'DetailView',
     component: () =>
       import(
-        /* webpackChunkName: "advanced" */ '../views/7_template/DetailView.vue'
+        /* webpackChunkName: "template" */ '../views/7_template/DetailView.vue'
+      )
+  },
+  {
+    path: '/template/create',
+    name: 'CreateView',
+    component: () =>
+      import(
+        /* webpackChunkName: "template" */ '../views/7_template/CreateView.vue'
+      )
+  },
+  {
+    path: '/template/singleedit',
+    name: 'SingleEditView',
+    component: () =>
+      import(
+        /* webpackChunkName: "template" */ '../views/7_template/SingleEditView.vue'
+      )
+  },
+  {
+    path: '/template/multipleedit',
+    name: 'MultipleEditView',
+    component: () =>
+      import(
+        /* webpackChunkName: "template" */ '../views/7_template/MultipleEditView.vue'
+      )
+  },
+  {
+    path: '/template/masterdetail',
+    name: 'MasterDetailView',
+    component: () =>
+      import(
+        /* webpackChunkName: "template" */ '../views/7_template/MasterDetailView.vue'
+      )
+  },
+  {
+    path: '/template/shuttle',
+    name: 'ShuttleView',
+    component: () =>
+      import(
+        /* webpackChunkName: "template" */ '../views/7_template/ShuttleView.vue'
       )
   },
   {

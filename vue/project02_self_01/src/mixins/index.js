@@ -30,11 +30,9 @@ export default {
       })
     },
     async $delete(url) {
-      return (
-        await axios.delete(url).catch((e) => {
-          console.log(e)
-        })
-      ).data
+      return await axios.delete(url).catch((e) => {
+        console.log(e)
+      })
     },
     async $ExcelFromTable(
       header = [],
