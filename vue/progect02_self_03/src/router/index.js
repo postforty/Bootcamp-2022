@@ -69,6 +69,39 @@ const routes = [
       )
   },
   {
+    path: '/databinding/list',
+    name: 'DataBindingListView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DataBindingListView.vue'
+      )
+  },
+  {
+    path: '/event/click',
+    name: 'EventClickView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "event" */ '../views/2_event/EventClickView.vue'
+      )
+  },
+  {
+    path: '/event/change',
+    name: 'EventChangeView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "event" */ '../views/2_event/EventChangeView.vue'
+      )
+  },
+  {
     path: '/databinding/style',
     name: 'DatabindingStyleView',
     // route level code-splitting
