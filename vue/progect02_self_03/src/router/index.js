@@ -47,6 +47,72 @@ const routes = [
       )
   },
   {
+    path: '/databinding/checkbox',
+    name: 'DatabindingCheckboxView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DatabindingCheckboxView.vue'
+      )
+  },
+  {
+    path: '/databinding/class',
+    name: 'DataBindingClassView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DataBindingClassView.vue'
+      )
+  },
+  {
+    path: '/databinding/style',
+    name: 'DatabindingStyleView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DatabindingStyleView.vue'
+      )
+  },
+  {
+    path: '/databinding/attribute',
+    name: 'DataBindingAttributeView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DataBindingAttributeView.vue'
+      )
+  },
+  {
+    path: '/databinding/radio',
+    name: 'DatabindingRadioView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DatabindingRadioView.vue'
+      )
+  },
+  {
+    path: '/databinding/select',
+    name: 'DataBindingSelectView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "databinding" */ '../views/1_databinding/DataBindingSelectView.vue'
+      )
+  },
+  {
     path: '/databinding/input',
     name: 'DataBindingInputView',
     // route level code-splitting
