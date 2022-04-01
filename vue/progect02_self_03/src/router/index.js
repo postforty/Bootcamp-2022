@@ -91,6 +91,17 @@ const routes = [
       )
   },
   {
+    path: '/event/key',
+    name: 'EventKeyView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "event" */ '../views/2_event/EventKeyView.vue'
+      )
+  },
+  {
     path: '/event/change',
     name: 'EventChangeView',
     // route level code-splitting
@@ -99,6 +110,48 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "event" */ '../views/2_event/EventChangeView.vue'
+      )
+  },
+  {
+    path: '/extra/if',
+    name: 'RenderingIfView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "extra" */ '../views/3_extra/RenderingIfView.vue'
+      )
+  },
+  {
+    path: '/extra/computed',
+    name: 'ComputedView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "extra" */ '../views/3_extra/ComputedView.vue'
+      )
+  },
+  {
+    path: '/extra/watch',
+    name: 'WatchView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "extra" */ '../views/3_extra/WatchView.vue')
+  },
+  {
+    path: '/extra/show',
+    name: 'RenderingShowView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "extra" */ '../views/3_extra/RenderingShowView.vue'
       )
   },
   {
