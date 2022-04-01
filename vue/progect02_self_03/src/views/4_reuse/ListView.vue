@@ -1,7 +1,14 @@
 <template>
   <div>
-    <button class="btn btn-danger" @click="doSearch">조회</button>
-    <simple-grid :items="drinkList" :headers="headers" />
+    <button class="btn btn-danger me-1" @click="doSearch">조회</button>
+    <button class="btn btn-danger" @click="doDelect">삭제</button>
+    <simple-grid
+      :items="drinkList"
+      :headers="headers"
+      selectType="checkbox"
+      checkedKey="drinkId"
+      @change-item="changeCheckedValue"
+    />
   </div>
 </template>
 <script>
@@ -15,7 +22,8 @@ export default {
         { title: '제품명', key: 'drinkName' },
         { title: '가격', key: 'price' }
       ],
-      drinkList: []
+      drinkList: [],
+      checkedItems: []
     }
   },
   setup() {},
@@ -28,7 +36,7 @@ export default {
         {
           drinkId: '1',
           drinkName: '코카콜라',
-          price: 700,
+          price: 1,
           qty: 1
         },
         {
@@ -68,6 +76,13 @@ export default {
           qty: 1
         }
       ]
+    },
+    changeCheckedValue(data) {
+      this.checkedItems = data
+      //   console.log('부모 component : ', data)
+    },
+    doDelect() {
+      console.log(this.checkedItems)
     }
   }
 }
