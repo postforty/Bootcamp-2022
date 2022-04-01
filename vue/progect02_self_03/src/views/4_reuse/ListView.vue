@@ -1,13 +1,15 @@
 <template>
   <div>
     <button class="btn btn-danger me-1" @click="doSearch">조회</button>
-    <button class="btn btn-danger" @click="doDelect">삭제</button>
+    <button class="btn btn-danger me-1" @click="doDelect">삭제</button>
     <simple-grid
       :items="drinkList"
       :headers="headers"
       selectType="checkbox"
       checkedKey="drinkId"
-      @change-item="changeCheckedValue"
+      changeEventName="change-item2"
+      @change-item2="changeCheckedValue"
+      ref="smGrid"
     />
   </div>
 </template>
@@ -83,6 +85,8 @@ export default {
     },
     doDelect() {
       console.log(this.checkedItems)
+      this.$refs.smGrid.sampleData = 'B'
+      this.$refs.smGrid.doPrint()
     }
   }
 }

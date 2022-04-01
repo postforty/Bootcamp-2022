@@ -68,7 +68,8 @@ export default {
   data() {
     return {
       checkedItem: '',
-      checkedItems: []
+      checkedItems: [],
+      sampleData: 'A'
     }
   },
   setup() {},
@@ -83,6 +84,10 @@ export default {
         console.log(this.checkedItems)
         this.$emit(this.changeEventName, this.checkedItems)
       }
+    },
+    doPrint() {
+      console.log('doPrint 함수 호출')
+      console.log(this.sampleData)
     }
   }
 }
