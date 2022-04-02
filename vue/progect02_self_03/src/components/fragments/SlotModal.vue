@@ -1,7 +1,7 @@
 <template>
   <div
     class="modal fade"
-    :id="modalId"
+    v-bind:id="modalId"
     data-bs-backdrop="static"
     data-bs-keyboard="false"
     tabindex="-1"
