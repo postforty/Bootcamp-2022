@@ -1,5 +1,8 @@
 <template>
   <div class="container mt-2">
+    <!-- <div class="text-end" v-if="enableExcelDownload">
+      <button class="btn btn-primary" @click="doExcel">엑셀다운로드</button>
+    </div> -->
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -63,6 +66,10 @@ export default {
     changeEventName: {
       type: String,
       default: 'change-item'
+    },
+    enableExcelDownload: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -88,7 +95,8 @@ export default {
     doPrint() {
       console.log('doPrint 함수 호출')
       console.log(this.sampleData)
-    }
+    },
+    doExcel() {}
   }
 }
 </script>

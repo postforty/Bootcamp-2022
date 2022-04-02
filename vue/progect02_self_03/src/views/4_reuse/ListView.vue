@@ -2,12 +2,14 @@
   <div>
     <button class="btn btn-danger me-1" @click="doSearch">조회</button>
     <button class="btn btn-danger me-1" @click="doDelect">삭제</button>
+    <button class="btn btn-primary" @click="doExcel">엑셀다운로드</button>
     <simple-grid
       :items="drinkList"
       :headers="headers"
       selectType="checkbox"
       checkedKey="drinkId"
       changeEventName="change-item2"
+      :enableExcelDownload="true"
       @change-item2="changeCheckedValue"
       ref="smGrid"
     />
@@ -87,6 +89,9 @@ export default {
       console.log(this.checkedItems)
       this.$refs.smGrid.sampleData = 'B'
       this.$refs.smGrid.doPrint()
+    },
+    doExcel() {
+      this.$refs.smGrid.doExcel()
     }
   }
 }
