@@ -155,6 +155,17 @@ const routes = [
       )
   },
   {
+    path: '/extra/lifecycle',
+    name: 'LifecycleHookView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "extra" */ '../views/3_extra/LifecycleHookView.vue'
+      )
+  },
+  {
     path: '/reuse/page',
     name: 'PageView',
     // route level code-splitting
