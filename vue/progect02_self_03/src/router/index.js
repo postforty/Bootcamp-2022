@@ -184,6 +184,15 @@ const routes = [
       import(/* webpackChunkName: "reuse" */ '../views/4_reuse/SlotView.vue')
   },
   {
+    path: '/reuse/parent',
+    name: 'ParentView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "reuse" */ '../views/4_reuse/ParentView.vue')
+  },
+  {
     path: '/reuse/list',
     name: 'ListView',
     // route level code-splitting
@@ -245,6 +254,17 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "databinding" */ '../views/1_databinding/DataBindingInputView.vue'
+      )
+  },
+  {
+    path: '/advanced/provide',
+    name: 'ProvideView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "advanced" */ '../views/5_advanced/ProvideView.vue'
       )
   },
   {
