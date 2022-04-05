@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ $translate(`${lang}.hi`) }}</h1>
+    <h1>{{ $translate(`${lang}.welcome`, userInfo) }}</h1>
     <h1>{{ $translate(`${lang}.hi`) }}</h1>
     <button class="btn btn-primary">{{ $translate(`${lang}.search`) }}</button>
   </div>
@@ -10,7 +10,12 @@ export default {
   components: {},
   data() {
     return {
-      lang: 'en'
+      lang: 'en',
+      userInfo: {
+        name: 'Sewol Han',
+        email: 'sewol@gmail.com',
+        lang: 'en'
+      }
     }
   },
   setup() {},
