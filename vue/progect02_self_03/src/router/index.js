@@ -279,6 +279,17 @@ const routes = [
       )
   },
   {
+    path: '/advanced/plugin',
+    name: 'PluginView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "advanced" */ '../views/5_advanced/PluginView.vue'
+      )
+  },
+  {
     path: '/advanced/mixin',
     name: 'MixinView',
     // route level code-splitting
