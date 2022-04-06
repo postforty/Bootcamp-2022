@@ -9,6 +9,15 @@ export const user = {
       }
     }
   },
+  getters: {
+    isLogin(state) {
+      if (state.userInfo.name) {
+        return true
+      } else {
+        return false
+      }
+    }
+  },
   mutations: {
     setUser(state, userInfo) {
       state.userInfo = userInfo
