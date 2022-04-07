@@ -14,6 +14,7 @@ app.listen(3000, () => {
 
 // http://localhost:3000
 app.get("/", (req, res) => {
+  // req는 클라이언트의 request 객체,  res는 서버의 response 객체
   res.send("Hello World");
 });
 
