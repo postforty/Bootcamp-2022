@@ -32,12 +32,12 @@ const createCryptPassword = async (plainPassword) => {
 // // 사용자 아이디, 비밀번호
 // // -> salt
 
-// const getCryptPassword = async (plainPassword, salt) => {
-//   // 암호화할 문자열, salt문자열, 반복횟수, 출력할 바이트수, 해시 알고리즘
-//   return new Promise((resolve, reject) => {
-//     crypto.pbkdf2(plainPassword, salt, 100000, 64, "sha512", (err, key) => {
-//       if (err) reject;
-//       resolve({ password: key.toString("base64"), salt });
-//     });
-//   });
-// };
+const getCryptPassword = async (plainPassword, salt) => {
+  // 암호화할 문자열, salt문자열, 반복횟수, 출력할 바이트수, 해시 알고리즘
+  return new Promise((resolve, reject) => {
+    crypto.pbkdf2(plainPassword, salt, 100000, 64, "sha512", (err, key) => {
+      if (err) reject;
+      resolve({ password: key.toString("base64"), salt });
+    });
+  });
+};
