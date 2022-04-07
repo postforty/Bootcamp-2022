@@ -1,5 +1,9 @@
 const express = require("express");
 const app = express();
+// console.log(app.get("env"));
+
+require("dotenv").config({ path: `mysql/.env.${app.get("env")}` });
+// console.log(process.env);
 const mysql = require("./mysql");
 
 app.use(
@@ -19,5 +23,20 @@ app.get("/api/product/category", async (req, res) => {
 
 app.post("/api/product/category", async (req, res) => {
   const result = await mysql.query("categoryInsert", req.body.param);
+  res.send(result);
+});
+
+app.put("/api/product/category/:product_category_id", async (req, res) => {
+  const { product_category_id } = req.params;
+  const result = await mysql.query("categoryUpdate", [
+    req.body.param,
+    product_category_id,
+  ]);
+  res.send(result);
+});
+
+app.delete("/api/product/category/:product_category_id", async (req, res) => {
+  const { product_category_id } = req.params;
+  const result = await mysql.query("categoryDelete", product_category_id);
   res.send(result);
 });

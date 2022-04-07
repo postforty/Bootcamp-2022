@@ -1,6 +1,6 @@
 module.exports = {
   categoryList: `select * from product_category`,
   categoryInsert: `insert into product_category set ?`,
-  categoryUpdate: ``,
-  categoryDelete: ``,
+  categoryUpdate: `update product_category set ? where product_category_id=?`,
+  categoryDelete: `delete from product_category where product_category_id=?`,
 };

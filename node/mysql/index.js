@@ -2,12 +2,12 @@ const mysql = require("mysql");
 const sql = require("./sql");
 
 const pool = mysql.createPool({
-  host: "localhost",
-  port: 3306,
-  user: "dev",
-  password: "1234",
-  database: "dev",
-  connectionLimit: 10,
+  host: process.env.MYSQL_HOST,
+  port: process.env.MYSQL_PORT,
+  user: process.env.MYSQL_USERNAME,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DB,
+  connectionLimit: process.env.MYSQL_LIMIT,
 });
 
 /* 쿼리문을 실행하고 결과를 반환하는 함수 */
