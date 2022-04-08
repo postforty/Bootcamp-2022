@@ -4,8 +4,8 @@
   "description": "",
   "main": "10_app.js",
   "scripts": {
-    "test": "NODE_ENV=test node 11_app_mysql.js",
-    "prod": "NODE_ENV=prod node 11_app_mysql.js"
+    "test": "cross-env NODE_ENV=test node 11_app_mysql.js",
+    "prod": "cross-env NODE_ENV=prod node 11_app_mysql.js"
   },
   "author": "Sewol",
   "license": "ISC",
@@ -18,5 +18,8 @@
     "nodemailer": "^6.7.3",
     "rotating-file-stream": "^3.0.3",
     "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }
