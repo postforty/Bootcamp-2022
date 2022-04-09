@@ -28,7 +28,7 @@
           <input type="checkbox" value="remember-me" /> Remember me
         </label>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">
+      <button class="w-100 btn btn-lg btn-primary" type="submit" @click="login">
         Sign in
       </button>
       <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
@@ -47,7 +47,16 @@ export default {
   created() {},
   mounted() {},
   unmounted() {},
-  methods: {}
+  methods: {
+    login() {
+      this.$store.commit('user/setUser', {
+        name: 'Sewol',
+        email: 'sewol@gmail.com'
+      })
+
+      this.$router.push({ path: '/home' }) // 추가
+    }
+  }
 }
 </script>
 <style scoped>
