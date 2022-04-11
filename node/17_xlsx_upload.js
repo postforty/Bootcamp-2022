@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const xlsx = require("xlsx");
+const xlsx = require("xlsx"); // xlsx
 const multer = require("multer");
 const path = require("path");
 require("dotenv").config({ path: `mysql/.env.test` });
@@ -24,13 +24,14 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+// xlsx 사용 코드
 app.post("/api/xlsx", upload.single("xlsx"), async (req, res) => {
   console.log(req.file);
   console.log(req.body);
   const workbook = xlsx.readFile(req.file.path);
-  const firstSheetName = workbook.SheetNames[0];
+  const firstSheetName = workbook.SheetNames[0]; // 첫 번째 시트에 데이터가 있다고 가정
   const firstSheet = workbook.Sheets[firstSheetName];
-  const firstSheetJson = xlsx.utils.sheet_to_json(firstSheet);
+  const firstSheetJson = xlsx.utils.sheet_to_json(firstSheet); // sheet_to_json은 엑셀 시트를 json 으로 변경해 준다.
 
   res.send(firstSheetJson);
 });

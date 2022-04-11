@@ -1,13 +1,13 @@
 const express = require("express");
 const app = express();
-const fs = require("fs");
-const morgan = require("morgan");
-const rfs = require("rotating-file-stream");
+const fs = require("fs"); // 로그를 파일로 기록하기 위해 필요
+const morgan = require("morgan"); // morgan
+const rfs = require("rotating-file-stream"); // 자동으로 로그 파일을 채번해서 만들어 줌
 const path = require("path");
-const res = require("express/lib/response");
 
+// 파일명을 만드는 함수
 const generator = (time, index) => {
-  if (!time) return "file.log";
+  if (!time) return "file.log"; // 시간 정보가 없을 때  기본 파일명
 
   const yearmonth =
     time.getFullYear() + (time.getMonth() + 1).toString().padStart(2, "0");
@@ -17,10 +17,11 @@ const generator = (time, index) => {
 
   return `${yearmonth}/${yearmonth}${day}-${hour}${minute}-${index}-file.log`;
 };
+
 const accessLogStream = rfs.createStream(generator, {
-  interval: "1m",
-  size: "10M",
-  path: path.join(__dirname, "log"),
+  interval: "1m", // 1m은 1분 간격, 실무에서는 1d 하루 단위를 주로 사용
+  size: "10M", // 파일의 최대 사이즈
+  path: path.join(__dirname, "log"), // 현재 디렉토리(__dirname)의 log 폴더에 로그 파일 생성
 });
 
 app.use(morgan("combined", { stream: accessLogStream }));

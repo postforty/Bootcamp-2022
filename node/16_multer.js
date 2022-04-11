@@ -36,12 +36,11 @@ app.post("/api/attachment", upload.single("attachment"), async (req, res) => {
     path: req.file.path,
   };
 
-  const r = await mysql.query("imageInsert", fileInfo);
+  res.send(fileInfo);
 
-  res.send(r);
-  res.send(req.file);
-
-  // res.send(fileInfo);
+  // DB에 파일 정보를 저장 관리하고자 할 때
+  // const r = await mysql.query("imageInsert", fileInfo);
+  // res.send(r);
 });
 
 app.listen(3000, () => {

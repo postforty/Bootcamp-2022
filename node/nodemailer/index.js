@@ -6,8 +6,10 @@ const config = {
   host: "smtp.gmail.com",
   port: 587,
   secure: false,
-  auth: process.env.GOOGLE_MAIL,
-  pass: process.env.GOOGLE_PASSWORD,
+  auth: {
+    user: process.env.GOOGLE_MAIL,
+    pass: process.env.GOOGLE_PASSWORD,
+  },
 };
 
 const send = async (data) => {
@@ -15,8 +17,12 @@ const send = async (data) => {
   transporter.sendMail(data, (err, info) => {
     if (err) {
       console.log(err);
+    } else {
+      return info.response;
     }
-
-    return info.response;
   });
+};
+
+module.exports = {
+  send,
 };
