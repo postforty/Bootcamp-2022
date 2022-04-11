@@ -17,11 +17,12 @@ const storage = multer.diskStorage({
     cb(null, "uploads"); // 전송된 파일이 저장되는 디렉토리
   },
   filename: function (req, file, cb) {
-    cb(null, new Date().valueOf() + path.extname(file.originalname)); // 시스템 시간으로 파일이름을 변경해서 저장
+    // 현재 파일 업로드되는 년월일시분초밀리세컨드+업로드 파일의 확장자
+    cb(null, new Date().valueOf() + path.extname(file.originalname)); // 시스템 시간으로 파일이름을 변경해서 저장(동일한 파일명이 덮어 쓰는 현상을 예방하기 위함)
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage }); // 위에서 정의한 storage를 사용
 
 app.post("/api/attachment", upload.single("attachment"), async (req, res) => {
   console.log(req.file);
@@ -35,11 +36,12 @@ app.post("/api/attachment", upload.single("attachment"), async (req, res) => {
     path: req.file.path,
   };
 
-  res.send(fileInfo);
+  const r = await mysql.query("imageInsert", fileInfo);
 
-  //   const r = await mysql.query("imageInsert", fileInfo);
+  res.send(r);
+  res.send(req.file);
 
-  //   res.send(r);
+  // res.send(fileInfo);
 });
 
 app.listen(3000, () => {
