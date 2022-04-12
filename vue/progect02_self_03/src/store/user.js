@@ -29,7 +29,7 @@ export const user = {
   mutations: {
     setUser(state, userInfo) {
       state.userInfo = userInfo
-      VueCookies.set('userInfo', userInfo, '3MIN')
+      VueCookies.set('userInfo', userInfo, '8h')
     },
     logout(state) {
       state.userInfo = {}
