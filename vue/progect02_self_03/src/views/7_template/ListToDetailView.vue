@@ -15,7 +15,7 @@
         <button class="btn btn-primary" @click="getCustomers">조회</button>
       </div>
     </div>
-    <table class="table table-striped table-bordered">
+    <!-- <table class="table table-striped table-bordered">
       <thead>
         <tr>
           <th>Name</th>
@@ -38,7 +38,49 @@
           <td>{{ customer.address }}</td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
+    <div class="row">
+      <!-- 12 그리드 중 카드 하나가 3, 4, 6의 크기를 차지 -->
+      <div
+        class="col-xl-3 col-lg-4 col-md-6 mb-2"
+        :key="customer.id"
+        v-for="customer in customers"
+      >
+        <div class="card">
+          <svg
+            class="bd-placeholder-img card-img-top"
+            width="100%"
+            height="180"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Placeholder: Image cap"
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false"
+          >
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#868e96"></rect>
+          </svg>
+          <div class="card-body">
+            <h5 class="card-title">{{ customer.name }}</h5>
+            <p class="card-text">
+              <i class="fas fa-building"></i> {{ customer.company }}
+            </p>
+            <p class="card-text">
+              <i class="fas fa-envelope"></i> {{ customer.email }}
+            </p>
+            <p class="card-text">
+              <i class="fas fa-phone-square"></i> {{ customer.phone }}
+            </p>
+            <p class="card-text">
+              <i class="fas fa-address-book"></i> {{ customer.address }}
+            </p>
+            <a @click="goToDetail(customer.id)" class="btn btn-primary"
+              >Detail</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
