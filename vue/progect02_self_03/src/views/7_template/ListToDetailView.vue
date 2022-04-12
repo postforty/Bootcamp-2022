@@ -89,12 +89,22 @@ export default {
   data() {
     return {
       customers: [],
-      searchName: ''
+      searchName: '',
+      fromDetail: false
     }
   },
   setup() {},
-  created() {},
-  mounted() {},
+  created() {
+    if (this.$route.params.fromDetail) {
+      this.fromDetail = this.$route.params.fromDetail
+      this.searchName = this.$route.params.searchName
+    }
+  },
+  mounted() {
+    if (this.fromDetail) {
+      this.getCustomers()
+    }
+  },
   unmounted() {},
   methods: {
     async getCustomers() {
@@ -103,7 +113,10 @@ export default {
       )
     },
     goToDetail(id) {
-      this.$router.push({ path: '/template/detail', query: { id } })
+      this.$router.push({
+        path: '/template/detail',
+        query: { id, searchName: this.searchName }
+      })
       // this.$router.push({ name: 'DetailView', params: { id: id } })
     }
   }

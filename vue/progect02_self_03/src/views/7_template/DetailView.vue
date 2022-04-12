@@ -34,12 +34,14 @@ export default {
   data() {
     return {
       id: '',
+      searchName: '',
       customer: {}
     }
   },
   setup() {},
   created() {
     this.id = this.$route.query.id
+    this.searchName = this.$route.query.searchName
   },
   mounted() {
     this.getCustomer()
@@ -52,7 +54,10 @@ export default {
       )
     },
     goToList() {
-      this.$router.push({ path: '/template/listtodetail' })
+      this.$router.push({
+        name: 'ListToDetailView',
+        params: { fromDetail: true, searchName: this.searchName }
+      })
     }
   }
 }
