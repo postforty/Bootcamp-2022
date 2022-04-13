@@ -25,7 +25,7 @@
       <div class="col-sm-10">{{ customer.address }}</div>
     </div>
     <button class="btn btn-secondary me-1" @click="goToList">목록</button>
-    <button class="btn btn-primary">수정</button>
+    <button class="btn btn-primary" @click="goToChange">수정</button>
   </div>
 </template>
 <script>
@@ -57,6 +57,12 @@ export default {
       this.$router.push({
         name: 'ListToDetailView',
         params: { fromDetail: true, searchName: this.searchName }
+      })
+    },
+    goToChange() {
+      this.$router.push({
+        name: 'ChangeView',
+        params: { id: this.id }
       })
     }
   }

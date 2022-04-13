@@ -1,0 +1,141 @@
+<template>
+  <div class="container">
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          v-model="customer.name"
+          name=""
+          id=""
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Company</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          v-model.trim="customer.company"
+          name=""
+          id=""
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          v-model.trim="customer.email"
+          name=""
+          id=""
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Phone</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          v-model.trim="customer.phone"
+          name=""
+          id=""
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Address</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          v-model.trim="customer.address"
+          name=""
+          id=""
+        />
+      </div>
+    </div>
+    <button class="btn btn-secondary me-1" @click="goToDetail">취소</button>
+    <button class="btn btn-primary" @click="doSave">저장</button>
+  </div>
+</template>
+<script>
+export default {
+  components: {},
+  data() {
+    return {
+      id: '',
+      searchName: '',
+      customer: {
+        name: '',
+        company: '',
+        email: '',
+        phone: '',
+        address: ''
+      }
+    }
+  },
+  setup() {},
+  created() {
+    this.id = this.$route.params.id
+  },
+  mounted() {
+    this.getCustomer()
+  },
+  unmounted() {},
+  methods: {
+    async getCustomer() {
+      this.customer = await this.$get(
+        `http://localhost:3000/customers/${this.id}`
+      )
+    },
+    goToDetail() {
+      this.$router.push({
+        path: '/template/detail',
+        query: { id: this.id }
+      })
+    },
+    async doSave() {
+      if (!this.customer.name) {
+        return this.$swal('Name을 입력하세요.')
+      }
+      if (this.customer.company === '') {
+        return this.$swal('Company를 입력하세요.')
+      }
+      this.$swal({
+        title: '고객을 정보를 수정 하시겠습니까?',
+        // text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: '취소',
+        confirmButtonText: '저장'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const loader = this.$loading.show({ canCancel: false })
+
+          const r = await this.$put(
+            `http://localhost:3000/customers/${this.customer.id}`,
+            this.customer
+          )
+
+          loader.hide()
+          if (r.status === 200) {
+            this.$swal('고객 정보가 저장되었습니다.')
+            this.$router.push({
+              path: '/template/detail',
+              query: { id: this.id }
+            })
+          }
+        }
+      })
+    }
+  }
+}
+</script>

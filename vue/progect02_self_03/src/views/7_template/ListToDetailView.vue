@@ -12,10 +12,33 @@
         />
       </div>
       <div class="col-12">
-        <button class="btn btn-primary" @click="getCustomers">조회</button>
+        <button class="btn btn-primary me-1" @click="getCustomers">조회</button>
+        <button class="btn btn-success me-1" @click="goToCreate">생성</button>
+        <button class="btn btn-primary me-1" @click="doExcel">
+          엑셀다운로드
+        </button>
+        <div class="btn-group">
+          <button
+            class="btn btn-outline-secondary"
+            :class="{ active: showMethod === 'list' }"
+            @click="showMethod = 'list'"
+          >
+            <i class="fas fa-list"></i>
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            :class="{ active: showMethod === 'card' }"
+            @click="showMethod = 'card'"
+          >
+            <i class="fas fa-th-large"></i>
+          </button>
+        </div>
       </div>
     </div>
-    <!-- <table class="table table-striped table-bordered">
+    <table
+      class="table table-striped table-bordered"
+      v-if="showMethod === 'list'"
+    >
       <thead>
         <tr>
           <th>Name</th>
@@ -38,8 +61,8 @@
           <td>{{ customer.address }}</td>
         </tr>
       </tbody>
-    </table> -->
-    <div class="row">
+    </table>
+    <div class="row" v-else-if="showMethod === 'card'">
       <!-- 12 그리드 중 카드 하나가 3, 4, 6의 크기를 차지 -->
       <div
         class="col-xl-3 col-lg-4 col-md-6 mb-2"
@@ -88,9 +111,17 @@ export default {
   components: {},
   data() {
     return {
+      headers: [
+        { title: 'Name', key: 'name' },
+        { title: 'Company', key: 'company' },
+        { title: 'Email', key: 'email' },
+        { title: 'Phone', key: 'phone' },
+        { title: 'Address', key: 'address' }
+      ],
       customers: [],
       searchName: '',
-      fromDetail: false
+      fromDetail: false,
+      showMethod: 'list' // 'card'
     }
   },
   setup() {},
@@ -108,9 +139,13 @@ export default {
   unmounted() {},
   methods: {
     async getCustomers() {
+      const loader = this.$loading.show({ canCancel: false })
+
       this.customers = await this.$get(
         `http://localhost:3000/customers?name_like=${this.searchName}`
       )
+
+      loader.hide()
     },
     goToDetail(id) {
       this.$router.push({
@@ -118,6 +153,16 @@ export default {
         query: { id, searchName: this.searchName }
       })
       // this.$router.push({ name: 'DetailView', params: { id: id } })
+    },
+    doExcel() {
+      const loader = this.$loading.show({ canCancel: false })
+
+      this.$ExcelFromTable(this.headers, this.customers, 'customers')
+
+      loader.hide()
+    },
+    goToCreate() {
+      this.$router.push({ path: '/template/create' })
     }
   }
 }
