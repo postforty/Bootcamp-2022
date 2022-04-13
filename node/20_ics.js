@@ -40,6 +40,7 @@ const sendEmailWithIcs = async () => {
 
     console.log(value);
 
+    // 이메일 발송
     const message = {
       from: "ubithus@gmail.com",
       to: "ubithus@gmail.com",
