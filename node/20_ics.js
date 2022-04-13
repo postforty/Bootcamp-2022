@@ -4,9 +4,10 @@ const ics = require("ics"); // 추가
 require("dotenv").config({ path: `nodemailer/.env` });
 const nodemailer = require("./nodemailer");
 
+// ics 파일을 구성하는 인벤트 정보
 const event = {
-  start: [2022, 4, 30, 9, 30], // 년, 월, 일, 시, 분
-  duration: { hours: 1, minutes: 30 },
+  start: [2022, 4, 15, 9, 30], // 년, 월, 일, 시, 분
+  duration: { hours: 1, minutes: 30 }, // 1시간 30분 동안 진행
   title: "Node.js 스터디 모임",
   description: "개발자의품격 부트캠프 1기 스터디 모임",
   location: "제주도 더그레잇 3층",
@@ -29,6 +30,7 @@ const event = {
   ],
 };
 
+// 이메일을 보내는 함수
 const sendEmailWithIcs = async () => {
   ics.createEvent(event, async (error, value) => {
     if (error) {
@@ -37,6 +39,7 @@ const sendEmailWithIcs = async () => {
     }
 
     console.log(value);
+
     const message = {
       from: "ubithus@gmail.com",
       to: "ubithus@gmail.com",
