@@ -23,7 +23,8 @@ const parsing = async (page) => {
   const $jobList = $(".list-post");
   $jobList.each((idx, node) => {
     const jobTitle = $(node).find(".title:eq(0)").text().trim();
-    const url="" = $(node).find(".title:eq(0)").text().trim();
+    const url =
+      "https://www.jobkorea.co.kr" + $(node).find(".title:eq(0)").attr("href");
     const company = $(node).find(".name:eq(0)").text().trim();
     const experience = $(node).find(".exp:eq(0)").text().trim();
     const education = $(node).find(".edu:eq(0)").text().trim();
@@ -36,7 +37,7 @@ const parsing = async (page) => {
         company,
         experience,
         education,
-        url
+        url,
       });
     }
   });
@@ -47,11 +48,11 @@ const parsing = async (page) => {
 
 const getJobs = async (keyword) => {
   const html = await getHTML(keyword);
-  const courses = await parsing(html);
-  console.log(courses);
+  const jobs = await parsing(html);
+  console.log(jobs);
 
   const h = [];
-  h.push("<table>");
+  h.push('<table style="border:1px solid black;">');
   h.push("<thead>");
   h.push("<tr>");
   h.push("<th>구인제목</th>");
@@ -63,7 +64,7 @@ const getJobs = async (keyword) => {
   h.push("<tbody>");
   jobs.forEach((j) => {
     h.push(`<tr>`);
-    h.push(`<td><a href="${url}">${j.jobTitle}</a></td>`);
+    h.push(`<td><a href="${j.url}">${j.jobTitle}</a></td>`);
     h.push(`<td>${j.company}</td>`);
     h.push(`<td>${j.experience}</td>`);
     h.push(`<td>${j.education}</td>`);
@@ -75,14 +76,10 @@ const getJobs = async (keyword) => {
   const message = {
     from: "ubithus@gmail.com",
     to: "ubithus@gmail.com",
-    subject: "Node.js 스터디 모임",
-    text: "불라불라",
-    icalEvent: {
-      filename: "invitation.ics", // iCalendar 파일
-      method: "REQUEST",
-      content: value,
-    },
+    subject: "vue.js 구인 회사 정보",
+    html: h.join(""),
   };
+  await nodemailer.send(message);
 };
 
 getJobs("vue.js");
