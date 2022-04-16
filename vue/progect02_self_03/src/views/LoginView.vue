@@ -10,7 +10,6 @@
           class="form-control"
           id="floatingInput"
           placeholder="name@example.com"
-          v-model="email"
         />
         <label for="floatingInput">Email address</label>
       </div>
@@ -20,7 +19,6 @@
           class="form-control"
           id="floatingPassword"
           placeholder="Password"
-          v-model="pw"
         />
         <label for="floatingPassword">Password</label>
       </div>
@@ -42,8 +40,7 @@ export default {
   components: {},
   data() {
     return {
-      email: '',
-      pw: ''
+      sampleData: ''
     }
   },
   setup() {},

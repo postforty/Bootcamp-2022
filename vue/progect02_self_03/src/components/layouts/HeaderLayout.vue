@@ -33,6 +33,14 @@
                 >ListToDetail</a
               >
             </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                :class="{ active: $route.path == '/template/singleedit' }"
+                @click="goToMenu('/template/singleedit')"
+                >SingleEdit</a
+              >
+            </li>
           </ul>
           <div class="d-flex">
             <span v-if="userInfo.name" class="text-white">{{
