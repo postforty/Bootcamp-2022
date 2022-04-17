@@ -388,6 +388,17 @@ const routes = [
       )
   },
   {
+    path: '/template/shuttle',
+    name: 'ShuttleView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "template" */ '../views/7_template/ShuttleView.vue'
+      )
+  },
+  {
     path: '/template/change',
     name: 'ChangeView',
     // route level code-splitting

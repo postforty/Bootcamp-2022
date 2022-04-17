@@ -156,25 +156,61 @@ export default {
       )
 
       loader.hide()
-    }
-  },
-  async getCustomer() {
-    this.editMode = false
+    },
+    async getCustomer() {
+      this.editMode = false
 
-    if (this.selectedId === '') {
-      this.customer = {
-        name: '',
-        company: '',
-        email: '',
-        phone: '',
-        address: ''
+      if (this.selectedId === '') {
+        this.customer = {
+          name: '',
+          company: '',
+          email: '',
+          phone: '',
+          address: ''
+        }
+      } else {
+        const loader = this.$loading.show({ canCancel: false })
+        this.customer = await this.$get(
+          `http://localhost:3000/customers/${this.selectedId}`
+        )
+        loader.hide()
       }
-    } else {
-      const loader = this.$loading.show({ canCancel: false })
-      this.customer = await this.$get(
-        `http://localhost:3000/customers/${this.selectedId}`
-      )
-      loader.hide()
+    },
+    async doSave() {
+      if (!this.customer.name) {
+        return this.$swal('Name을 입력하세요.')
+      }
+      if (this.customer.company === '') {
+        return this.$swal('Company를 입력하세요.')
+      }
+      this.$swal({
+        title: '고객을 정보를 수정 하시겠습니까?',
+        // text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: '취소',
+        confirmButtonText: '저장'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const loader = this.$loading.show({ canCancel: false })
+
+          const r = await this.$put(
+            `http://localhost:3000/customers/${this.customer.id}`,
+            this.customer
+          )
+
+          loader.hide()
+
+          if (r.status === 200) {
+            this.$swal('고객 정보가 저장되었습니다.')
+            this.editMode = false
+            this.selectedId = ''
+            this.getCustomers()
+          }
+        }
+      })
     }
   }
 }

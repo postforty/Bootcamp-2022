@@ -57,6 +57,14 @@
                 >MasterDetail</a
               >
             </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                :class="{ active: $route.path == '/template/shuttle' }"
+                @click="goToMenu('/template/shuttle')"
+                >ShuttleView</a
+              >
+            </li>
           </ul>
           <div class="d-flex">
             <span v-if="userInfo.name" class="text-white">{{
