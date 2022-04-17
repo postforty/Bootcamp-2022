@@ -49,6 +49,14 @@
                 >MultipleEdit</a
               >
             </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                :class="{ active: $route.path == '/template/masterdetail' }"
+                @click="goToMenu('/template/masterdetail')"
+                >MasterDetail</a
+              >
+            </li>
           </ul>
           <div class="d-flex">
             <span v-if="userInfo.name" class="text-white">{{
