@@ -19,5 +19,5 @@ firstSheet["!cols"] = [
   { wpx: 200 }, // phone 열 너비
 ];
 
-xlsx.utils.book_append_sheet(workbook, firstSheet, "Customers");
+xlsx.utils.book_append_sheet(workbook, firstSheet, "Customers"); // 가상 엑셀 파일 workbook, customers sheet, sheet명
 xlsx.writeFile(workbook, "./xlsx/customer.xlsx");

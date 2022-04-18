@@ -31,14 +31,14 @@ app.get("/api/xlsx/categoryList", async (req, res) => {
 
   // 가상의 파일 이용
   xlsx.utils.book_append_sheet(workbook, firstSheet, "Categories");
-  res.setHeader("Content-disposition", "attachment; filename=Categories.xlsx");
+  res.setHeader("Content-disposition", "attachment; filename=Categories.xlsx"); // 응답헤더에 xlsx 파일 정의
   res.setHeader(
     "Content-type",
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-  );
+  ); // 타입 지정(구글에서 "xlsx content-type" 검색하면 나오는 값을 넣어 준다)
   const downloadFile = Buffer.from(
     xlsx.write(workbook, { type: "base64" }),
     "base64"
-  );
-  res.end(downloadFile);
+  ); //Buffer는 자바스크립트의 내장함수. 임시로 Buffer에 담는다. 타입은 base64
+  res.end(downloadFile); // 스트림 형태는 end함수로 처리, 파일로 다운로드 받는다.
 });

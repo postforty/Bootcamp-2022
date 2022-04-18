@@ -1,4 +1,4 @@
-const xlsx = require("xlsx-js-style");
+const xlsx = require("xlsx-js-style"); // xlsx를 포크했기 때문에 xlsx없이 사용 가능
 const workbook = xlsx.utils.book_new();
 
 const customers = [
@@ -19,6 +19,7 @@ firstSheet["!cols"] = [
   { wpx: 200 }, // phone 열 너비
 ];
 
+// s는 스타일
 firstSheet["A1"].s = {
   font: {
     name: "Calibri",
