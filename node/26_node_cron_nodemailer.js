@@ -7,7 +7,7 @@ const mysql = require("./mysql");
 cron.schedule("* * * * *", async () => {
   const categoryList = await mysql.query("categoryList");
   const h = [];
-  h.push(`<table  style="border:1px solid black;border-collapse:collapse;">`);
+  h.push(`<table style="border:1px solid black;border-collapse:collapse;">`);
   h.push(`<thead>`);
   h.push(`<tr>`);
   h.push(`<th style="border:1px solid black;">Category ID</th>`);

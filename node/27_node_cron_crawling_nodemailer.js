@@ -53,30 +53,32 @@ const getJob = async (keyword) => {
   console.log(jobs);
 
   const h = [];
-  h.push('<table style="border:1px solid black;">');
+  h.push('<table style="border:1px solid black;border-collapse:collapse;">');
   h.push("<thead>");
   h.push("<tr>");
-  h.push("<th>구인제목</th>");
-  h.push("<th>회사명</th>");
-  h.push("<th>경력</th>");
-  h.push("<th>학력</th>");
+  h.push('<th style="border:1px solid black;">구인제목</th>');
+  h.push('<th style="border:1px solid black;">회사명</th>');
+  h.push('<th style="border:1px solid black;">경력</th>');
+  h.push('<th style="border:1px solid black;">학력</th>');
   h.push("</tr>");
   h.push("</thead>");
   h.push("<tbody>");
   jobs.forEach((j) => {
     h.push(`<tr>`);
-    h.push(`<td><a href="${j.url}">${j.jobTitle}</a></td>`);
-    h.push(`<td>${j.company}</td>`);
-    h.push(`<td>${j.experience}</td>`);
-    h.push(`<td>${j.education}</td>`);
+    h.push(
+      `<td style="border:1px solid black;"><a href="${j.url}">${j.jobTitle}</a></td>`
+    );
+    h.push(`<td style="border:1px solid black;">${j.company}</td>`);
+    h.push(`<td style="border:1px solid black;">${j.experience}</td>`);
+    h.push(`<td style="border:1px solid black;">${j.education}</td>`);
     h.push(`</tr>`);
   });
   h.push("</tbody>");
   h.push("</table>");
 
   const message = {
-    from: "ubithus@gmail.com",
-    to: "ubithus@gmail.com",
+    from: "seungwon.go@gmail.com",
+    to: "seungwon.go@gmail.com",
     subject: "Node.js 구인 회사 정보",
     html: h.join(""),
   };
@@ -84,6 +86,6 @@ const getJob = async (keyword) => {
   await nodemailer.send(message); // 이메일 발송
 };
 
-cron.schedule("0 * * * *", () => {
+cron.schedule("* * * * *", () => {
   getJob("node.js");
 });
