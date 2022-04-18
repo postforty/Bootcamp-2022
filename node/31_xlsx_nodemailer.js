@@ -29,6 +29,7 @@ const sendAttachedEmail = async () => {
     subject: "엑셀 파일 첨부 테스트",
     text: "엑셀 파일 첨부해서 이메일로 보냅니다.",
     attachments: [
+      // 가상의 파일 첨부
       {
         filename: "Categories.xlsx",
         content: Buffer.from(
@@ -36,6 +37,7 @@ const sendAttachedEmail = async () => {
           "base64"
         ),
       },
+      // 물리적 파일 첨부
       {
         filename: "ERD다이어그램.png",
         path: "./uploads/1649332920187.png",

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <!-- socket.io -->
     <script
       src="https://cdn.socket.io/4.2.0/socket.io.min.js"
       integrity="sha384-PiBR5S00EtOj2Lto9Uu81cmoyZqR57XcOna1oAuVuIEjzj0wpqDVfD0JA9eXlRsj"
@@ -16,16 +17,17 @@
     <button onclick="sendMsg();">전송</button>
     <button onclick="receiveMsg();">메시지 수신 시작</button>
     <script>
-      const socket = io("http://localhost:3000");
+      const socket = io("http://localhost:3000"); // 서버 3000번과 양반향 연결
 
       socket.on("connect", () => {
-        console.log(socket.id);
+        console.log(socket.id); // 연결되면 socket.id 생성됨. 연결 사용자별로 다 다름.
       });
 
       socket.on("server2client", (msg) => {
-        console.log(msg);
+        console.log(msg); // 서버로 부터 받은 메시지(msg)
       });
 
+      // 클라이언트에서 서버로 데이터 보내는 함수
       function sendMsg() {
         const msg = document.getElementById("msg").value;
         socket.emit("client2server", msg);
