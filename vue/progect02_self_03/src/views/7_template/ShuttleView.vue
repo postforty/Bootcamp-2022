@@ -150,7 +150,7 @@ export default {
 
       console.log(selectedCustomerData)
 
-      const existCustomers2 = [...this.customers2]
+      const existCustomers2 = [...this.customers2] // 깊은 복사를 하는 이유는 뷰가 변화를 감지해 양방향 데이터 바인딩이 일어날 수 있게하기 위함이다.
       selectedCustomerData.forEach((selectedCustomer) => {
         if (
           existCustomers2.filter((c) => c.id === selectedCustomer.id).length ===
@@ -172,7 +172,7 @@ export default {
       })
 
       this.customers2 = newCustomers2
-      this.selectedCustomers2 = []
+      this.selectedCustomers2 = [] // 수업에는 없던 코드. 이 코드가 없으면 삭제(왼쪽 버튼 처리된) 데이터에 대한 checked가 존재해 문제가 된다.
     }
     // doRemove() {
     //   const selectedCustomerData = []
