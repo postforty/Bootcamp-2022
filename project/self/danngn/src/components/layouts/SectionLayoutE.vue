@@ -5,12 +5,9 @@
         중고거래 인기매물
       </h1>
       <div class="cards-wrap">
-        <article class="card-top" :key="i" v-for="(product, i) in products">
-          <a
-            class="card-link"
-            data-event-label="i"
-            @click="goToArticle(product.i)"
-          >
+        <article class="card-top" :key="product.id" v-for="product in products">
+          <!-- <a class="card-link" data-event-label="i" @click="goToArticle()"> -->
+          <a class="card-link" @click="goToArticle(product.id)">
             <div class="card-photo">
               <img :alt="product.title" :src="product.imgUrl" />
             </div>
@@ -48,15 +45,15 @@ export default {
       default: function () {
         return []
       }
-    },
-    created() {},
-    methods: {
-      goToArticle(id) {
-        this.$router.push({
-          path: '/articles',
-          query: { id: id, searchName: this.searchName }
-        })
-      }
+    }
+  },
+  created() {},
+  methods: {
+    goToArticle(id) {
+      this.$router.push({
+        path: '/articles',
+        query: { id: id }
+      })
     }
   }
 }

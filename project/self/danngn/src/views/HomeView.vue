@@ -35,9 +35,10 @@ export default {
   mounted() {},
   unmounted() {},
   methods: {
-    async getProducts() {
+    getProducts() {
       this.products = [
         {
+          id: 1,
           title: '포켓몬빵1',
           price: '6,000원',
           region: '충북 청주시 흥덕구 가경동',
@@ -46,6 +47,7 @@ export default {
           imgUrl: require('@/assets/img1.png')
         },
         {
+          id: 2,
           title: '포켓몬빵2',
           price: '6,000원',
           region: '충북 청주시 흥덕구 가경동',
@@ -54,6 +56,7 @@ export default {
           imgUrl: require('@/assets/img1.png')
         },
         {
+          id: 3,
           title: '포켓몬빵3',
           price: '6,000원',
           region: '충북 청주시 흥덕구 가경동',
@@ -62,6 +65,7 @@ export default {
           imgUrl: require('@/assets/img1.png')
         },
         {
+          id: 4,
           title: '포켓몬빵4',
           price: '6,000원',
           region: '충북 청주시 흥덕구 가경동',
@@ -70,6 +74,7 @@ export default {
           imgUrl: require('@/assets/img1.png')
         },
         {
+          id: 5,
           title: '포켓몬빵5',
           price: '6,000원',
           region: '충북 청주시 흥덕구 가경동',
@@ -78,6 +83,7 @@ export default {
           imgUrl: require('@/assets/img1.png')
         },
         {
+          id: 6,
           title: '포켓몬빵6',
           price: '6,000원',
           region: '충북 청주시 흥덕구 가경동',
@@ -86,6 +92,7 @@ export default {
           imgUrl: require('@/assets/img1.png')
         },
         {
+          id: 7,
           title: '포켓몬빵7',
           price: '6,000원',
           region: '충북 청주시 흥덕구 가경동',
