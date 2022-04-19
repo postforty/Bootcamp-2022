@@ -9,7 +9,7 @@
           class="home-main-image-03"
           loading="lazy"
           alt="내 근처에서 찾는 동네가게"
-          src="https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/image-3-0c8b631ac2294ac5a3b3e7a3a5580c3e68a3303ad2aded1e84aa57a2e1442786.png"
+          src="/assets/SectionLayoutD.png"
         />
       </div>
       <div>
@@ -26,7 +26,7 @@
             data-event-category="town_link_from"
             data-event-action="index_base"
             data-event-label="main_town"
-            href="https://town.daangn.com"
+            href=""
             >당근마켓 동네가게 찾기</a
           >
         </div>

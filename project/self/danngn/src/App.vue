@@ -1,33 +1,16 @@
 <template>
   <HeaderLayout />
-  <SectionLayoutA />
-  <SectionLayoutB />
-  <SectionLayoutC />
-  <SectionLayoutD />
-  <SectionLayoutE />
-  <SectionLayoutF />
-  <!-- <router-view /> -->
+  <router-view />
   <FooterLayout />
 </template>
 <script>
 import HeaderLayout from '@/components/layouts/HeaderLayout.vue'
 import FooterLayout from '@/components/layouts/FooterLayout.vue'
-import SectionLayoutA from '@/components/layouts/SectionLayoutA.vue'
-import SectionLayoutB from '@/components/layouts/SectionLayoutB.vue'
-import SectionLayoutC from '@/components/layouts/SectionLayoutC.vue'
-import SectionLayoutD from '@/components/layouts/SectionLayoutD.vue'
-import SectionLayoutE from '@/components/layouts/SectionLayoutE.vue'
-import SectionLayoutF from '@/components/layouts/SectionLayoutF.vue'
+
 export default {
   components: {
     HeaderLayout,
-    FooterLayout,
-    SectionLayoutA,
-    SectionLayoutB,
-    SectionLayoutC,
-    SectionLayoutD,
-    SectionLayoutE,
-    SectionLayoutF
+    FooterLayout
   }
 }
 </script>
@@ -1585,7 +1568,8 @@ body.global footer .social-link {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 100%;
+  object-fit: cover;
+  height: 100%;
   box-sizing: border-box;
   border-radius: 12px;
   border: 1px solid transparent;
