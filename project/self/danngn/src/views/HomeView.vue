@@ -3,7 +3,7 @@
   <SectionLayoutB />
   <SectionLayoutC />
   <SectionLayoutD />
-  <SectionLayoutE />
+  <SectionLayoutE :products="products" />
   <SectionLayoutF />
 </template>
 <script>
@@ -25,13 +25,76 @@ export default {
   },
   data() {
     return {
-      sampleData: ''
+      products: []
     }
   },
   setup() {},
-  created() {},
+  created() {
+    this.getProducts()
+  },
   mounted() {},
   unmounted() {},
-  methods: {}
+  methods: {
+    async getProducts() {
+      this.products = [
+        {
+          title: '포켓몬빵1',
+          price: '6,000원',
+          region: '충북 청주시 흥덕구 가경동',
+          counts1: '관심 7',
+          counts2: '채팅 33',
+          imgUrl: require('@/assets/img1.png')
+        },
+        {
+          title: '포켓몬빵2',
+          price: '6,000원',
+          region: '충북 청주시 흥덕구 가경동',
+          counts1: '관심 7',
+          counts2: '채팅 33',
+          imgUrl: require('@/assets/img1.png')
+        },
+        {
+          title: '포켓몬빵3',
+          price: '6,000원',
+          region: '충북 청주시 흥덕구 가경동',
+          counts1: '관심 7',
+          counts2: '채팅 33',
+          imgUrl: require('@/assets/img1.png')
+        },
+        {
+          title: '포켓몬빵4',
+          price: '6,000원',
+          region: '충북 청주시 흥덕구 가경동',
+          counts1: '관심 7',
+          counts2: '채팅 33',
+          imgUrl: require('@/assets/img1.png')
+        },
+        {
+          title: '포켓몬빵5',
+          price: '6,000원',
+          region: '충북 청주시 흥덕구 가경동',
+          counts1: '관심 7',
+          counts2: '채팅 33',
+          imgUrl: require('@/assets/img1.png')
+        },
+        {
+          title: '포켓몬빵6',
+          price: '6,000원',
+          region: '충북 청주시 흥덕구 가경동',
+          counts1: '관심 7',
+          counts2: '채팅 33',
+          imgUrl: require('@/assets/img1.png')
+        },
+        {
+          title: '포켓몬빵7',
+          price: '6,000원',
+          region: '충북 청주시 흥덕구 가경동',
+          counts1: '관심 7',
+          counts2: '채팅 33',
+          imgUrl: require('@/assets/img1.png')
+        }
+      ]
+    }
+  }
 }
 </script>

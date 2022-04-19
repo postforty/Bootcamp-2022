@@ -9,8 +9,7 @@
           <a
             class="card-link"
             data-event-label="i"
-            href="/articles/{{i}}"
-            @click="goToArticle"
+            @click="goToArticle(product.i)"
           >
             <div class="card-photo">
               <img :alt="product.title" :src="product.imgUrl" />
@@ -43,75 +42,21 @@
 <script>
 export default {
   components: {},
-  data() {
-    return {
-      products: []
-    }
-  },
-  created() {
-    this.getProducts()
-  },
-  methods: {
-    goToArticle() {},
-    async getProducts() {
-      this.products = [
-        {
-          title: '포켓몬빵',
-          price: '6,000원',
-          region: '충북 청주시 흥덕구 가경동',
-          counts1: '관심 7',
-          counts2: '채팅 33',
-          imgUrl: require('@/assets/img1.png')
-        },
-        {
-          title: '포켓몬빵',
-          price: '6,000원',
-          region: '충북 청주시 흥덕구 가경동',
-          counts1: '관심 7',
-          counts2: '채팅 33',
-          imgUrl: require('@/assets/img1.png')
-        },
-        {
-          title: '포켓몬빵',
-          price: '6,000원',
-          region: '충북 청주시 흥덕구 가경동',
-          counts1: '관심 7',
-          counts2: '채팅 33',
-          imgUrl: require('@/assets/img1.png')
-        },
-        {
-          title: '포켓몬빵',
-          price: '6,000원',
-          region: '충북 청주시 흥덕구 가경동',
-          counts1: '관심 7',
-          counts2: '채팅 33',
-          imgUrl: require('@/assets/img1.png')
-        },
-        {
-          title: '포켓몬빵',
-          price: '6,000원',
-          region: '충북 청주시 흥덕구 가경동',
-          counts1: '관심 7',
-          counts2: '채팅 33',
-          imgUrl: require('@/assets/img1.png')
-        },
-        {
-          title: '포켓몬빵',
-          price: '6,000원',
-          region: '충북 청주시 흥덕구 가경동',
-          counts1: '관심 7',
-          counts2: '채팅 33',
-          imgUrl: require('@/assets/img1.png')
-        },
-        {
-          title: '포켓몬빵',
-          price: '6,000원',
-          region: '충북 청주시 흥덕구 가경동',
-          counts1: '관심 7',
-          counts2: '채팅 33',
-          imgUrl: require('@/assets/img1.png')
-        }
-      ]
+  props: {
+    products: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    },
+    created() {},
+    methods: {
+      goToArticle(id) {
+        this.$router.push({
+          path: '/articles',
+          query: { id: id, searchName: this.searchName }
+        })
+      }
     }
   }
 }
