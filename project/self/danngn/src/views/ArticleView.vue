@@ -1,7 +1,7 @@
 <template>
   <div>
     <article id="content" data-id="391294119">
-      <h1 class="hide">삼성 에어컨 스탠드 벽걸이 실외기</h1>
+      <h1 class="hide">{{ product.title }}</h1>
       <section id="article-images">
         <h3 class="hide">이미지</h3>
         <div id="image-slider">
@@ -48,8 +48,8 @@
                           >
                             <img
                               class="portrait"
-                              alt="삼성 에어컨 스탠드 벽걸이 실외기의 사진 3"
-                              src="https://dnvefa72aowie.cloudfront.net/origin/article/202204/56d0ff6ec260cf295fa06183d6d9eb8209630e0e0517483eb2fc1b698aa57125.webp?q=95&amp;s=1440x1440&amp;t=inside"
+                              :alt="product.title"
+                              :src="product.imgUrl"
                               style="opacity: 1"
                             />
                           </div>
@@ -78,10 +78,16 @@
                             data-image-id="1569477995"
                             data-image-index="1"
                           >
-                            <img
+                            <!-- <img
                               class="portrait"
                               alt="삼성 에어컨 스탠드 벽걸이 실외기의 사진 1"
                               src="https://dnvefa72aowie.cloudfront.net/origin/article/202204/c246b8b788afdd52ccff1bbd6795d3dbb15b0bdfce9e325c4360ffc3dff38cdf.webp?q=95&amp;s=1440x1440&amp;t=inside"
+                              style="opacity: 1"
+                            /> -->
+                            <img
+                              class="landscape"
+                              :alt="product.title"
+                              :src="product.imgUrl"
                               style="opacity: 1"
                             />
                           </div>
@@ -111,10 +117,16 @@
                             data-image-id="1569477976"
                             data-image-index="2"
                           >
-                            <img
+                            <!-- <img
                               class="portrait"
                               alt="삼성 에어컨 스탠드 벽걸이 실외기의 사진 2"
                               src="https://dnvefa72aowie.cloudfront.net/origin/article/202204/7606b2ddbf33617711da20c247a4bda9477f986bd20f14dcdba5a3478422240a.webp?q=95&amp;s=1440x1440&amp;t=inside"
+                              style="opacity: 1"
+                            /> -->
+                            <img
+                              class="portrait"
+                              :alt="product.title"
+                              :src="product.imgUrl"
                               style="opacity: 1"
                             />
                           </div>
@@ -144,10 +156,16 @@
                             data-image-id="1569477989"
                             data-image-index="3"
                           >
-                            <img
+                            <!-- <img
                               class="portrait"
                               alt="삼성 에어컨 스탠드 벽걸이 실외기의 사진 3"
                               src="https://dnvefa72aowie.cloudfront.net/origin/article/202204/56d0ff6ec260cf295fa06183d6d9eb8209630e0e0517483eb2fc1b698aa57125.webp?q=95&amp;s=1440x1440&amp;t=inside"
+                              style="opacity: 1"
+                            /> -->
+                            <img
+                              class="portrait"
+                              :alt="product.title"
+                              :src="product.imgUrl"
                               style="opacity: 1"
                             />
                           </div>
@@ -174,11 +192,17 @@
                             data-image-id="1569477995"
                             data-image-index="1"
                           >
-                            <img
+                            <!-- <img
                               data-lazy="https://dnvefa72aowie.cloudfront.net/origin/article/202204/c246b8b788afdd52ccff1bbd6795d3dbb15b0bdfce9e325c4360ffc3dff38cdf.webp?q=95&amp;s=1440x1440&amp;t=inside"
                               class="portrait"
                               alt="삼성 에어컨 스탠드 벽걸이 실외기의 사진 1"
                               src=""
+                            /> -->
+                            <img
+                              class="portrait"
+                              :alt="product.title"
+                              :src="product.imgUrl"
+                              style="opacity: 1"
                             />
                           </div>
                         </div>
@@ -204,11 +228,17 @@
                             data-image-id="1569477976"
                             data-image-index="2"
                           >
-                            <img
+                            <!-- <img
                               data-lazy="https://dnvefa72aowie.cloudfront.net/origin/article/202204/7606b2ddbf33617711da20c247a4bda9477f986bd20f14dcdba5a3478422240a.webp?q=95&amp;s=1440x1440&amp;t=inside"
                               class="portrait"
                               alt="삼성 에어컨 스탠드 벽걸이 실외기의 사진 2"
                               src=""
+                            /> -->
+                            <img
+                              class="portrait"
+                              :alt="product.title"
+                              :src="product.imgUrl"
+                              style="opacity: 1"
                             />
                           </div>
                         </div>
@@ -234,10 +264,16 @@
                             data-image-id="1569477989"
                             data-image-index="3"
                           >
-                            <img
+                            <!-- <img
                               class="portrait"
                               alt="삼성 에어컨 스탠드 벽걸이 실외기의 사진 3"
                               src="https://dnvefa72aowie.cloudfront.net/origin/article/202204/56d0ff6ec260cf295fa06183d6d9eb8209630e0e0517483eb2fc1b698aa57125.webp?q=95&amp;s=1440x1440&amp;t=inside"
+                              style="opacity: 1"
+                            /> -->
+                            <img
+                              class="portrait"
+                              :alt="product.title"
+                              :src="product.imgUrl"
                               style="opacity: 1"
                             />
                           </div>
@@ -305,21 +341,18 @@
           <div class="space-between">
             <div style="display: flex">
               <div id="article-profile-image">
-                <img
-                  alt="오뚝이"
-                  src="https://d1unjqcospf8gs.cloudfront.net/assets/users/default_profile_80-7e50c459a71e0e88c474406a45bbbdce8a3bf2ed4f2efcae59a064e39ea9ff30.png"
-                />
+                <img :alt="product.nickname" :src="product.profileImg" />
               </div>
               <div id="article-profile-left">
-                <div id="nickname">오뚝이</div>
-                <div id="region-name">동래구 사직동</div>
+                <div id="nickname">{{ product.nickname }}</div>
+                <div id="region-name">{{ product.region }}</div>
               </div>
             </div>
             <div id="article-profile-right">
               <dl id="temperature-wrap">
                 <dt>매너온도</dt>
                 <dd class="text-color-04">
-                  39.1
+                  {{ product.temperature }}
                   <span>°C</span>
                 </dd>
               </dl>
@@ -334,11 +367,11 @@
 
       <section id="article-description">
         <h1 property="schema:name" id="article-title" style="margin-top: 0px">
-          삼성 에어컨 스탠드 벽걸이 실외기
+          {{ product.title }}
         </h1>
         <p id="article-category">
-          생활가전 ∙
-          <time> 24시간 전 </time>
+          {{ product.category }} ∙
+          <time> {{ product.time }} </time>
         </p>
         <p
           property="schema:priceValidUntil"
@@ -353,35 +386,40 @@
           content="200000.0"
           style="font-size: 18px; font-weight: bold"
         >
-          200,000원
+          {{ product.price }}
         </p>
         <div property="schema:description" id="article-detail">
           <p>
-            삼성 에어컨 스텐드 ,벽걸이, 실외기 세트 판매합니다. <br />급하게
-            빨리 에어컨 놓았던 자리를 치워야해서 올렸기에 오늘 내일 중
-            가능하신분으로 찾습니다. <br />오늘 25에 오시기로했는데 잠수를
-            타신건지..ㅋ ^^ 연락이 되지않아 금액 조정하여 다시 올리게
-            되었습니다. 쿨하게 20에 가져가실분 연락주시구요. <br />제조년도는
-            조금 되었지만, 작년 여름까지도 잘 썼던 제품입니다.
-            <br />사직동입니다. <br />톡 주세요.
+            {{ product.discription }}
           </p>
         </div>
-        <p id="article-counts">관심 4 ∙ 채팅 19 ∙ 조회 287</p>
+        <p id="article-counts">
+          {{ product.counts1 }} ∙ {{ product.counts2 }} ∙ {{ product.counts3 }}
+        </p>
       </section>
     </article>
   </div>
 </template>
 <script>
+import Data from '@/mixins/data.js'
+
 export default {
+  mixins: [Data],
   components: {},
   data() {
     return {
-      sampleData: ''
+      id: '',
+      product: {}
     }
   },
   setup() {},
-  created() {},
-  mounted() {},
+  created() {
+    this.id = this.$route.query.id
+    this.product = this.products.filter((p) => p.id === this.id)[0]
+  },
+  mounted() {
+    console.log(this.product)
+  },
   unmounted() {},
   methods: {}
 }
