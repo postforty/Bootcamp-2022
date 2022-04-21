@@ -23,6 +23,13 @@ app.get("/api/product/category", async (req, res) => {
   res.send(categoryList);
 });
 
+// 없는 커리 실행
+// forever start .\37_forever.js 실행해도 서버가 죽지 않는다.
+app.get("/api/product/category2", async (req, res) => {
+  const categoryList = await mysql.query("categoryList2");
+  res.send(categoryList);
+});
+
 app.post("/api/product/category", async (req, res) => {
   const result = await mysql.query("categoryInsert", req.body.param);
   res.send(result);

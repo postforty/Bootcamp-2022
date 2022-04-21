@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 console.log(app.get("env"));
 
-require("dotenv").config({ path: `mysql/.env.${app.get("env")}` }); // 반드시 "const mysql = require("./mysql");" 코드 위에 작성해야 한다.
+// require("dotenv").config({ path: `mysql/.env.${app.get("env")}` });
+require("dotenv").config({ path: `mysql/.env` });
 // console.log(process.env);
 const mysql = require("./mysql");
 
@@ -18,6 +19,12 @@ app.listen(3000, () => {
 
 app.get("/api/product/category", async (req, res) => {
   const categoryList = await mysql.query("categoryList");
+  res.send(categoryList);
+});
+
+app.get("/api/product/category/:product_category_id", async (req, res) => {
+  const { product_category_id } = req.params;
+  const categoryList = await mysql.query("categoryDetail", product_category_id);
   res.send(categoryList);
 });
 
