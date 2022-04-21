@@ -17,7 +17,7 @@ app.listen(3000, () => {
 });
 
 app.get("/api/customers", async (req, res) => {
-  const customers = await Customer.find();
+  const customers = await Customer.find(); // Customer 컬렉션과 자동으로 매핑되는 네이밍룰
   res.send(customers);
 });
 

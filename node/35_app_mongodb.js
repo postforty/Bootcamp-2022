@@ -20,7 +20,8 @@ app.get("/api/customers", async (req, res) => {
 });
 
 app.get("/api/customers/:name", async (req, res) => {
-  // /person/i
+  // MongoDB에서는 정규식을 사용할 수 있다.
+  // /person/i : person이라는 문자열의 대소문자 구분을 하지 않겠다.
   // new RegExp("", "")
   const customers = await mongoDB.find("customers", {
     name: new RegExp(req.params.name, "i"),
