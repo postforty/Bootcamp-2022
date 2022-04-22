@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="getData();">조회</button>
+    <button onclick="postData();">생성</button>
+    <button onclick="putData();">수정</button>
+    <button onclick="deleteData();">삭제</button>
+    <script>
+      // promise의 기능을 가지고 있다.
+      function getData() {
+        fetch("http://localhost:3000/posts")
+          .then((response) => response.json())
+          .then((json) => console.log(json));
+      }
+
+      function postData() {
+        fetch("http://localhost:3000/posts", {
+          method: "POST",
+          body: JSON.stringify({
+            title: "xmlhttprequest2",
+            author: "gildong2",
+          }),
+          headers: { "content-type": "application/json;charset=UTF-8" },
+        })
+          .then((response) => response.json())
+          .then((json) => console.log(json));
+      }
+
+      function putData() {
+        fetch("http://localhost:3000/posts/58", {
+          method: "PUT",
+          body: JSON.stringify({
+            title: "javascript",
+            author: "computer",
+          }),
+          headers: { "content-type": "application/json;charset=UTF-8" },
+        })
+          .then((response) => response.json())
+          .then((json) => console.log(json));
+      }
+
+      function deleteData() {
+        fetch("http://localhost:3000/posts/58", {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((json) => console.log(json));
+      }
+    </script>
+  </body>
+</html>

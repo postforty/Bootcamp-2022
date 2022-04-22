@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="getData();">조회</button>
+    <button onclick="postData();">생성</button>
+    <button onclick="putData();">수정</button>
+    <button onclick="deleteData();">삭제</button>
+    <script>
+      function getData() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:3000/posts");
+        xhr.setRequestHeader("content-type", "application/json");
+        xhr.send();
+
+        // 서버에 요청한 응답이 리턴되면 실행되는 이벤트. 열린 데이터 로드
+        xhr.onload = () => {
+          // console.log(xhr);
+          if (xhr.status === 200) {
+            const res = JSON.parse(xhr.response); // json => object
+            console.log(res);
+          } else {
+            console.log(xhr.status, xhr.statusText);
+          }
+        };
+      }
+
+      function postData() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:3000/posts");
+        xhr.setRequestHeader("content-type", "application/json;charset=UTF-8");
+        const data = {
+          title: "xmlhttprequest2",
+          author: "gildong2",
+        };
+        xhr.send(JSON.stringify(data));
+
+        xhr.onload = () => {
+          // 성공코드 201은 생성
+          if (xhr.status === 201) {
+            const res = JSON.parse(xhr.response); // json => object
+            console.log(res);
+          } else {
+            console.log(xhr.status, xhr.statusText);
+          }
+        };
+      }
+
+      function putData() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("PUT", "http://localhost:3000/posts/52");
+        xhr.setRequestHeader("content-type", "application/json;charset=UTF-8");
+        const data = {
+          title: "javascript",
+          author: "computer",
+        };
+        xhr.send(JSON.stringify(data));
+
+        xhr.onload = () => {
+          // 성공코드 200은 조회, 수정, 삭제
+          if (xhr.status === 200) {
+            const res = JSON.parse(xhr.response); // json => object
+            console.log(res);
+          } else {
+            console.log(xhr.status, xhr.statusText);
+          }
+        };
+      }
+
+      function deleteData() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("DELETE", "http://localhost:3000/posts/52");
+        xhr.setRequestHeader("content-type", "application/json;charset=UTF-8");
+        xhr.send();
+
+        xhr.onload = () => {
+          // 성공코드 200은 조회, 수정, 삭제
+          if (xhr.status === 200) {
+            const res = JSON.parse(xhr.response); // json => object
+            console.log(res);
+          } else {
+            console.log(xhr.status, xhr.statusText);
+          }
+        };
+      }
+    </script>
+  </body>
+</html>
