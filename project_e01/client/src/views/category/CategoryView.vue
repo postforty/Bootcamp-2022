@@ -25,6 +25,7 @@
           <th>ID</th>
           <th>Name</th>
           <th>Description</th>
+          <th>Status</th>
           <th></th>
         </tr>
       </thead>
@@ -33,6 +34,7 @@
           <td>{{ item.product_category_id }}</td>
           <td>{{ item.category_name }}</td>
           <td>{{ item.category_description }}</td>
+          <td>{{ item.use_yn }}</td>
           <td>
             <button
               class="btn btn-success me-1"
@@ -41,7 +43,23 @@
               @click="openModal(item.product_category_id)"
             >
               수정</button
-            ><button class="btn btn-danger" @click="doDelete">삭제</button>
+            ><button
+              class="btn btn-danger me-1"
+              @click="doDelete(item.product_category_id)"
+            >
+              삭제
+            </button>
+            <button
+              class="btn btn-warning"
+              @click="
+                changeStatus(
+                  item.product_category_id,
+                  item.use_yn === 'Y' ? 'N' : 'Y'
+                )
+              "
+            >
+              {{ item.use_yn === 'Y' ? '사용중지' : '사용' }}
+            </button>
           </td>
         </tr>
       </tbody>
@@ -97,7 +115,22 @@
             >
               닫기
             </button>
-            <button type="button" class="btn btn-primary" @click="doSave">
+            <button
+              type="button"
+              v-if="selectedItem.product_category_id === -1"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#categoryModal"
+              @click="openModal"
+            >
+              생성
+            </button>
+            <button
+              type="button"
+              v-else
+              class="btn btn-primary"
+              @click="doSave"
+            >
               저장
             </button>
           </div>
@@ -140,7 +173,75 @@ export default {
     doExcel() {
       this.$ExcelFromTable(this.headers, this.list, 'category', {})
     },
-    doDelete() {},
+    doDelete(id) {
+      this.$swal({
+        title: '카테고리를 정말 삭제하시겠습니까?',
+        text: '삭제된 데이터는 복원되지 않습니다.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: '취소',
+        confirmButtonText: '삭제'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const loader = this.$loading.show({ canCancel: false })
+
+          const r = await this.$delete(`/api/product/category/${id}`)
+          // const r = await this.$put(`/api/product/category/${id}`, {
+          //   param: { use_yn: 'N' }
+          // })
+          console.log(r)
+
+          loader.hide()
+
+          // if (r.status === 200) {
+          // if (r.serverStatus === 2) {
+          this.$refs.btnClose.click()
+          this.$swal('카테고리가 삭제되었습니다.')
+          this.getList()
+          // }
+        }
+      })
+    },
+    changeStatus(id, useYN) {
+      let title = '카테고리 사용을 중지하시겠습니까?'
+      if (useYN === 'Y') {
+        title = '카테고리를 다시 사용하시겠습니까?'
+      }
+      this.$swal({
+        title: title,
+        // text: '삭제된 데이터는 복원되지 않습니다.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: '취소',
+        confirmButtonText: '상태변경'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const loader = this.$loading.show({ canCancel: false })
+
+          const r = await this.$put(`/api/product/category/${id}`, {
+            param: { use_yn: useYN }
+          })
+          console.log(r)
+
+          loader.hide()
+
+          // if (r.status === 200) {
+          if (r.serverStatus === 2) {
+            this.$refs.btnClose.click()
+            this.$swal('카테고리 상태가 변경되었습니다.')
+            this.getList()
+          } else if (r.status === 501) {
+            this.$swal(
+              `삭제하려는 카테고리를 사용하는 제품이 ${r.count}건 존재합니다.`
+            )
+          }
+        }
+      })
+    },
     doSave() {
       this.$swal({
         title: '카테고리 정보를 수정 하시겠습니까?',
@@ -176,12 +277,19 @@ export default {
     },
     doCreate() {},
     openModal(id) {
-      // 깊은 복사
-      this.selectedItem = JSON.parse(
-        JSON.stringify(
-          this.list.filter((item) => item.product_category_id === id)[0]
+      if (id === undefined) {
+        this.selectedItem = {
+          product_category_id: -1,
+          category_name: '',
+          category_description: ''
+        }
+      } else {
+        this.selectedItem = JSON.parse(
+          JSON.stringify(
+            this.list.filter((item) => item.product_category_id === id)[0]
+          )
         )
-      )
+      }
     }
   }
 }
