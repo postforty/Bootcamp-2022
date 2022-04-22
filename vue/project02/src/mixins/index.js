@@ -1,7 +1,6 @@
 import axios from 'axios'
 import ExcelJS from 'exceljs'
 import { saveAs } from 'file-saver'
-axios.defaults.baseURL = 'http://localhost:3000'
 
 export default {
   created() {},
