@@ -32,7 +32,7 @@ app.post("/api/attachment", upload.single("attachment"), async (req, res) => {
     product_id: parseInt(req.body.product_id),
     originalname: req.file.originalname,
     mimetype: req.file.mimetype,
-    filename: req.file.fieldname,
+    filename: req.file.filename,
     path: req.file.path,
   };
 
