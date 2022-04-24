@@ -21,9 +21,7 @@
         >
           생성
         </button>
-        <button class="btn btn-success me-1" @click="doExcel">
-          엑셀다운로드
-        </button>
+        <button class="btn btn-info me-1" @click="doExcel">엑셀다운로드</button>
       </div>
     </div>
     <table class="table table-striped table-bordered">
@@ -192,9 +190,12 @@ export default {
       }).then(async (result) => {
         if (result.isConfirmed) {
           const loader = this.$loading.show({ canCancel: false })
+
           const r = await this.$delete(`/api/product/category/${id}`)
           console.log(r)
+
           loader.hide()
+
           if (r.status === 200) {
             this.$swal('카테고리가 삭제 되었습니다.')
             this.getList()
@@ -232,13 +233,8 @@ export default {
           loader.hide()
 
           if (r.status === 200) {
-            this.$refs.btnClose.click()
-            this.$swal('카테고리 상태가 변경되었습니다.')
+            this.$swal('카테고리가 상태가 변경 되었습니다.')
             this.getList()
-          } else if (r.status === 501) {
-            this.$swal(
-              `삭제하려는 카테고리를 사용하는 제품이 ${r.count}건 존재합니다.`
-            )
           }
         }
       })
@@ -256,6 +252,7 @@ export default {
       }).then(async (result) => {
         if (result.isConfirmed) {
           const loader = this.$loading.show({ canCancel: false })
+
           const r = await this.$put(
             `/api/product/category/${this.selectedItem.product_category_id}`,
             {
@@ -265,8 +262,9 @@ export default {
               }
             }
           )
+
           loader.hide()
-          console.log(r)
+
           if (r.status === 200) {
             this.$refs.btnClose.click()
             this.$swal('카테고리 정보가 저장되었습니다.')
@@ -277,7 +275,7 @@ export default {
     },
     doCreate() {
       this.$swal({
-        title: '카테고리를 생성 하시겠습니까?',
+        title: '카테고리 생성 하시겠습니까?',
         // text: "You won't be able to revert this!",
         icon: 'warning',
         showCancelButton: true,
@@ -288,17 +286,21 @@ export default {
       }).then(async (result) => {
         if (result.isConfirmed) {
           const loader = this.$loading.show({ canCancel: false })
+
           const r = await this.$post('/api/product/category', {
             param: {
               category_name: this.selectedItem.category_name,
               category_description: this.selectedItem.category_description
             }
           })
+
           loader.hide()
+
           console.log(r)
+
           if (r.status === 200) {
             this.$refs.btnClose.click()
-            this.$swal('카테고리가 생성되었습니다.')
+            this.$swal('카테고리가 생성 되었습니다.')
             this.getList()
           }
         }
