@@ -15,7 +15,9 @@
         <button class="btn btn-primary me-1" @click="getList">조회</button>
         <button
           class="btn btn-success me-1"
-          @click="openModal(item.product_category_id)"
+          data-bs-toggle="modal"
+          data-bs-target="#categoryModal"
+          @click="openModal()"
         >
           생성
         </button>
@@ -115,10 +117,24 @@
               class="btn btn-secondary"
               data-bs-dismiss="modal"
               ref="btnClose"
+              @click="clearSelectedItem"
             >
               닫기
             </button>
-            <button type="button" class="btn btn-primary" @click="doSave">
+            <button
+              type="button"
+              v-if="selectedItem.product_category_id === -1"
+              class="btn btn-primary"
+              @click="doCreate"
+            >
+              생성
+            </button>
+            <button
+              type="button"
+              v-else
+              class="btn btn-primary"
+              @click="doSave"
+            >
               저장
             </button>
           </div>
@@ -197,6 +213,38 @@ export default {
         }
       })
     },
+    doCreate() {
+      this.$swal({
+        title: '카테고리 생성하시겠습니까?',
+        // text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: '취소',
+        confirmButtonText: '생성'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const loader = this.$loading.show({ canCancel: false })
+
+          const r = await this.$post('/api/product/category/', {
+            param: {
+              category_name: this.selectedItem.category_name,
+              category_description: this.selectedItem.category_description
+            }
+          })
+
+          loader.hide()
+
+          console.log(r)
+          if (r.status === 200) {
+            this.$refs.btnClose.click()
+            this.$swal('카테고리가 생성되었습니다.')
+            this.getList()
+          }
+        }
+      })
+    },
     doDelete(id) {
       this.$swal({
         title: '카테고리를 정보를 삭제하시겠습니까?',
@@ -260,12 +308,30 @@ export default {
       })
     },
     openModal(id) {
-      // 깊은 복사 적용
-      this.selectedItem = JSON.parse(
-        JSON.stringify(
-          this.list.filter((item) => item.product_category_id === id)[0]
+      // 생성
+      console.log(id) // dom에서 호출시 ()를 붙여야 undefined가 날라옴
+      if (id === undefined) {
+        this.selectedItem = {
+          product_category_id: -1,
+          category_name: '',
+          category_description: ''
+        }
+        // 수정
+      } else {
+        // 깊은 복사 적용
+        this.selectedItem = JSON.parse(
+          JSON.stringify(
+            this.list.filter((item) => item.product_category_id === id)[0]
+          )
         )
-      )
+      }
+    },
+    clearSelectedItem() {
+      this.selectedItem = {
+        product_category_id: -1,
+        category_name: '',
+        category_description: ''
+      }
     }
   }
 }
