@@ -50,7 +50,8 @@
       onkeyup="if(window.event.keyCode==13){doSearch()}"
     />
     <button onclick="doSearch();">조회</button>
-    <button onclick="deDelete();">삭제</button>
+    <button onclick="goToCreate();">생성</button>
+    <button onclick="deDelete();" id="btnDelete" disabled>삭제</button>
     <table class="normal-table striped">
       <thead>
         <tr>
@@ -95,7 +96,7 @@
         for (const item of data) {
           h.push("<tr>");
           h.push(
-            `<td><input type="checkbox" value="${item.id}" name="chk"/></td>`
+            `<td><input type="checkbox" value="${item.id}" name="chk" onchange="isChecked();"/></td>`
           );
           h.push(`<td>${item.name}</td>`);
           h.push(`<td>${item.company}</td>`);
@@ -135,6 +136,20 @@
         for (const chk of chks) {
           chk.checked = checkValue;
         }
+        isChecked();
+      }
+
+      function isChecked() {
+        const chks = document.querySelectorAll("[name=chk]:checked");
+        if (chks.length > 0) {
+          document.querySelector("#btnDelete").disabled = false;
+        } else {
+          document.querySelector("#btnDelete").disabled = true;
+        }
+      }
+
+      function goToCreate() {
+        document.location.href = "dom_create.html";
       }
     </script>
   </body>
