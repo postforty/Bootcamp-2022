@@ -5,6 +5,5 @@ module.exports = {
   categoryUpdate: `update product_category set ? where product_category_id=?`,
   categoryDelete: `delete from product_category where product_category_id=?`,
   imageInsert: `insert into product_image set ?`,
-  productCount:
-    "select count(*) as count from product where product_category_id=?",
+  productCount: `select count(*) as count from product where product_category_id=?`,
 };

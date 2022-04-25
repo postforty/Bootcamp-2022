@@ -28,9 +28,9 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                :class="{ active: $route.path == '/template/listtodetail' }"
-                @click="goToMenu('/template/listtodetail')"
-                >ListToDetail</a
+                :class="{ active: $route.path == '/product/category' }"
+                @click="goToMenu('/product/category')"
+                >Category</a
               >
             </li>
             <li class="nav-item">
