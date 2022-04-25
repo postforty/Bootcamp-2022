@@ -28,9 +28,9 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                :class="{ active: $route.path == '/product/category' }"
-                @click="goToMenu('/product/category')"
-                >Category</a
+                :class="{ active: $route.path == '/template/listtodetail' }"
+                @click="goToMenu('/template/listtodetail')"
+                >ListToDetail</a
               >
             </li>
             <li class="nav-item">
@@ -49,12 +49,13 @@
                 >MultipleEdit</a
               >
             </li>
+
             <li class="nav-item">
               <a
                 class="nav-link"
                 :class="{ active: $route.path == '/template/masterdetail' }"
                 @click="goToMenu('/template/masterdetail')"
-                >MasterDetail</a
+                >MultipleEdit</a
               >
             </li>
             <li class="nav-item">

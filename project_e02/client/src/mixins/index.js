@@ -1,15 +1,17 @@
 import axios from 'axios'
 import ExcelJS from 'exceljs'
 import { saveAs } from 'file-saver'
-axios.defaults.baseURL = 'http://localhost:3000'
-axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
-axios.defaults.headers['Access-Control-Allow-Origin'] = '*'
 
 export default {
   created() {},
-  mounted() {},
+  mounted() {
+    console.log('mixin에서 출력')
+  },
   unmounted() {},
   methods: {
+    // printA() {
+    //   console.log('A')
+    // }
     async $get(url) {
       return (
         await axios.get(url).catch((e) => {
@@ -31,19 +33,6 @@ export default {
       return await axios.delete(url).catch((e) => {
         console.log(e)
       })
-    },
-    async $upload(url, file) {
-      const formData = new FormData()
-      formData.append('attachment', file)
-      return (
-        await axios
-          .post(url, formData, {
-            headers: { 'Content-Type': 'multipart/form-data' }
-          })
-          .catch((e) => {
-            console.log(e)
-          })
-      ).data
     },
     async $ExcelFromTable(
       header = [],

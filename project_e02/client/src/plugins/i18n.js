@@ -11,16 +11,5 @@ export default {
         }, options)
         .replace(/{\w+}/g, (match) => params[match.slice(1, -1)])
     }
-
-    // {name}
-    // match.slice(1, -1)
-    // name
-    // 'Seungwon Go'
-
-    // {
-    //     name: 'Seungwon Go',
-    //     email: 'seungwon.go@gmail.com',
-    //     lang: 'en'
-    //   }
   }
 }

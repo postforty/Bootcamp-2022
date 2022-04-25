@@ -1,14 +1,14 @@
 export default {
+  // 날짜
+  // 한국은 2022.03.15
+  // 2022-03-15
+  // 2022/03/15
+  // 미국은 Mar 15, 2022
+  // 유럽은 15.05.2022
+  // d = '20220315', f = 'YYYY.MM.DD'
+  // new Date()
   methods: {
-    // 날짜
-    // 한국은 2022.03.15
-    // 2022-03-15
-    // 2022/03/15
-    // 미국은 Mar 15, 2022
-    // 유럽은 15.05.2022
-    // d = '20220315', f = 'YYYY.MM.DD'
-    // new Date()
-    $convertDateFormat(d, f) {
+    $converDateFormat(d, f) {
       let year = ''
       let month = ''
       let day = ''
@@ -23,10 +23,8 @@ export default {
         day = d.getDate().toString().padStart(2, 0)
       }
 
-      // f = 'YYYY.MM.DD', YYYY/MM/DD, DD.MM.YYYY
       return f.replace('YYYY', year).replace('MM', month).replace('DD', day)
     },
-
     // 금액에 대한 포맷
     // 3500
     // 3500.1

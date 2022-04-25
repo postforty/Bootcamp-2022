@@ -7,6 +7,9 @@ export default {
   },
   unmounted() {},
   methods: {
+    // printA() {
+    //   console.log('A')
+    // }
     async $get(url) {
       return (
         await axios.get(url).catch((e) => {
