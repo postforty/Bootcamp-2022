@@ -3,15 +3,15 @@ const router = express.Router();
 const mysql = require("../mysql");
 
 // category
-router.get("/category", async (req, res) => {
-  const categoryList = await mysql.query("categoryList");
-  res.send(categoryList);
+router.get("/", async (req, res) => {
+  const supplierList = await mysql.query("supplierList");
+  res.send(supplierList);
 });
 
-router.get("/category/:product_category_id", async (req, res) => {
+router.get("/:supplier_id", async (req, res) => {
   const { product_category_id } = req.params;
-  const categoryList = await mysql.query("categoryDetail", product_category_id);
-  res.send(categoryList);
+  const supplierDetail = await mysql.query("supplierDetail", supplier_id);
+  res.send(supplierDetail[0]);
 });
 
 router.post("/category/search", async (req, res) => {
@@ -22,8 +22,8 @@ router.post("/category/search", async (req, res) => {
   res.send(categoryList);
 });
 
-router.post("/category", async (req, res) => {
-  const result = await mysql.query("categoryInsert", req.body.param);
+router.post("/", async (req, res) => {
+  const result = await mysql.query("supplierInsert", req.body.param);
   res.send(result);
 });
 
@@ -45,18 +45,6 @@ router.delete("/category/:product_category_id", async (req, res) => {
   } else {
     res.send({ status: 501, count: count[0] });
   }
-});
-
-// supplier
-router.get("/supplier", async (req, res) => {
-  const supplierList = await mysql.query("supplierList");
-  res.send(supplierList);
-});
-
-router.get("/supplier/:supplier_id", async (req, res) => {
-  const { supplier_id } = req.params;
-  const supplierList = await mysql.query("supplierDetail", supplier_id);
-  res.send(supplierList);
 });
 
 module.exports = router;

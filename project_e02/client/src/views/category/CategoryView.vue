@@ -7,7 +7,7 @@
           type="search"
           class="form-control"
           v-model.trim="searchName"
-          @keyup.enter="getCustomers"
+          @keyup.enter="getList"
           placeholder="Name"
         />
       </div>
@@ -171,7 +171,11 @@ export default {
   methods: {
     async getList() {
       const loader = this.$loading.show({ canCancel: false })
-      this.list = await this.$get('api/product/category')
+      this.list = (
+        await this.$post('api/product/category/search', {
+          param: `%${this.searchName.toLowerCase()}%`
+        })
+      ).data
       loader.hide()
     },
     doExcel() {

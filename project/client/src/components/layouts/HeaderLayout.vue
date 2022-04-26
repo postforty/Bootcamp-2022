@@ -36,9 +36,9 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                :class="{ active: $route.path == '/template/singleedit' }"
-                @click="goToMenu('/template/singleedit')"
-                >SingleEdit</a
+                :class="{ active: $route.path == '/product/supplier' }"
+                @click="goToMenu('/product/supplier')"
+                >Supplier</a
               >
             </li>
             <li class="nav-item">

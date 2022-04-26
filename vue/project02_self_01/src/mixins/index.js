@@ -5,7 +5,7 @@ import { saveAs } from 'file-saver'
 export default {
   created() {},
   mounted() {
-    console.log('mixin에서 출력')
+    // console.log('mixin에서 출력')
   },
   unmounted() {},
   methods: {

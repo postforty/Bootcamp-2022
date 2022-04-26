@@ -21,7 +21,31 @@ const routes = [
     name: 'CategoryView',
     component: () =>
       import(
-        /* webpackChunkName: "category" */ '../views/category/CategoryView.vue'
+        /* webpackChunkName: "product" */ '../views/category/CategoryView.vue'
+      )
+  },
+  {
+    path: '/product/supplier',
+    name: 'SupplierView',
+    component: () =>
+      import(
+        /* webpackChunkName: "product" */ '../views/supplier/SupplierView.vue'
+      )
+  },
+  {
+    path: '/product/supplier/detail',
+    name: 'DetailView',
+    component: () =>
+      import(
+        /* webpackChunkName: "product" */ '../views/supplier/DetailView.vue'
+      )
+  },
+  {
+    path: '/product/supplier/change',
+    name: 'ChangeView',
+    component: () =>
+      import(
+        /* webpackChunkName: "product" */ '../views/supplier/ChangeView.vue'
       )
   }
 ]

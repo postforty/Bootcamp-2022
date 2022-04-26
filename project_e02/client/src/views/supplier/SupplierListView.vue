@@ -1,18 +1,18 @@
 <template>
   <div class="container">
     <!-- 조회조건 -->
-    <div class="row row-cols-lg-auto g-3 align-items-center mb-1">
+    <div class="row row-cols-lg-auto g-3 align-items-center mb-2">
       <div class="col-12">
         <input
           type="search"
           class="form-control"
           v-model.trim="searchName"
-          @keyup.enter="getCustomers"
+          @keyup.enter="getList"
           placeholder="Name"
         />
       </div>
       <div class="col-12">
-        <button class="btn btn-primary me-1" @click="getCustomers">조회</button>
+        <button class="btn btn-primary me-1" @click="getList">조회</button>
         <button
           class="btn btn-success me-1"
           data-bs-toggle="modal"
@@ -29,47 +29,35 @@
         <tr>
           <th>ID</th>
           <th>Name</th>
-          <th>Description</th>
-          <th>Status</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Contact Name</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr :key="item.product_category_id" v-for="item in list">
-          <td>{{ item.product_category_id }}</td>
-          <td>{{ item.category_name }}</td>
-          <td>{{ item.category_description }}</td>
-          <td>{{ item.use_yn }}</td>
+        <tr :key="item.supplier_id" v-for="item in list">
+          <td>{{ item.supplier_id }}</td>
+          <td>
+            <a @click="goToDetail(item.supplier_id)" style=""></a
+            >{{ item.supplier_name }}
+          </td>
+          <td>{{ item.phone }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.address }}</td>
+          <td>{{ item.contact_name }}</td>
           <td>
             <button
-              class="btn btn-success me-1"
-              data-bs-toggle="modal"
-              data-bs-target="#categoryModal"
-              @click="openModal(item.product_category_id)"
-            >
-              수정</button
-            ><button
               class="btn btn-danger me-1"
               @click="doDelete(item.product_category_id)"
             >
               삭제
             </button>
-            <button
-              class="btn btn-warning"
-              @click="
-                changeStatus(
-                  item.product_category_id,
-                  item.use_yn === 'Y' ? 'N' : 'Y'
-                )
-              "
-            >
-              {{ item.use_yn === 'Y' ? '사용중지' : '사용' }}
-            </button>
           </td>
         </tr>
       </tbody>
     </table>
-    <!-- Modal -->
     <div
       class="modal fade"
       id="categoryModal"
@@ -117,6 +105,7 @@
               type="button"
               class="btn btn-secondary"
               data-bs-dismiss="modal"
+              ref="btnClose"
               @click="clearSelectedItem"
             >
               닫기
@@ -165,21 +154,96 @@ export default {
   setup() {},
   created() {},
   async mounted() {
-    this.list = await this.$get('api/product/category')
+    this.list = await this.$get('api/supplier/supplier')
   },
   unmounted() {},
   methods: {
     async getList() {
       const loader = this.$loading.show({ canCancel: false })
-      this.list = await this.$get('/api/product/category')
+      this.list = (
+        await this.$post('api/product/category/search', {
+          param: `%${this.searchName.toLowerCase()}%`
+        })
+      ).data
       loader.hide()
     },
+    goToDetail(id){
+this.$router.push([path:'/supplier/detail', query:{supplier_id:id}])
+    },
     doExcel() {
-      this.$ExcelFromTable(this.headers, this.customers, 'customers', {})
+      this.$ExcelFromTable(this.headers, this.list, 'category', {})
+    },
+    doSave() {
+      this.$swal({
+        title: '카테고리 정보를 수정하시겠습니까?',
+        // text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: '취소',
+        confirmButtonText: '저장'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const loader = this.$loading.show({ canCancel: false })
+
+          const r = await this.$put(
+            `/api/product/category/${this.selectedItem.product_category_id}`,
+            {
+              param: {
+                category_name: this.selectedItem.category_name,
+                category_description: this.selectedItem.category_description
+              }
+            }
+          )
+
+          loader.hide()
+
+          console.log(r)
+          //   put을 통해 수정할때는 200
+          if (r.status === 200) {
+            this.$refs.btnClose.click()
+            this.$swal('카테고리 정보가 저장되었습니다.')
+            this.getList()
+          }
+        }
+      })
+    },
+    doCreate() {
+      this.$swal({
+        title: '카테고리 생성하시겠습니까?',
+        // text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: '취소',
+        confirmButtonText: '생성'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const loader = this.$loading.show({ canCancel: false })
+
+          const r = await this.$post('/api/product/category/', {
+            param: {
+              category_name: this.selectedItem.category_name,
+              category_description: this.selectedItem.category_description
+            }
+          })
+
+          loader.hide()
+
+          console.log(r)
+          if (r.status === 200) {
+            this.$refs.btnClose.click()
+            this.$swal('카테고리가 생성되었습니다.')
+            this.getList()
+          }
+        }
+      })
     },
     doDelete(id) {
       this.$swal({
-        title: '카테고리를 정말 삭제 하시겠습니까?',
+        title: '카테고리를 정보를 삭제하시겠습니까?',
         text: '삭제된 데이터는 복원되지 않습니다.',
         icon: 'warning',
         showCancelButton: true,
@@ -190,13 +254,14 @@ export default {
       }).then(async (result) => {
         if (result.isConfirmed) {
           const loader = this.$loading.show({ canCancel: false })
+
           const r = await this.$delete(`/api/product/category/${id}`)
           console.log(r)
 
           loader.hide()
 
           if (r.status === 200) {
-            this.$swal('카테로기 삭제되었습니다.')
+            this.$swal('카테고리가 삭제되었습니다.')
             this.getList()
           } else if (r.status === 501) {
             this.$swal(
@@ -209,7 +274,7 @@ export default {
     changeStatus(id, useYN) {
       let title = '카테고리 사용을 중지하시겠습니까?'
       if (useYN === 'Y') {
-        title = '카테고리를 다시 사용하겠습니까?'
+        title = '카테고리를 다시 사용하시겠습니까?'
       }
       this.$swal({
         title: title,
@@ -223,88 +288,33 @@ export default {
       }).then(async (result) => {
         if (result.isConfirmed) {
           const loader = this.$loading.show({ canCancel: false })
+
           const r = await this.$put(`/api/product/category/${id}`, {
             param: { use_yn: useYN }
           })
           console.log(r)
 
           loader.hide()
+
           if (r.status === 200) {
-            this.$swal('카테로기 사용 중지되었습니다.')
-            this.getList()
-          }
-        }
-      })
-    },
-    doSave() {
-      this.$swal({
-        title: '수정 하시겠습니까?',
-        // text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: '취소',
-        confirmButtonText: '저장'
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          const loader = this.$loading.show({ canCancel: false })
-          const r = await this.$put(
-            `/api/product/category/${this.selectedItem.product_category_id}`,
-            {
-              param: {
-                category_name: this.selectedItem.category_name,
-                category_description: this.selectedItem.category_description
-              }
-            }
-          )
-          loader.hide()
-          console.log(r)
-          if (r.status === 200) {
-            this.$refs.btnClose.click()
-            this.$swal('카테로기 정보가 저장되었습니다.')
-            this.getList()
-          }
-        }
-      })
-    },
-    doCreate() {
-      this.$swal({
-        title: '카테고리를 생성 하시겠습니까?',
-        // text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: '취소',
-        confirmButtonText: '생성'
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          const loader = this.$loading.show({ canCancel: false })
-          const r = await this.$post('/api/product/category', {
-            param: {
-              category_name: this.selectedItem.category_name,
-              category_description: this.selectedItem.category_description
-            }
-          })
-          loader.hide()
-          console.log(r)
-          if (r.status === 200) {
-            this.$refs.btnClose.click()
-            this.$swal('카테고리가 생성되었습니다.')
+            this.$swal('카테고리 상태가 변경되었습니다.')
             this.getList()
           }
         }
       })
     },
     openModal(id) {
+      // 생성
+      console.log(id) // dom에서 호출시 ()를 붙여야 undefined가 날라옴
       if (id === undefined) {
         this.selectedItem = {
           product_category_id: -1,
           category_name: '',
           category_description: ''
         }
+        // 수정
       } else {
+        // 깊은 복사 적용
         this.selectedItem = JSON.parse(
           JSON.stringify(
             this.list.filter((item) => item.product_category_id === id)[0]
