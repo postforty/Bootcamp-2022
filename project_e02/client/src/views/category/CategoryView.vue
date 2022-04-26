@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- 조회조건 -->
-    <div class="row row-cols-lg-auto g-3 align-items-center mb-2">
+    <div class="row row-cols-lg-auto g-3 align-items-center mb-1">
       <div class="col-12">
         <input
           type="search"
@@ -165,93 +165,27 @@ export default {
   setup() {},
   created() {},
   async mounted() {
-    this.list = await this.$get('api/product/category')
+    this.list = await this.$get('/api/product/category')
   },
   unmounted() {},
   methods: {
     async getList() {
       const loader = this.$loading.show({ canCancel: false })
       this.list = (
-        await this.$post('api/product/category/search', {
+        await this.$post('/api/product/category/search', {
           param: `%${this.searchName.toLowerCase()}%`
         })
       ).data
+
+      console.log(this.list)
       loader.hide()
     },
     doExcel() {
       this.$ExcelFromTable(this.headers, this.list, 'category', {})
     },
-    doSave() {
-      this.$swal({
-        title: '카테고리 정보를 수정하시겠습니까?',
-        // text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: '취소',
-        confirmButtonText: '저장'
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          const loader = this.$loading.show({ canCancel: false })
-
-          const r = await this.$put(
-            `/api/product/category/${this.selectedItem.product_category_id}`,
-            {
-              param: {
-                category_name: this.selectedItem.category_name,
-                category_description: this.selectedItem.category_description
-              }
-            }
-          )
-
-          loader.hide()
-
-          console.log(r)
-          //   put을 통해 수정할때는 200
-          if (r.status === 200) {
-            this.$refs.btnClose.click()
-            this.$swal('카테고리 정보가 저장되었습니다.')
-            this.getList()
-          }
-        }
-      })
-    },
-    doCreate() {
-      this.$swal({
-        title: '카테고리 생성하시겠습니까?',
-        // text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: '취소',
-        confirmButtonText: '생성'
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          const loader = this.$loading.show({ canCancel: false })
-
-          const r = await this.$post('/api/product/category/', {
-            param: {
-              category_name: this.selectedItem.category_name,
-              category_description: this.selectedItem.category_description
-            }
-          })
-
-          loader.hide()
-
-          console.log(r)
-          if (r.status === 200) {
-            this.$refs.btnClose.click()
-            this.$swal('카테고리가 생성되었습니다.')
-            this.getList()
-          }
-        }
-      })
-    },
     doDelete(id) {
       this.$swal({
-        title: '카테고리를 정보를 삭제하시겠습니까?',
+        title: '카테고리를 정말 삭제 하시겠습니까?',
         text: '삭제된 데이터는 복원되지 않습니다.',
         icon: 'warning',
         showCancelButton: true,
@@ -269,7 +203,7 @@ export default {
           loader.hide()
 
           if (r.status === 200) {
-            this.$swal('카테고리가 삭제되었습니다.')
+            this.$swal('카테고리가 삭제 되었습니다.')
             this.getList()
           } else if (r.status === 501) {
             this.$swal(
@@ -305,24 +239,87 @@ export default {
           loader.hide()
 
           if (r.status === 200) {
-            this.$swal('카테고리 상태가 변경되었습니다.')
+            this.$swal('카테고리가 상태가 변경 되었습니다.')
+            this.getList()
+          }
+        }
+      })
+    },
+    doSave() {
+      this.$swal({
+        title: '카테고리 정보를 수정 하시겠습니까?',
+        // text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: '취소',
+        confirmButtonText: '저장'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const loader = this.$loading.show({ canCancel: false })
+
+          const r = await this.$put(
+            `/api/product/category/${this.selectedItem.product_category_id}`,
+            {
+              param: {
+                category_name: this.selectedItem.category_name,
+                category_description: this.selectedItem.category_description
+              }
+            }
+          )
+
+          loader.hide()
+
+          if (r.status === 200) {
+            this.$refs.btnClose.click()
+            this.$swal('카테고리 정보가 저장되었습니다.')
+            this.getList()
+          }
+        }
+      })
+    },
+    doCreate() {
+      this.$swal({
+        title: '카테고리 생성 하시겠습니까?',
+        // text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: '취소',
+        confirmButtonText: '생성'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const loader = this.$loading.show({ canCancel: false })
+
+          const r = await this.$post('/api/product/category', {
+            param: {
+              category_name: this.selectedItem.category_name,
+              category_description: this.selectedItem.category_description
+            }
+          })
+
+          loader.hide()
+
+          console.log(r)
+
+          if (r.status === 200) {
+            this.$refs.btnClose.click()
+            this.$swal('카테고리가 생성 되었습니다.')
             this.getList()
           }
         }
       })
     },
     openModal(id) {
-      // 생성
-      console.log(id) // dom에서 호출시 ()를 붙여야 undefined가 날라옴
       if (id === undefined) {
         this.selectedItem = {
           product_category_id: -1,
           category_name: '',
           category_description: ''
         }
-        // 수정
       } else {
-        // 깊은 복사 적용
         this.selectedItem = JSON.parse(
           JSON.stringify(
             this.list.filter((item) => item.product_category_id === id)[0]

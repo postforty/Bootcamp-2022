@@ -19,9 +19,6 @@ const routes = [
   {
     path: '/product/category',
     name: 'product_category',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
         /* webpackChunkName: "product" */ '../views/category/CategoryView.vue'
@@ -30,9 +27,6 @@ const routes = [
   {
     path: '/supplier/create',
     name: 'supplier_create',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
         /* webpackChunkName: "supplier" */ '../views/supplier/SupplierCreateView.vue'
@@ -41,9 +35,6 @@ const routes = [
   {
     path: '/supplier/list',
     name: 'supplier_list',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
         /* webpackChunkName: "supplier" */ '../views/supplier/SupplierListView.vue'
@@ -52,12 +43,25 @@ const routes = [
   {
     path: '/supplier/detail',
     name: 'supplier_detail',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
         /* webpackChunkName: "supplier" */ '../views/supplier/SupplierDetailView.vue'
+      )
+  },
+  {
+    path: '/product/create',
+    name: 'product_create',
+    component: () =>
+      import(
+        /* webpackChunkName: "product" */ '../views/product/ProductCreateView.vue'
+      )
+  },
+  {
+    path: '/product/list',
+    name: 'product_list',
+    component: () =>
+      import(
+        /* webpackChunkName: "product" */ '../views/product/ProductListView.vue'
       )
   }
 ]

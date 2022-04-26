@@ -8,7 +8,8 @@ const path = require("path");
 const cors = require("cors");
 const multer = require("multer");
 
-require("dotenv").config({ path: `mysql/.env.${app.get("env")}` });
+// require("dotenv").config({ path: `mysql/.env.${app.get("env")}` });
+require("dotenv").config({ path: "mysql/.env" });
 // console.log(process.env);
 const mysql = require("./mysql");
 
@@ -95,6 +96,9 @@ const fileUpload = multer({ storage: fileStorage });
 
 const productRoute = require("./routes/product");
 app.use("/api/product", productRoute);
+
+const supplierRoute = require("./routes/supplier");
+app.use("/api/supplier", supplierRoute);
 
 // app.post("/login", (req, res) => {
 //   const { email, pw } = req.body.param;

@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const mysql = require("../mysql");
 
-// category
 router.get("/category", async (req, res) => {
   const categoryList = await mysql.query("categoryList");
   res.send(categoryList);
@@ -47,16 +46,14 @@ router.delete("/category/:product_category_id", async (req, res) => {
   }
 });
 
-// supplier
-router.get("/supplier", async (req, res) => {
-  const supplierList = await mysql.query("supplierList");
-  res.send(supplierList);
+router.post("/", async (req, res) => {
+  const result = await mysql.query("productInsert", req.body.param);
+  res.send(result);
 });
 
-router.get("/supplier/:supplier_id", async (req, res) => {
-  const { supplier_id } = req.params;
-  const supplierList = await mysql.query("supplierDetail", supplier_id);
-  res.send(supplierList);
+router.get("/", async (req, res) => {
+  const productList = await mysql.query("productList");
+  res.send(productList);
 });
 
 module.exports = router;
