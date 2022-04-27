@@ -36,17 +36,17 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                :class="{ active: $route.path == '/template/listtodetail' }"
-                @click="goToMenu('/template/listtodetail')"
-                >ListToDetail</a
+                :class="{ active: $route.path == '/supplier/list' }"
+                @click="goToMenu('/supplier/list')"
+                >Supplier</a
               >
             </li>
             <li class="nav-item">
               <a
                 class="nav-link"
-                :class="{ active: $route.path == '/template/singleedit' }"
-                @click="goToMenu('/template/singleedit')"
-                >SingleEdit</a
+                :class="{ active: $route.path == '/product/create' }"
+                @click="goToMenu('/product/create')"
+                >Product</a
               >
             </li>
             <li class="nav-item">

@@ -7,4 +7,11 @@ module.exports = {
   categoryDelete: `delete from product_category where product_category_id=?`,
   imageInsert: `insert into product_image set ?`,
   productCount: `select count(*) as count from product where product_category_id=?`,
+  supplierInsert: `insert into product_supplier set ?`,
+  supplierList: `select * from product_supplier`,
+  supplierDetail: `select * from product_supplier where supplier_id=?`,
+  supplierListByCondition: `select * from product_supplier where lower(supplier_name) like ?`,
+  productCountBySupplierId: `select count(*) as count from product where supplier_id=?`,
+  supplierDelete: `delete from product_supplier where supplier_id=?`,
+  productInsert: `insert into product set ?`,
 };

@@ -23,6 +23,38 @@ const routes = [
       import(
         /* webpackChunkName: "product" */ '../views/category/CategoryView.vue'
       )
+  },
+  {
+    path: '/supplier/create',
+    name: 'supplier_create',
+    component: () =>
+      import(
+        /* webpackChunkName: "supplier" */ '../views/supplier/SupplierCreateView.vue'
+      )
+  },
+  {
+    path: '/supplier/list',
+    name: 'supplier_list',
+    component: () =>
+      import(
+        /* webpackChunkName: "supplier" */ '../views/supplier/SupplierListView.vue'
+      )
+  },
+  {
+    path: '/supplier/detail',
+    name: 'supplier_detail',
+    component: () =>
+      import(
+        /* webpackChunkName: "supplier" */ '../views/supplier/SupplierDetailView.vue'
+      )
+  },
+  {
+    path: '/product/create',
+    name: 'product_create',
+    component: () =>
+      import(
+        /* webpackChunkName: "product" */ '../views/product/ProductCreateView.vue'
+      )
   }
 ]
 

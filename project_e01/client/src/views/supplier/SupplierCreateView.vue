@@ -1,31 +1,45 @@
 <template>
   <div class="container">
     <div class="row mb-3">
-      <label class="col-sm-2 col-form-label">Name</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" v-model.trim="customer.name" />
-      </div>
-    </div>
-    <div class="row mb-3">
-      <label class="col-sm-2 col-form-label">Company</label>
+      <label class="col-sm-2 col-form-label">Supplier Name</label>
       <div class="col-sm-10">
         <input
           type="text"
           class="form-control"
-          v-model.trim="customer.company"
+          v-model.trim="supplier.supplier_name"
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Business No</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          v-model.trim="supplier.business_no"
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Representative</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          v-model.trim="supplier.representative_name"
         />
       </div>
     </div>
     <div class="row mb-3">
       <label class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" v-model.trim="customer.email" />
+        <input type="text" class="form-control" v-model.trim="supplier.email" />
       </div>
     </div>
     <div class="row mb-3">
       <label class="col-sm-2 col-form-label">Phone</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" v-model.trim="customer.phone" />
+        <input type="text" class="form-control" v-model.trim="supplier.phone" />
       </div>
     </div>
     <div class="row mb-3">
@@ -34,7 +48,37 @@
         <input
           type="text"
           class="form-control"
-          v-model.trim="customer.address"
+          v-model.trim="supplier.address"
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Contact Name</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          v-model.trim="supplier.contact_name"
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Contact Phone</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          v-model.trim="supplier.contact_phone"
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Contact Email</label>
+      <div class="col-sm-10">
+        <input
+          type="email"
+          class="form-control"
+          v-model.trim="supplier.contact_email"
         />
       </div>
     </div>
@@ -49,12 +93,16 @@ export default {
     return {
       id: '',
       searchName: '',
-      customer: {
-        name: '',
-        company: '',
+      supplier: {
+        supplier_name: '',
         email: '',
         phone: '',
-        address: ''
+        address: '',
+        contact_name: '',
+        contact_phone: '',
+        contact_email: '',
+        business_no: '',
+        representative_name: ''
       }
     }
   },
@@ -64,14 +112,12 @@ export default {
   unmounted() {},
   methods: {
     async doSave() {
-      if (this.customer.name === '') {
-        return this.$swal('Name을 입력하세요.')
+      if (this.supplier.supplier_name === '') {
+        return this.$swal('Supplier Name을 입력하세요.')
       }
-      if (this.customer.company === '') {
-        return this.$swal('Company을 입력하세요.')
-      }
+
       this.$swal({
-        title: '고객을 생성 하시겠습니까?',
+        title: '공급자를 생성 하시겠습니까?',
         // text: "You won't be able to revert this!",
         icon: 'warning',
         showCancelButton: true,
@@ -83,27 +129,25 @@ export default {
         if (result.isConfirmed) {
           const loader = this.$loading.show({ canCancel: false })
 
-          const r = await this.$post(
-            'http://localhost:3000/customers',
-            this.customer
-          )
+          const r = await this.$post('http://localhost:3000/api/supplier', {
+            param: this.supplier
+          })
 
           loader.hide()
 
           console.log(r)
-          //   post를 통해 생성될때는 201
-          if (r.status === 201) {
-            this.$swal('고객 정보가 저장되었습니다.')
-            this.$router.push({ path: '/template/listtodetail' })
+          if (r.status === 200) {
+            this.$swal('공급자 정보가 저장되었습니다.')
+            this.$router.push({
+              path: '/supplier/detail',
+              query: { supplier_id: r.data.insertId }
+            })
           }
         }
       })
     },
-
     goToList() {
-      this.$router.push({
-        name: 'ListToDetailView'
-      })
+      this.$router.push({ path: '/supplier/list' })
     }
   }
 }
