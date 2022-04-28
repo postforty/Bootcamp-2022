@@ -34,6 +34,10 @@
       .hover tbody tr:hover {
         background-color: yellow;
       }
+
+      .error {
+        border: 2px dotted red;
+      }
     </style>
   </head>
   <body>
@@ -93,6 +97,10 @@
       }
 
       async function doSave() {
+        document
+          .querySelectorAll(".error")
+          .forEach((item) => (item.className = ""));
+
         const names = document.querySelectorAll("[name=name]");
         const companies = document.querySelectorAll("[name=company]");
         const genders = document.querySelectorAll("[name=gender]");
@@ -154,7 +162,7 @@
           wrongEmails.forEach((item) => {
             document.querySelector(
               `#tbBody tr:nth-child(${item}) [name=email]`
-            ).style.border = "2px dotted red";
+            ).className = "error";
           });
           return alert(
             `${wrongEmails.join(
@@ -163,6 +171,11 @@
           );
         }
         if (!passPhone) {
+          wrongPhones.forEach((item) => {
+            document.querySelector(
+              `#tbBody tr:nth-child(${item}) [name=phone]`
+            ).className = "error";
+          });
           return alert(
             `${wrongPhones.join(
               ","
