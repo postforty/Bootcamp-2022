@@ -109,6 +109,9 @@ app.use("/api/customer", customerRoute);
 const shipperRoute = require("./routes/shipper");
 app.use("/api/shipper", shipperRoute);
 
+const orderRoute = require("./routes/order");
+app.use("/api/order", orderRoute);
+
 // app.post("/login", (req, res) => {
 //   const { email, pw } = req.body.param;
 //   // 데이터베이스에 사용자가 있는지, 비밀번호는 맞는지 체크한 후에 아래 코드 진행

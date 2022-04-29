@@ -82,8 +82,8 @@ export default {
     },
     goToDetail(id) {
       this.$router.push({
-        path: '/template/detail',
-        query: { id: id, searchName: this.searchName }
+        path: '/product/detail',
+        query: { product_id: id, searchName: this.searchName }
       })
       // this.$router.push({ name: 'DetailView', params: { id: id } })
     },

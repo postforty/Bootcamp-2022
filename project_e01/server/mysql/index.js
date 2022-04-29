@@ -34,6 +34,20 @@ const query = async (alias, values) => {
   );
 };
 
+const getConnection = async () => {
+  return new Promise((resolve, reject) =>
+    pool.getConnection((err, conn) => {
+      if (err) {
+        console.log(err);
+        reject({ err });
+      } else {
+        resolve(conn);
+      }
+    })
+  );
+};
+
 module.exports = {
   query,
+  getConnection,
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row">
+    <dir class="row">
       <div class="col-md-6">
         <div
           id="carouselExampleIndicators"
@@ -46,19 +46,18 @@
           </button>
         </div>
       </div>
-
       <div class="col-md-6">
         <h2>{{ product.product_name }}</h2>
         <p>{{ product.category_name }} | {{ product.supplier_name }}</p>
         <h3>{{ $convertNumberFormat(product.original_price, '#,###') }}원</h3>
       </div>
-    </div>
-    <div class="row">
-      <img
-        :src="`http://localhost:3000/static/images/${product.img2}`"
-        alt=""
-      />
-    </div>
+      <div class="row">
+        <img
+          :src="`http://localhost:3000/static/images/${product.img2}`"
+          alt=""
+        />
+      </div>
+    </dir>
   </div>
 </template>
 <script>
@@ -82,7 +81,7 @@ export default {
   unmounted() {},
   methods: {
     async getProduct() {
-      this.product = await this.$get(`/api/supplier/${this.product_id}`)
+      this.product = await this.$get(`/api/product/${this.product_id}`)
       console.log(this.product)
     },
     goToList() {
