@@ -60,9 +60,9 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                :class="{ active: $route.path == '/template/shuttle' }"
-                @click="goToMenu('/template/shuttle')"
-                >Shuttle</a
+                :class="{ active: $route.path == '/shipper' }"
+                @click="goToMenu('/shipper')"
+                >Shipper</a
               >
             </li>
           </ul>

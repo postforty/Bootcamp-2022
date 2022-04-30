@@ -7,6 +7,7 @@ const rfs = require("rotating-file-stream"); // 자동으로 로그 파일을 �
 const path = require("path");
 const cors = require("cors");
 const multer = require("multer");
+const xlsx = require("xlsx");
 
 require("dotenv").config({ path: `mysql/.env.${app.get("env")}` });
 // require("dotenv").config({ path: `mysql/.env` });
@@ -174,6 +175,19 @@ app.post(
     };
 
     res.send(fileInfo);
+  }
+);
+
+app.post(
+  "/api/upload/excel",
+  fileUpload.single("attachment"),
+  async (req, res) => {
+    const workbook = xlsx.readFile(req.file.path);
+    const firstSheetName = workbook.SheetNames[0];
+    const firstSheet = workbook.Sheets[firstSheetName];
+    const firstSheetJson = xlsx.utils.sheet_to_json(firstSheet);
+
+    res.send(firstSheetJson);
   }
 );
 
