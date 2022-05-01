@@ -6,6 +6,7 @@ const morgan = require("morgan"); // morgan
 const rfs = require("rotating-file-stream"); // 자동으로 로그 파일을 채번해서 만들어 줌
 const path = require("path");
 const cors = require("cors");
+const multer = require("multer");
 
 require("dotenv").config({ path: `mysql/.env.${app.get("env")}` });
 // require("dotenv").config({ path: `mysql/.env` });
@@ -72,6 +73,30 @@ app.use(
     },
   })
 );
+
+const imageStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/images"); // 전송된 파일이 저장되는 디렉토리
+  },
+  filename: function (req, file, cb) {
+    // 현재 파일 업로드되는 년월일시분초밀리세컨드+업로드 파일의 확장자
+    cb(null, new Date().valueOf() + path.extname(file.originalname)); // 시스템 시간으로 파일이름을 변경해서 저장(동일한 파일명이 덮어 쓰는 현상을 예방하기 위함)
+  },
+});
+
+const imageUpload = multer({ storage: imageStorage }); // 위에서 정의한 storage를 사용
+
+const fileStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads"); // 전송된 파일이 저장되는 디렉토리
+  },
+  filename: function (req, file, cb) {
+    // 현재 파일 업로드되는 년월일시분초밀리세컨드+업로드 파일의 확장자
+    cb(null, new Date().valueOf() + path.extname(file.originalname)); // 시스템 시간으로 파일이름을 변경해서 저장(동일한 파일명이 덮어 쓰는 현상을 예방하기 위함)
+  },
+});
+
+const fileUpload = multer({ storage: fileStorage }); // 위에서 정의한 storage를 사용
 
 // app.post("/login", (req, res) => {
 //   const { email, pw } = req.body.param;
