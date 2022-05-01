@@ -2,10 +2,15 @@ const express = require("express");
 const app = express();
 console.log(app.get("env"));
 
-require("dotenv").config({ path: `nodemailer/.env` });
+require("dotenv").config({ path: `mysql/.env.${app.get("env")}` });
+// require("dotenv").config({ path: `mysql/.env` });
+// console.log(process.env);
+const mysql = require("./mysql");
+
+require("dotenv").config({ path: `nodemailer/.env.${app.get("env")}` });
 const nodemailer = require("./nodemailer");
 
-// console.log(process.env);
+app.use("/static/images", express.static("public/images"));
 
 app.use(
   express.json({
@@ -15,10 +20,4 @@ app.use(
 
 app.listen(3000, () => {
   console.log("서버가 포트 3000번으로 시작되었습니다.");
-});
-
-app.post("/api/email", async (req, res) => {
-  console.log(req.body.param);
-  const r = await nodemailer.send(req.body.param);
-  res.send(r);
 });

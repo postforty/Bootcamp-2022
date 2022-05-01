@@ -1,0 +1,12 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=test node app.js",
+    "prod": "cross-env NODE_ENV=prod forever start app.js"
+  },
+  "author": "shiny",
+  "license": "ISC"
+}
