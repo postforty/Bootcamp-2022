@@ -39,42 +39,31 @@
         <tr>
           <th>ID</th>
           <th>Name</th>
-          <th>Description</th>
-          <th>Status</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Contact Name</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr :key="item.product_category_id" v-for="item in list">
-          <td>{{ item.product_category_id }}</td>
-          <td>{{ item.category_name }}</td>
-          <td>{{ item.category_description }}</td>
-          <td>{{ item.use_yn }}</td>
+        <tr :key="item.supplier_id" v-for="item in list">
+          <td>{{ item.supplier_id }}</td>
+          <td>
+            <a @click="goToDetail(item.supplier_id)" style="cursor: pointer">{{
+              item.supplier_name
+            }}</a>
+          </td>
+          <td>{{ item.phone }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.address }}</td>
+          <td>{{ item.contact_name }}</td>
           <td>
             <button
-              class="btn btn-success me-1"
-              data-bs-toggle="modal"
-              data-bs-target="#categoryModal"
-              @click="openModal(item.product_category_id)"
-            >
-              수정
-            </button>
-            <button
               class="btn btn-danger me-1"
-              @click="doDelete(item.product_category_id)"
+              @click="doDelete(item.supplier_id)"
             >
               삭제
-            </button>
-            <button
-              class="btn btn-warning"
-              @click="
-                changeStatus(
-                  item.product_category_id,
-                  item.use_yn === 'Y' ? 'N' : 'Y'
-                )
-              "
-            >
-              {{ item.use_yn === 'Y' ? '사용중지' : '사용' }}
             </button>
           </td>
         </tr>
@@ -179,7 +168,7 @@ export default {
   setup() {},
   created() {},
   async mounted() {
-    this.list = await this.$get('/api/product/category')
+    this.list = await this.$get('/api/supplier')
   },
   unmounted() {},
   methods: {
@@ -192,6 +181,12 @@ export default {
       ).data
       console.log(this.list)
       loader.hide()
+    },
+    goToDetail(id) {
+      this.$router.push({
+        path: '/supplier/detail',
+        query: { supplier_id: id }
+      })
     },
     doExcel() {
       this.$ExcelFromTable(this.headers, this.list, 'category', {})
