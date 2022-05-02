@@ -98,6 +98,9 @@ const fileStorage = multer.diskStorage({
 
 const fileUpload = multer({ storage: fileStorage }); // 위에서 정의한 storage를 사용
 
+const productRoute = require("./routes/product");
+app.use("/api/product", productRoute);
+
 // app.post("/login", (req, res) => {
 //   const { email, pw } = req.body.param;
 //   // 데이터베이스에 사용자가 있는지, 비밀번호는 맞는지 체크한 후에 아래 코드 진행
@@ -130,6 +133,54 @@ const fileUpload = multer({ storage: fileStorage }); // 위에서 정의한 stor
 //     res.redirect("/login");
 //   }
 // });
+
+app.get("/api/file/:filename", (req, res) => {
+  const file = "./uploads/" + req.params.filename; // :filename 정보가 req.params.filename로 들어 옴
+
+  // uploads에 파일이 존재하지 않을 수 있기 때문에 try catch문 사용
+  try {
+    if (fs.existsSync(file)) {
+      res.download(file);
+    } else {
+      res.send("요청한 파일이 존재하지 않습니다.");
+    }
+  } catch (e) {
+    console.log(e);
+    res.send("파일을 다운로드 하는 중 에러가 발생했습니다.");
+  }
+});
+
+app.post(
+  "/api/upload/file",
+  fileUpload.single("attachment"),
+  async (req, res) => {
+    const fileInfo = {
+      product_id: parseInt(req.body.product_id),
+      originalname: req.file.originalname,
+      mimetype: req.file.mimetype,
+      filename: req.file.filename,
+      path: req.file.path,
+    };
+
+    res.send(fileInfo);
+  }
+);
+
+app.post(
+  "/api/upload/image",
+  imageUpload.single("attachment"),
+  async (req, res) => {
+    const fileInfo = {
+      product_id: parseInt(req.body.product_id),
+      originalname: req.file.originalname,
+      mimetype: req.file.mimetype,
+      filename: req.file.filename,
+      path: req.file.path,
+    };
+
+    res.send(fileInfo);
+  }
+);
 
 app.listen(3000, () => {
   console.log("서버가 포트 3000번으로 시작되었습니다.");
