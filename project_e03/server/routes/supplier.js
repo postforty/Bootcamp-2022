@@ -7,18 +7,18 @@ router.get("/", async (req, res) => {
   res.send(supplierList);
 });
 
-router.get("/category/:product_category_id", async (req, res) => {
-  const { product_category_id } = req.params;
-  const categoryList = await mysql.query("categoryDetail", product_category_id);
-  res.send(categoryList);
+router.get("/:supplier_id", async (req, res) => {
+  const { supplier_id } = req.params;
+  const supplierDetail = await mysql.query("supplierDetail", supplier_id);
+  res.send(supplierDetail[0]);
 });
 
-router.post("/category/search", async (req, res) => {
-  const categoryList = await mysql.query(
-    "categoryListByCondition",
+router.post("/search", async (req, res) => {
+  const supplierList = await mysql.query(
+    "supplierListByCondition",
     req.body.param
   );
-  res.send(categoryList);
+  res.send(supplierList);
 });
 
 router.post("/", async (req, res) => {

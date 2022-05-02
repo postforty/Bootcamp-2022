@@ -141,10 +141,9 @@ export default {
         }
       })
     },
-
     goToList() {
       this.$router.push({
-        name: 'ListToDetailView'
+        path: '/supplier/list'
       })
     }
   }

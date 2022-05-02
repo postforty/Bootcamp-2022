@@ -13,12 +13,7 @@
         </div>
         <div class="col-12">
           <button class="btn btn-primary me-1" @click="getList">조회</button>
-          <button
-            class="btn btn-success me-1"
-            data-bs-toggle="modal"
-            data-bs-target="#categoryModal"
-            @click="openModal()"
-          >
+          <button class="btn btn-success me-1" @click="goToCreate()">
             생성
           </button>
           <button class="btn btn-info me-1" @click="doExcel">
@@ -69,80 +64,6 @@
         </tr>
       </tbody>
     </table>
-    <div>
-      <div
-        class="modal fade"
-        id="categoryModal"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">카테고리</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Name</label>
-                <div class="col-sm-9">
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model.trim="selectedItem.category_name"
-                  />
-                </div>
-              </div>
-              <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Description</label>
-                <div class="col-sm-9">
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model.trim="selectedItem.category_description"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-                ref="btnClose"
-                @click="clearSelectedId"
-              >
-                닫기
-              </button>
-              <button
-                type="button"
-                v-if="selectedItem.product_category_id === -1"
-                class="btn btn-primary"
-                @click="doCreate"
-              >
-                생성
-              </button>
-              <button
-                v-else
-                type="button"
-                class="btn btn-primary"
-                @click="doSave"
-              >
-                저장
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 <script>
@@ -152,9 +73,16 @@ export default {
   data() {
     return {
       headers: [
-        { title: 'ID', key: 'product_category_id' },
-        { title: 'Name', key: 'category_name' },
-        { title: 'Description', key: 'category_description' }
+        { title: 'ID', key: 'supplier_id' },
+        { title: 'Name', key: 'supplier_name' },
+        { title: 'Business No', key: 'business_no' },
+        { title: 'Representative', key: 'representative_name' },
+        { title: 'Phone', key: 'phone' },
+        { title: 'Email', key: 'email' },
+        { title: 'Address', key: 'address' },
+        { title: 'Contact Name', key: 'contact_name' },
+        { title: 'Contact Email', key: 'contact_email' },
+        { title: 'Contact Phone', key: 'contact_phone' }
       ],
       list: [],
       searchName: '',
@@ -175,7 +103,7 @@ export default {
     async getList() {
       const loader = this.$loading.show({ canCancel: false })
       this.list = (
-        await this.$post('/api/product/category/search', {
+        await this.$post('/api/supplier/search', {
           param: `%${this.searchName.toLowerCase()}%`
         })
       ).data
@@ -188,8 +116,11 @@ export default {
         query: { supplier_id: id }
       })
     },
+    goToCreate() {
+      this.$router.push({ path: '/supplier/create' })
+    },
     doExcel() {
-      this.$ExcelFromTable(this.headers, this.list, 'category', {})
+      this.$ExcelFromTable(this.headers, this.list, 'supplier', {})
     },
     doDelete(id) {
       this.$swal({

@@ -9,4 +9,6 @@ module.exports = {
   productCount: `select count(*) as count from product where product_category_id=?`,
   supplierInsert: `insert into product_supplier set ?`,
   supplierList: `select * from product_supplier`,
+  supplierDetail: `select * from product_supplier where supplier_id=?`,
+  supplierListByCondition: `select * from product_supplier where lower(supplier_name) like ?`,
 };
