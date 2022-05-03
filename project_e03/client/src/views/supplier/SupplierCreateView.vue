@@ -136,7 +136,10 @@ export default {
           console.log(r)
           if (r.status === 200) {
             this.$swal('고객 정보가 저장되었습니다.')
-            // this.$router.push({ path: '/template/listtodetail' })
+            this.$router.push({
+              path: '/supplier/detail',
+              query: { supplier_id: r.data.insertId }
+            })
           }
         }
       })

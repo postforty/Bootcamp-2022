@@ -46,4 +46,14 @@ router.delete("/category/:product_category_id", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  const result = await mysql.query("productInsert", req.body.param);
+  res.send(result);
+});
+
+router.get("/", async (req, res) => {
+  const productList = await mysql.query("productList");
+  res.send(productList);
+});
+
 module.exports = router;

@@ -35,11 +35,11 @@ router.put("/category/:product_category_id", async (req, res) => {
   res.send(result);
 });
 
-router.delete("/category/:product_category_id", async (req, res) => {
-  const { product_category_id } = req.params;
-  const count = await mysql.query("productCount", product_category_id);
+router.delete("/:supplier_id", async (req, res) => {
+  const { supplier_id } = req.params;
+  const count = await mysql.query("productCountBySupplierId", supplier_id);
   if (count[0].count === 0) {
-    const result = await mysql.query("categoryDelete", product_category_id);
+    const result = await mysql.query("supplierDelete", supplier_id);
     res.send(result);
   } else {
     res.send({ status: 501, count: count[0] });

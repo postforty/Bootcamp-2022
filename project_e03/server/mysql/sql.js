@@ -11,4 +11,8 @@ module.exports = {
   supplierList: `select * from product_supplier`,
   supplierDetail: `select * from product_supplier where supplier_id=?`,
   supplierListByCondition: `select * from product_supplier where lower(supplier_name) like ?`,
+  productCountBySupplierId: `select count(*) as count from product where supplier_id=?`,
+  supplierDelete: `delete from product_supplier where supplier_id=?`,
+  productInsert: `insert into product set ?`,
+  productList: `select t1.*, t2.category_name, t3.supplier_name from product t1, product_category t2, product_supplier t3 where t1.product_category_id=t2.product_category_id and t1.supplier_id=t3.supplier_id`,
 };

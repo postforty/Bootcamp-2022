@@ -22,13 +22,6 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div
-        class="col-xl-3 col-lg-4 col-md-6 mb-2"
-        :key="customer.id"
-        v-for="customer in customers"
-      ></div>
-    </div>
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
@@ -124,7 +117,7 @@ export default {
     },
     doDelete(id) {
       this.$swal({
-        title: '카테고리 정말 삭제하시겠습니까?',
+        title: '공급자를 정말 삭제하시겠습니까?',
         text: '삭제된 데이터는 복원되지 않습니다.',
         icon: 'warning',
         showCancelButton: true,
@@ -136,18 +129,17 @@ export default {
         if (result.isConfirmed) {
           const loader = this.$loading.show({ canCancel: false })
 
-          const r = await this.$delete(`/api/product/category/${id}`)
+          const r = await this.$delete(`/api/supplier/${id}`)
 
           loader.hide()
 
           console.log(r)
           if (r.status === 200) {
-            this.$refs.btnClose.click()
-            this.$swal('카테고리가 삭제되었습니다.')
+            this.$swal('공급자가 삭제되었습니다.')
             this.getList()
           } else if (r.status === 501) {
             this.$swal(
-              `삭제하려는 카테고리를 사용하는 제품이 ${r.count}건 존재합니다.`
+              `삭제하려는 공급자로 등록된 제품이 ${r.count}건 존재합니다.`
             )
           }
         }
