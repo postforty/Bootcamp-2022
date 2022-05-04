@@ -16,4 +16,6 @@ module.exports = {
   productInsert: `insert into product set ?`,
   productList: `select t1.*, t2.category_name, t3.supplier_name from product t1, product_category t2, product_supplier t3 where t1.product_category_id=t2.product_category_id and t1.supplier_id=t3.supplier_id`,
   productDetail: `select t1.*, t2.category_name, t3.supplier_name from product t1, product_category t2, product_supplier t3 where t1.product_id=? and t1.product_category_id=t2.product_category_id and t1.supplier_id=t3.supplier_id`,
+  customerList: `select * from customer`,
+  shipperList: `select * from product_shipper`,
 };
