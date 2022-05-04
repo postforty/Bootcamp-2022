@@ -132,6 +132,7 @@ export default {
       })
 
       console.log(items)
+      this.items = items
 
       this.$swal({
         title: '주문을 진행하시겠습니까?',
