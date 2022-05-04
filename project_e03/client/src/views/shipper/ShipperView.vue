@@ -1,56 +1,82 @@
 <template>
   <div class="container">
-    <div>
-      <div class="row row-cols-lg-auto g-3 align-items-center mb-1">
-        <div class="col-12">
-          <input
-            type="search"
-            class="form-control"
-            v-model.trim="searchName"
-            @keyup.enter="getList"
-            placeholder="name"
-          />
-        </div>
-        <div class="col-12">
-          <button class="btn btn-primary me-1" @click="getList">조회</button>
-          <button
-            class="btn btn-success me-1"
-            data-bs-toggle="modal"
-            data-bs-target="#categoryModal"
-            @click="openModal()"
-          >
-            생성
-          </button>
-          <button class="btn btn-info me-1" @click="doExcel">
-            엑셀다운로드
-          </button>
-        </div>
+    <div class="row row-cols-lg-auto g-3 align-items-center mb-1">
+      <div class="col-12">
+        <input
+          type="search"
+          class="form-control"
+          v-model.trim="searchName"
+          @keyup.enter="getList"
+          placeholder="name"
+        />
+      </div>
+      <div class="col-12">
+        <button class="btn btn-primary me-1" @click="getList">조회</button>
+        <button
+          class="btn btn-success me-1"
+          data-bs-toggle="modal"
+          data-bs-target="#categoryModal"
+          @click="openModal()"
+        >
+          생성
+        </button>
+        <button class="btn btn-info me-1" @click="doExcel">엑셀다운로드</button>
+        <button class="btn btn-danger me-1" @click="$refs.file.click()">
+          엑셀업로드
+        </button>
+        <input
+          type="file"
+          style="display: none"
+          ref="file"
+          accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+          @change="uploadExcel($event.target.files)"
+        />
       </div>
     </div>
-    <div class="row">
-      <div
-        class="col-xl-3 col-lg-4 col-md-6 mb-2"
-        :key="customer.id"
-        v-for="customer in customers"
-      ></div>
+    <div v-if="excelList.length > 0">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Active Y/N</th>
+            <th>Delivery Y/N</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr :key="i" v-for="(item, i) in excelList">
+            <td>{{ item.shipper_name }}</td>
+            <td>{{ item.phone }}</td>
+            <td>{{ item.address }}</td>
+            <td>{{ item.active_yn }}</td>
+            <td>{{ item.delivery_yn }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <button class="btn btn-warning" @click="uploadData">최종 업로드</button>
+      </div>
     </div>
-    <table class="table table-striped table-bordered">
+    <table v-else class="table table-striped table-bordered">
       <thead>
         <tr>
           <th>ID</th>
           <th>Name</th>
-          <th>Description</th>
+          <th>Phone</th>
+          <th>Address</th>
           <th>Status</th>
-          <th></th>
+          <!-- <th></th> -->
         </tr>
       </thead>
       <tbody>
-        <tr :key="item.product_category_id" v-for="item in list">
-          <td>{{ item.product_category_id }}</td>
-          <td>{{ item.category_name }}</td>
-          <td>{{ item.category_description }}</td>
-          <td>{{ item.use_yn }}</td>
-          <td>
+        <tr :key="item.shipper_id" v-for="item in list">
+          <td>{{ item.shipper_id }}</td>
+          <td>{{ item.shipper_name }}</td>
+          <td>{{ item.phone }}</td>
+          <td>{{ item.address }}</td>
+          <td>{{ item.active_yn }}</td>
+          <!-- <td>
             <button
               class="btn btn-success me-1"
               data-bs-toggle="modal"
@@ -76,84 +102,10 @@
             >
               {{ item.use_yn === 'Y' ? '사용중지' : '사용' }}
             </button>
-          </td>
+          </td> -->
         </tr>
       </tbody>
     </table>
-    <div>
-      <div
-        class="modal fade"
-        id="categoryModal"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">카테고리</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Name</label>
-                <div class="col-sm-9">
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model.trim="selectedItem.category_name"
-                  />
-                </div>
-              </div>
-              <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Description</label>
-                <div class="col-sm-9">
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model.trim="selectedItem.category_description"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-                ref="btnClose"
-                @click="clearSelectedId"
-              >
-                닫기
-              </button>
-              <button
-                type="button"
-                v-if="selectedItem.product_category_id === -1"
-                class="btn btn-primary"
-                @click="doCreate"
-              >
-                생성
-              </button>
-              <button
-                v-else
-                type="button"
-                class="btn btn-primary"
-                @click="doSave"
-              >
-                저장
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 <script>
@@ -173,28 +125,47 @@ export default {
         product_category_id: -1,
         category_name: '',
         category_description: ''
-      }
+      },
+      excelList: []
     }
   },
   setup() {},
   created() {},
   async mounted() {
-    this.list = await this.$get('/api/product/category')
+    this.list = await this.$get('/api/shipper')
   },
   unmounted() {},
   methods: {
-    async getList() {
-      const loader = this.$loading.show({ canCancel: false })
-      this.list = (
-        await this.$post('/api/product/category/search', {
-          param: `%${this.searchName.toLowerCase()}%`
-        })
-      ).data
-      console.log(this.list)
-      loader.hide()
-    },
     doExcel() {
       this.$ExcelFromTable(this.headers, this.list, 'category', {})
+    },
+    async uploadExcel(files) {
+      this.excelList = await this.$upload('/api/upload/excel', files[0])
+      console.log(this.excelList)
+    },
+    async uploadData() {
+      const items = []
+      this.excelList.forEach((item) => {
+        items.push([
+          item.shipper_name,
+          item.phone,
+          item.address,
+          item.delivery_yn,
+          item.active_yn
+        ])
+      })
+      const r = await this.$post('/api/shipper', { param: items })
+
+      console.log(r)
+      this.excelList = []
+      this.getList()
+    },
+    async getList() {
+      const loader = this.$loading.show({ canCancel: false })
+      this.list = await this.$get('/api/shipper')
+
+      console.log(this.list)
+      loader.hide()
     },
     doDelete(id) {
       this.$swal({
