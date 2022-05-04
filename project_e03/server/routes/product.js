@@ -51,6 +51,14 @@ router.post("/", async (req, res) => {
   res.send(result);
 });
 
+router.get("/:product_id", async (req, res) => {
+  const productDetail = await mysql.query(
+    "productDetail",
+    req.params.product_id
+  );
+  res.send(productDetail[0]);
+});
+
 router.get("/", async (req, res) => {
   const productList = await mysql.query("productList");
   res.send(productList);

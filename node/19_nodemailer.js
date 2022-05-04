@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-console.log(app.get("env"));
+// console.log(app.get("env"));
 
 require("dotenv").config({ path: `nodemailer/.env` });
 const nodemailer = require("./nodemailer");
