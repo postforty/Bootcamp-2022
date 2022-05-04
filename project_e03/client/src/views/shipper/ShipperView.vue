@@ -12,14 +12,7 @@
       </div>
       <div class="col-12">
         <button class="btn btn-primary me-1" @click="getList">조회</button>
-        <button
-          class="btn btn-success me-1"
-          data-bs-toggle="modal"
-          data-bs-target="#categoryModal"
-          @click="openModal()"
-        >
-          생성
-        </button>
+        <button class="btn btn-success me-1" @click="openModal()">생성</button>
         <button class="btn btn-info me-1" @click="doExcel">엑셀다운로드</button>
         <button class="btn btn-danger me-1" @click="$refs.file.click()">
           엑셀업로드
@@ -46,11 +39,11 @@
         </thead>
         <tbody>
           <tr :key="i" v-for="(item, i) in excelList">
-            <td>{{ item.shipper_name }}</td>
-            <td>{{ item.phone }}</td>
-            <td>{{ item.address }}</td>
-            <td>{{ item.active_yn }}</td>
-            <td>{{ item.delivery_yn }}</td>
+            <td><input type="text" v-model="item.shipper_name" /></td>
+            <td><input type="text" v-model="item.phone" /></td>
+            <td><input type="text" v-model="item.address" /></td>
+            <td><input type="text" v-model="item.active_yn" /></td>
+            <td><input type="text" v-model="item.delivery_yn" /></td>
           </tr>
         </tbody>
       </table>
@@ -76,33 +69,6 @@
           <td>{{ item.phone }}</td>
           <td>{{ item.address }}</td>
           <td>{{ item.active_yn }}</td>
-          <!-- <td>
-            <button
-              class="btn btn-success me-1"
-              data-bs-toggle="modal"
-              data-bs-target="#categoryModal"
-              @click="openModal(item.product_category_id)"
-            >
-              수정
-            </button>
-            <button
-              class="btn btn-danger me-1"
-              @click="doDelete(item.product_category_id)"
-            >
-              삭제
-            </button>
-            <button
-              class="btn btn-warning"
-              @click="
-                changeStatus(
-                  item.product_category_id,
-                  item.use_yn === 'Y' ? 'N' : 'Y'
-                )
-              "
-            >
-              {{ item.use_yn === 'Y' ? '사용중지' : '사용' }}
-            </button>
-          </td> -->
         </tr>
       </tbody>
     </table>
@@ -142,6 +108,7 @@ export default {
     async uploadExcel(files) {
       this.excelList = await this.$upload('/api/upload/excel', files[0])
       console.log(this.excelList)
+      this.$refs.file.value = ''
     },
     async uploadData() {
       const items = []
@@ -154,11 +121,34 @@ export default {
           item.active_yn
         ])
       })
-      const r = await this.$post('/api/shipper', { param: items })
 
-      console.log(r)
-      this.excelList = []
-      this.getList()
+      this.$swal({
+        title: '정말 업로드 하시겠습니까?',
+        // text: '삭제된 데이터는 복원되지 않습니다.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: '취소',
+        confirmButtonText: '업로드'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const loader = this.$loading.show({ canCancel: false })
+
+          const r = await this.$post('/api/shipper', { param: items })
+
+          console.log(r)
+
+          loader.hide()
+
+          console.log(r)
+          if (r.status === 200) {
+            this.$swal('정상적으로 업로드되었습니다.')
+            this.excelList = []
+            this.getList()
+          }
+        }
+      })
     },
     async getList() {
       const loader = this.$loading.show({ canCancel: false })
