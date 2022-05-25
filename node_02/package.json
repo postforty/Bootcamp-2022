@@ -2,5 +2,5 @@
   "dependencies": {
     "mdb-reader": "^2.2.2"
   },
-  "type": "module"
+  "type": "commonjs"
 }
