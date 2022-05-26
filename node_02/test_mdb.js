@@ -1,5 +1,4 @@
 import { readFileSync } from "fs";
-// const fs = require("fs");
 import MDBReader from "mdb-reader";
 
 const buffer = readFileSync("IDCMAINDB.mdb");
