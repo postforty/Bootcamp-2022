@@ -1,5 +1,15 @@
 {
+  "name": "node_02",
+  "version": "1.0.0",
+  "main": "10_app.js",
+  "scripts": {
+    "test": "node 10_app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
+    "express": "^4.18.1",
     "mdb-reader": "^2.2.2"
   },
   "type": "commonjs"
