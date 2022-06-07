@@ -1,7 +1,8 @@
 import { readFileSync } from "fs";
 import MDBReader from "mdb-reader";
+// const MDBReader = require("mdb-reader");
 
-const buffer = readFileSync("IDCMAINDB.mdb");
+const buffer = fs.readFileSync("IDCMAINDB.mdb");
 const reader = new MDBReader(buffer);
 
 reader.getTableNames(); // ['Cats', 'Dogs', 'Cars']

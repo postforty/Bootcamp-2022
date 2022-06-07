@@ -6,7 +6,7 @@
 <script>
 export default {
   components: {},
-  data() {
+  data() { 
     return {
       lang: 'ko',
       //   name: 'Sewol',

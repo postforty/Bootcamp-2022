@@ -93,7 +93,6 @@ export default {
     },
     doPrint() {
       console.log('doPrint 함수 호출')
-
       console.log(this.sampleData)
     },
     doExcel() {
