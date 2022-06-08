@@ -1,5 +1,6 @@
 <template>
   <div>{{ ExampleData }}</div>
+  <button type="" @click="message()">about</button>
 </template>
 <script>
 import ExampleData from '@/components/data/ExampleData.js'
@@ -14,6 +15,10 @@ export default {
   created() {},
   mounted() {},
   unmounted() {},
-  methods: {}
+  methods: {
+    message() {
+      this.$router.push('/about')
+    }
+  }
 }
 </script>
