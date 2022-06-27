@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <h1 v-html="$translate(`${lang}.welcome`, userInfo)"></h1>
   <!-- <div>{{ $translate(`${lang}.email`, userInfo) }}</div> -->
@@ -6,7 +7,7 @@
 <script>
 export default {
   components: {},
-  data() { 
+  data() {
     return {
       lang: 'ko',
       //   name: 'Sewol',
