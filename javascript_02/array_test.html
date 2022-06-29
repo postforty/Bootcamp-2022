@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3 id="arrTest"></h3>
+    <script>
+        const arr = [ [ "bg1" ], [], [ "sg3" ], [ "sd5", "sd3" ] ]
+        document.getElementById("arrTest").innerHTML = arr
+        // console.log(arr);
+        let emailObj = {email: "abc@gmail.com"}
+        let arr1 = arr.reduce(function (acc, cur) {return acc.concat(cur);
+}); // 2차원 배열을 1차원 배열로
+let scoreObj = {score:arr1}
+const obj = Object.assign(emailObj, scoreObj)
+console.log(obj)
+
+    </script>
+</script>
+</body>
+</html>
