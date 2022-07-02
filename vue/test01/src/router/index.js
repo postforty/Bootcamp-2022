@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import TestView from '../views/TestView.vue'
 import TransitionTestView from '../views/TransitionTestView.vue'
+import AxiosTestView from '../views/AxiosTestView.vue'
 
 const routes = [
   {
@@ -45,6 +46,11 @@ const routes = [
     path: '/test/transition',
     name: 'TransitionTestView',
     component: TransitionTestView
+  },
+  {
+    path: '/test/axiostest',
+    name: 'AxiosTestView',
+    component: AxiosTestView
   }
 ]
 
