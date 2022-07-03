@@ -19,13 +19,6 @@ export default {
         })
       ).data
     },
-    async $getParam(url, data) {
-      return (
-        await axios.get(url, data).catch(e => {
-          console.log(e)
-        })
-      )
-    },
     async $post(url, data) {
       return await instance
         .post(url, data)

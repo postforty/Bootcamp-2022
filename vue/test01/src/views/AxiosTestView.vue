@@ -2,6 +2,7 @@
     <div>Axios Test</div>
 </template>
 <script>
+// import qs from 'qs'
 export default {
   components: {},
   data() {
@@ -12,13 +13,13 @@ export default {
   setup() {},
   created() {},
   mounted() {
-    this.getBabsangData()
+    // this.getBabsangData()
     this.getAppliedBabsangList()
   },
   unmounted() {},
   methods: {
     async getBabsangData() {
-      const babsangData = await this.$get('/babsang')
+      const babsangData = await this.$get('https://nicespoons.com/api/v1/babsang')
       babsangData.result.sort(function (a, b) {
         return b.id - a.id
       })
@@ -26,13 +27,9 @@ export default {
       this.babsangData = babsangData
     },
     async getAppliedBabsangList() {
-      const raw = {
-        email: 'wqeqg@y.omc'
-      }
-      const babsangData = await this.$getParam(
-        'https://nicespoons.com/api/v1/babsang/get?type=appliedList',
-        raw
-      )
+      const raw = '{"email": "wqeqg@y.omc"}'
+
+      const babsangData = await this.$post('http://localhost:3000/api/v1/babsang/get?type=appliedList', raw)
       console.log(babsangData)
     }
   }
