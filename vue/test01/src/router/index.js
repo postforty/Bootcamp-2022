@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import TestView from '../views/TestView.vue'
 import TransitionTestView from '../views/TransitionTestView.vue'
 import AxiosTestView from '../views/AxiosTestView.vue'
+import ellipsisTestView from '../views/ellipsisTestView.vue'
+import SwitchTestView from '../views/SwitchTestView.vue'
 
 const routes = [
   {
@@ -51,6 +53,16 @@ const routes = [
     path: '/test/axiostest',
     name: 'AxiosTestView',
     component: AxiosTestView
+  },
+  {
+    path: '/test/ellipsistest',
+    name: 'ellipsisTestView',
+    component: ellipsisTestView
+  },
+  {
+    path: '/test/switchtestview',
+    name: 'SwitchTestView',
+    component: SwitchTestView
   }
 ]
 
