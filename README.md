@@ -22,7 +22,7 @@
     + week 2 - 함수, String 객체, Number 객체, Array 객체
     + week 3 - Set, Map, Math, JSON, Window 객체, 비동기통신
     + week 4 - 정규식, DOM 제어하기
-    + week 5 - 부트스트랩을 사용해서 고품질 애플리케이션 빨리 구축하기
+    + week 5 - 부트스트랩을 사용해서 고품질 애플리케이션 구축하기
   + Month + 3
     + week 1 - Vue CLI, Vue 프로젝트 생성, 라우터, 컴포넌트, 데이터 바인딩
     + week 2 - vi-if, v-show, computed, wtach, 재사용컴포넌트, Slot, Custom Directive
